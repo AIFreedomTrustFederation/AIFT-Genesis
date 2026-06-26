@@ -83,11 +83,43 @@ validate_no_unreplaced_tokens() {
 
 validate_no_placeholder_language() {
   local target="$1"
-  if grep -R -n "TODO\|placeholder\|fill in\|Add values specific" "$target" >/dev/null 2>&1; then
-    echo "Potential placeholder language found:" >&2
-    grep -R -n "TODO\|placeholder\|fill in\|Add values specific" "$target" >&2 || true
-    exit 1
-  fi
+  python3 - "$target" <<'PY'
+from pathlib import Path
+import re
+import sys
+
+target = Path(sys.argv[1])
+patterns = [
+    re.compile(r"\bTODO\b"),
+    re.compile(r"\bFIXME\b"),
+    re.compile(r"\bXXX\b"),
+    re.compile(r"<\s*(fill\s*in|insert|todo|replace)[^>]*>", re.I),
+    re.compile(r"\[\s*(insert|fill\s*in|todo|replace)[^\]]*\]", re.I),
+    re.compile(r"{{(?!TRUST_NAME}}|TRUST_SLUG}}|TRUST_PURPOSE}})[A-Z0-9_ -]+}}"),
+]
+
+matches = []
+for path in sorted(target.rglob("*")):
+    if not path.is_file():
+        continue
+    if path.suffix.lower() not in {".md", ".json", ".sh", ""}:
+        continue
+    try:
+        text = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        continue
+    for lineno, line in enumerate(text.splitlines(), 1):
+        for pattern in patterns:
+            if pattern.search(line):
+                matches.append((path, lineno, line))
+                break
+
+if matches:
+    print("Potential unfinished placeholder markers found:", file=sys.stderr)
+    for path, lineno, line in matches:
+        print(f"{path}:{lineno}: {line}", file=sys.stderr)
+    sys.exit(1)
+PY
 }
 
 validate_json() {
@@ -165,7 +197,7 @@ cmd_doctor() {
   echo "OK"
 
   echo
-  echo "Checking for weak placeholder language in template..."
+  echo "Checking for unfinished placeholder markers in template..."
   validate_no_placeholder_language "$TEMPLATE_DIR"
   echo "OK"
 }
