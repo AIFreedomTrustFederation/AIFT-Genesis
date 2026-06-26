@@ -1,56 +1,258 @@
 {
   "schema": "https://aifreedomtrustfederation.org/schemas/trust-seed.v0.json",
   "kind": "trust-seed",
-  "version": "0.1.0",
-  "status": "template",
+  "version": "0.2.0",
+  "status": "canonical-default",
+  "generatedBy": "AIFT Genesis",
+  "constitutionalSource": "AIFreedomTrustFederation/AIFT-Genesis",
   "trust": {
     "name": "{{TRUST_NAME}}",
     "slug": "{{TRUST_SLUG}}",
-    "type": ["TODO"],
     "purpose": "{{TRUST_PURPOSE}}",
-    "visibility": "private-by-default"
+    "types": [
+      "local-first-trust",
+      "federation-capable-trust",
+      "stewardship-trust"
+    ],
+    "defaultVisibility": "private-by-default",
+    "defaultPosture": "local-first-federation-by-consent",
+    "maturity": "seeded",
+    "description": "A sovereign local-first trust seed generated from the AIFT Genesis constitutional genome. It may operate independently and may federate voluntarily by explicit consent."
+  },
+  "constitutionalDocuments": {
+    "trust": "TRUST.md",
+    "identity": "IDENTITY.md",
+    "values": "VALUES.md",
+    "governance": "GOVERNANCE.md",
+    "aiSteward": "AI_STEWARD.md",
+    "treeOfLife": "TREE_OF_LIFE.md",
+    "livingAtlas": "MAP.md",
+    "economy": "ECONOMY.md",
+    "federationLink": "FEDERATION_LINK.md"
   },
   "holographicPattern": {
     "containsFederationPattern": true,
     "localFirst": true,
     "offlineFirstGoal": true,
-    "federationOptional": true
+    "federationOptional": true,
+    "privacyDefault": true,
+    "humanApprovalRequiredForMaterialActions": true,
+    "description": "Each trust contains the core Federation pattern in miniature while remaining locally sovereign and independently governable."
   },
-  "documents": {
-    "trust": "TRUST.md",
-    "identity": "IDENTITY.md",
-    "values": "VALUES.md",
-    "treeOfLife": "TREE_OF_LIFE.md",
-    "governance": "GOVERNANCE.md",
-    "economy": "ECONOMY.md",
-    "aiSteward": "AI_STEWARD.md",
-    "map": "MAP.md",
-    "federationLink": "FEDERATION_LINK.md"
+  "identity": {
+    "layers": [
+      "local-identity",
+      "trust-identity",
+      "public-federation-identity",
+      "ai-steward-identity"
+    ],
+    "publicProfileEnabled": false,
+    "credentialPolicy": "label-source-and-verification-status",
+    "reputationPolicy": "contribution-and-provenance-based",
+    "locationIdentityPolicy": "precision-selected-by-trust"
   },
   "privacy": {
     "defaultDataState": "local-private",
-    "locationPrecision": "TODO",
+    "defaultLocationPrecision": "private-only",
     "publicProfile": false,
-    "sharedWithFederation": []
+    "sharedWithFederation": [],
+    "sensitiveCategories": [
+      "legal-identity",
+      "precise-private-location",
+      "medical-information",
+      "financial-information",
+      "family-or-custody-information",
+      "private-correspondence",
+      "minors-information",
+      "safety-sensitive-information",
+      "credentials-and-access-material",
+      "private-green-zone-context"
+    ],
+    "disclosureRule": "intentional-scoped-consent-based-and-purpose-limited"
+  },
+  "governance": {
+    "defaultDecisionModel": "primary-steward-with-documented-review",
+    "decisionClasses": [
+      "routine",
+      "material",
+      "high-risk",
+      "emergency"
+    ],
+    "materialDecisionRule": "explicit-human-approval-and-auditable-record",
+    "highRiskDecisionRule": "explicit-human-approval-evidence-review-and-qualified-guidance-when-appropriate",
+    "amendmentRule": "document-version-and-review-governance-changes",
+    "recordSystem": "git-or-equivalent-auditable-record"
+  },
+  "aiSteward": {
+    "enabledByDefault": true,
+    "role": "assistant-to-human-stewards",
+    "authority": "no-independent-constitutional-authority",
+    "defaultReadScopes": [
+      "constitutional-documents",
+      "approved-local-records",
+      "public-repositories",
+      "explicitly-provided-context"
+    ],
+    "defaultWriteScopes": [
+      "drafts",
+      "proposed-edits",
+      "human-approved-repository-changes"
+    ],
+    "humanApprovalRequiredFor": [
+      "publication",
+      "external-messages",
+      "governance-changes",
+      "permission-changes",
+      "sensitive-record-changes",
+      "financial-commitments",
+      "legal-or-medical-or-regulated-claims",
+      "location-sharing",
+      "deletion",
+      "federation-link-changes"
+    ],
+    "truthfulnessRule": "distinguish-evidence-interpretation-doctrine-speculation-memory-plan-and-uncertainty",
+    "handoffRule": "state-what-was-inspected-changed-not-changed-uncertain-and-next"
+  },
+  "treeOfLife": {
+    "model": "seed-roots-trunk-branches-leaves-fruit-new-seeds",
+    "maturityLevels": [
+      "seeded",
+      "germinating",
+      "rooting",
+      "growing",
+      "flowering",
+      "fruiting",
+      "seeding",
+      "archived",
+      "pruned"
+    ],
+    "defaultReviewRhythm": {
+      "leaves": "weekly",
+      "branches": "monthly",
+      "fruit": "quarterly",
+      "rootsAndTrunk": "annually",
+      "emergency": "as-needed"
+    },
+    "growthRule": "cultivation-not-extraction"
+  },
+  "livingAtlas": {
+    "greenZoneEnabled": true,
+    "defaultVisibility": "private-only",
+    "locationPrecisionLevels": [
+      "private-only",
+      "approximate-region",
+      "city-level",
+      "neighborhood-level",
+      "public-project-location",
+      "public-business-location",
+      "temporary-event-location",
+      "repository-only-presence",
+      "federation-only-visibility"
+    ],
+    "layers": [
+      "identity",
+      "relationship",
+      "tree-of-life",
+      "mission",
+      "repository",
+      "economy",
+      "resource",
+      "event",
+      "risk-and-safety",
+      "federation"
+    ],
+    "atlasRule": "center-the-trust-in-its-own-frame-without-erasing-other-sovereign-centers"
+  },
+  "economy": {
+    "defaultPosture": "stewardship-before-extraction",
+    "contributionLedgerEnabled": true,
+    "missionsEnabled": true,
+    "bountiesEnabled": true,
+    "marketplaceEnabledByDefault": false,
+    "regulatedActivityPolicy": "qualified-review-required-before-public-deployment-or-promotion",
+    "economicMaturityLabels": [
+      "concept",
+      "draft",
+      "internal-pilot",
+      "local-pilot",
+      "active-service",
+      "public-listing",
+      "revenue-producing",
+      "grant-funded",
+      "public-good",
+      "cooperative",
+      "under-review",
+      "paused",
+      "archived",
+      "disputed",
+      "regulated-review-required"
+    ]
   },
   "federationLink": {
     "enabled": false,
     "publicNode": false,
-    "syncPolicy": "explicit-consent-only"
+    "publicProfile": false,
+    "syncPolicy": "explicit-consent-only",
+    "status": "private-local-seed",
+    "availableStatuses": [
+      "private-local-seed",
+      "trusted-circle",
+      "public-profile",
+      "public-project-node",
+      "public-marketplace-node",
+      "public-research-or-repository-node",
+      "full-federation-participant"
+    ],
+    "defaultSharedFields": [],
+    "federationRule": "connect-by-consent-not-by-surrender"
   },
-  "treeOfLife": {
-    "seed": [],
-    "roots": [],
-    "trunk": [],
-    "branches": [],
-    "leaves": [],
-    "fruit": [],
-    "newSeeds": []
+  "records": {
+    "preferredRecordSystem": "git",
+    "importantRecords": [
+      "decision-logs",
+      "amendment-history",
+      "contribution-ledger",
+      "mission-records",
+      "federation-actions",
+      "atlas-visibility-changes",
+      "economic-records",
+      "ai-handoffs",
+      "public-claim-evidence"
+    ],
+    "auditRule": "important-actions-should-be-reviewable-by-future-stewards"
   },
-  "agentPolicy": {
-    "aiStewardEnabled": false,
-    "readScopes": [],
-    "writeScopes": [],
-    "humanApprovalRequired": true
+  "claims": {
+    "evidenceBounded": true,
+    "maturityLabelsRequiredForPublicWork": true,
+    "avoidOverclaiming": true,
+    "verificationStatuses": [
+      "self-declared",
+      "trust-attested",
+      "peer-attested",
+      "document-supported",
+      "repository-supported",
+      "organization-verified",
+      "legally-verified",
+      "expired",
+      "revoked",
+      "disputed"
+    ]
+  },
+  "generator": {
+    "replaceVariables": [
+      "{{TRUST_NAME}}",
+      "{{TRUST_SLUG}}",
+      "{{TRUST_PURPOSE}}"
+    ],
+    "preserveConstitutionalText": true,
+    "generatedTrustShouldBeUsableWithoutBlankPlaceholders": true,
+    "postGenerationRecommendedActions": [
+      "review-constitutional-documents",
+      "set-public-profile-only-if-needed",
+      "classify-location-visibility",
+      "initialize-git-history",
+      "record-first-decision",
+      "define-first-branches-and-missions"
+    ]
   }
 }
