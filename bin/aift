@@ -4,20 +4,33 @@ set -euo pipefail
 AIFT_HOME="${AIFT_HOME:-$HOME/AIFT-Genesis}"
 AIFT_TRUSTS="${AIFT_TRUSTS:-$HOME/AIFT-Trusts}"
 TEMPLATE_DIR="$AIFT_HOME/templates/trust-seed"
+AIFT_REMOTE="${AIFT_REMOTE:-https://github.com/AIFreedomTrustFederation/AIFT-Genesis.git}"
 
 print_help() {
   cat <<'HELP'
-AIFT CLI
+AIFT CLI — Genesis Runtime
 
 Usage:
   aift help
+  aift install
+  aift update
   aift doctor
+
   aift trust init "Trust Name"
+  aift trust validate [path]
   aift trust list
+  aift trust open [path]
+
+  aift steward [path]
+  aift atlas [path]
+  aift sync [path]
+  aift mission [path]
+  aift economy [path]
 
 Environment:
   AIFT_HOME     Path to the AIFT-Genesis repository. Default: ~/AIFT-Genesis
   AIFT_TRUSTS   Path where generated trusts are created. Default: ~/AIFT-Trusts
+  AIFT_REMOTE   Git remote used by install/update.
 
 Generator contract:
   The trust generator replaces only these variables:
@@ -34,6 +47,10 @@ fail() {
   exit 1
 }
 
+notice() {
+  echo "== $* =="
+}
+
 require_command() {
   command -v "$1" >/dev/null 2>&1 || fail "required command not found: $1"
 }
@@ -47,6 +64,19 @@ slugify() {
 require_genesis_repo() {
   [ -d "$AIFT_HOME" ] || fail "AIFT_HOME does not exist: $AIFT_HOME"
   [ -d "$TEMPLATE_DIR" ] || fail "trust genome template not found: $TEMPLATE_DIR"
+}
+
+resolve_trust_path() {
+  local target="${1:-$PWD}"
+  if [ -d "$target" ]; then
+    (cd "$target" && pwd)
+    return 0
+  fi
+  if [ -d "$AIFT_TRUSTS/$target" ]; then
+    (cd "$AIFT_TRUSTS/$target" && pwd)
+    return 0
+  fi
+  fail "trust path does not exist: $target"
 }
 
 replace_tokens_in_file() {
@@ -100,6 +130,8 @@ patterns = [
 
 matches = []
 for path in sorted(target.rglob("*")):
+    if "/.git/" in str(path):
+        continue
     if not path.is_file():
         continue
     if path.suffix.lower() not in {".md", ".json", ".sh", ""}:
@@ -124,7 +156,7 @@ PY
 
 validate_json() {
   local target="$1"
-  find "$target" -name '*.json' -print0 | while IFS= read -r -d '' file; do
+  find "$target" -name '*.json' -not -path '*/.git/*' -print0 | while IFS= read -r -d '' file; do
     python3 -m json.tool "$file" >/dev/null
   done
 }
@@ -170,6 +202,56 @@ The Federation Link is disabled until a human steward intentionally enables publ
 4. Record the first governance decision.
 5. Define the first Tree of Life branches and missions.
 EOF
+}
+
+cmd_install() {
+  require_command git
+  require_command python3
+
+  notice "AIFT install"
+
+  mkdir -p "$HOME"
+  if [ ! -d "$AIFT_HOME/.git" ]; then
+    git clone "$AIFT_REMOTE" "$AIFT_HOME"
+  fi
+
+  cd "$AIFT_HOME"
+  git checkout main
+  git pull --ff-only origin main || true
+
+  mkdir -p "${PREFIX:-$HOME/.local}/bin"
+  local target="${PREFIX:-$HOME/.local}/bin/aift"
+  chmod +x "$AIFT_HOME/bin/aift"
+  cp -f "$AIFT_HOME/bin/aift" "$target"
+  chmod +x "$target"
+  hash -r || true
+
+  echo "Installed: $target"
+  echo "Run: aift doctor"
+}
+
+cmd_update() {
+  require_command git
+  require_genesis_repo
+
+  notice "AIFT update"
+  cd "$AIFT_HOME"
+
+  if [ -n "$(git status --porcelain bin/aift 2>/dev/null || true)" ]; then
+    echo "Local bin/aift changes detected; preserving them by stashing before update."
+    git stash push -m "aift auto-stash before update" bin/aift >/dev/null || true
+  fi
+
+  git checkout main
+  git pull --ff-only origin main
+
+  if [ -n "${PREFIX:-}" ]; then
+    chmod +x "$AIFT_HOME/bin/aift"
+    cp -f "$AIFT_HOME/bin/aift" "$PREFIX/bin/aift"
+    chmod +x "$PREFIX/bin/aift"
+    hash -r || true
+    echo "Updated installed CLI: $PREFIX/bin/aift"
+  fi
 }
 
 cmd_doctor() {
@@ -250,14 +332,169 @@ cmd_trust_init() {
   echo "Next: cd '$target' && git status"
 }
 
+cmd_trust_validate() {
+  require_command git
+  require_command python3
+
+  local target
+  target="$(resolve_trust_path "${1:-$PWD}")"
+
+  local required_files=(
+    "README.md"
+    "TRUST.md"
+    "IDENTITY.md"
+    "VALUES.md"
+    "GOVERNANCE.md"
+    "AI_STEWARD.md"
+    "TREE_OF_LIFE.md"
+    "MAP.md"
+    "ECONOMY.md"
+    "FEDERATION_LINK.md"
+    "LOCAL_MANIFEST.json"
+  )
+
+  echo "AIFT Trust Validate"
+  echo "TRUST: $target"
+  echo
+
+  for f in "${required_files[@]}"; do
+    [ -f "$target/$f" ] || fail "missing required file: $f"
+  done
+  echo "Required files: OK"
+
+  validate_no_unreplaced_tokens "$target"
+  echo "Generator variables: OK"
+
+  validate_no_placeholder_language "$target"
+  echo "Unfinished markers: OK"
+
+  validate_json "$target"
+  echo "JSON: OK"
+
+  if [ -d "$target/.git" ]; then
+    (
+      cd "$target"
+      if [ -n "$(git status --porcelain)" ]; then
+        echo "Git working tree warning: uncommitted files exist"
+        git status --short
+      else
+        echo "Git working tree: OK"
+      fi
+    )
+  else
+    fail "trust is not a git repository"
+  fi
+
+  echo
+  echo "Trust validation passed."
+}
+
 cmd_trust_list() {
   mkdir -p "$AIFT_TRUSTS"
   find "$AIFT_TRUSTS" -mindepth 1 -maxdepth 1 -type d | sort
 }
 
+cmd_trust_open() {
+  local target
+  target="$(resolve_trust_path "${1:-$PWD}")"
+  echo "Trust path: $target"
+  echo "Files:"
+  find "$target" -maxdepth 1 -type f | sort
+  echo
+  echo "Start with: cd '$target' && cat README.md"
+}
+
+cmd_sync() {
+  local target
+  target="$(resolve_trust_path "${1:-$PWD}")"
+  cmd_trust_validate "$target"
+  (
+    cd "$target"
+    git add .
+    if [ -n "$(git status --porcelain)" ]; then
+      git commit -m "Sync trust records"
+      echo "Trust records committed locally."
+    else
+      echo "No trust changes to sync."
+    fi
+  )
+}
+
+cmd_steward() {
+  local target
+  target="$(resolve_trust_path "${1:-$PWD}")"
+  cat <<EOF
+AIFT Steward Context
+TRUST: $target
+
+Before any AI steward acts, it should read in this order:
+  1. TRUST.md
+  2. IDENTITY.md
+  3. VALUES.md
+  4. GOVERNANCE.md
+  5. AI_STEWARD.md
+  6. LOCAL_MANIFEST.json
+
+Current command is a Phase 2 context launcher. The future web UX will use this same contract to ground the AI steward before it drafts, edits, validates, or publishes anything.
+EOF
+}
+
+cmd_atlas() {
+  local target
+  target="$(resolve_trust_path "${1:-$PWD}")"
+  cat <<EOF
+AIFT Living Atlas
+TRUST: $target
+
+Green Zone source documents:
+  - MAP.md
+  - TREE_OF_LIFE.md
+  - LOCAL_MANIFEST.json
+
+Phase 2 status: local Atlas contract available.
+Next implementation: local web view centered on this trust, with private-by-default location precision.
+EOF
+}
+
+cmd_mission() {
+  local target
+  target="$(resolve_trust_path "${1:-$PWD}")"
+  mkdir -p "$target/missions"
+  cat <<EOF
+AIFT Mission Engine
+TRUST: $target
+
+Mission records folder ensured:
+  $target/missions
+
+Next implementation: aift mission create, list, complete, and fruit summary.
+EOF
+}
+
+cmd_economy() {
+  local target
+  target="$(resolve_trust_path "${1:-$PWD}")"
+  mkdir -p "$target/ledger"
+  cat <<EOF
+AIFT Economy Runtime
+TRUST: $target
+
+Ledger folder ensured:
+  $target/ledger
+
+Next implementation: contribution ledger, bounty records, lawful marketplace drafts, and public-good accounting.
+EOF
+}
+
 case "${1:-help}" in
   help|-h|--help)
     print_help
+    ;;
+  install)
+    cmd_install
+    ;;
+  update)
+    cmd_update
     ;;
   doctor)
     cmd_doctor
@@ -268,14 +505,42 @@ case "${1:-help}" in
         shift 2
         cmd_trust_init "${1:-}"
         ;;
+      validate)
+        shift 2
+        cmd_trust_validate "${1:-$PWD}"
+        ;;
       list)
         cmd_trust_list
         ;;
+      open)
+        shift 2
+        cmd_trust_open "${1:-$PWD}"
+        ;;
       *)
-        echo "Usage: aift trust init \"Trust Name\" | aift trust list" >&2
+        echo "Usage: aift trust init \"Trust Name\" | aift trust validate [path] | aift trust list | aift trust open [path]" >&2
         exit 1
         ;;
     esac
+    ;;
+  sync)
+    shift || true
+    cmd_sync "${1:-$PWD}"
+    ;;
+  steward)
+    shift || true
+    cmd_steward "${1:-$PWD}"
+    ;;
+  atlas)
+    shift || true
+    cmd_atlas "${1:-$PWD}"
+    ;;
+  mission)
+    shift || true
+    cmd_mission "${1:-$PWD}"
+    ;;
+  economy)
+    shift || true
+    cmd_economy "${1:-$PWD}"
     ;;
   *)
     echo "Unknown command: ${1:-}" >&2
