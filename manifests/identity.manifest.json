@@ -1,0 +1,4 @@
+{
+  "kind": "identity-manifest",
+  "layers": ["local", "trust", "publicFederation", "agent"]
+}

@@ -1,0 +1,4 @@
+{
+  "kind": "economy-manifest",
+  "valueTypes": ["donation", "purchase", "servicePayment", "membership", "grant", "bounty", "reward"]
+}

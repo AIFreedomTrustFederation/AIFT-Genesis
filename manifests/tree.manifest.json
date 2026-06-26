@@ -1,0 +1,4 @@
+{
+  "kind": "tree-manifest",
+  "parts": ["seed", "roots", "trunk", "branches", "leaves", "fruit", "newSeeds"]
+}

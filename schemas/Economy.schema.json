@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EconomyRecord",
+  "type": "object",
+  "properties": {
+    "valueType": { "type": "string" },
+    "description": { "type": "string" }
+  }
+}

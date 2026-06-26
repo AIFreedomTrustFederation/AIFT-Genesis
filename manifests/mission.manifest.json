@@ -1,0 +1,4 @@
+{
+  "kind": "mission-manifest",
+  "fields": ["title", "purpose", "acceptanceCriteria", "verifier", "reward", "completionEvidence"]
+}

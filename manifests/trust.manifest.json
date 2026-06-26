@@ -1,0 +1,6 @@
+{
+  "kind": "trust-manifest",
+  "version": "0.1.0",
+  "privacyDefault": "local-private",
+  "federationOptional": true
+}

@@ -1,0 +1,7 @@
+{
+  "kind": "federation-manifest",
+  "name": "AI Freedom Trust Federation",
+  "version": "0.1.0",
+  "localFirst": true,
+  "holographicTrustSeeds": true
+}
