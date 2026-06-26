@@ -1,41 +1,74 @@
-# Trust Seed Template
+# Trust Genome
 
-This folder is the canonical starter pattern for a new AI Freedom Trust Federation trust.
+This folder contains the canonical trust genome for the AI Freedom Trust Federation.
 
-A trust seed is not merely an account. It is a local, sovereign, inspectable copy of the Federation pattern, scaled to one person, family, business, ministry, cooperative, community, repository, or project.
+A generated trust is not an empty form, a software account, a profile page, a wallet, or a loose collection of notes. It is a local-first constitutional organism: a sovereign, inspectable, portable copy of the Federation pattern scaled to one person, family, business, ministry, cooperative, community, repository, or project.
 
-## What This Seed Contains
+The trust genome is designed to be useful immediately after generation. The generated trust should already contain coherent defaults for identity, values, governance, AI stewardship, Tree of Life growth, Living Atlas participation, economy, Federation linkage, privacy, records, and evidence-bounded claims.
 
-- `TRUST.md`: trust identity, purpose, type, stewardship commitments, and visibility boundaries.
-- `IDENTITY.md`: local, trust-level, public, and AI-agent identity layers.
-- `VALUES.md`: the trust's values, consent principles, and commitments.
-- `TREE_OF_LIFE.md`: seed, roots, trunk, branches, leaves, fruit, and future seeds.
-- `GOVERNANCE.md`: decision rules, stewardship roles, consent process, amendments, and repair paths.
-- `ECONOMY.md`: contribution, value flow, missions, rewards, marketplace boundaries, and compliance notes.
-- `AI_STEWARD.md`: local AI assistant rules, permissions, approval boundaries, and evidence standards.
-- `MAP.md`: Living Atlas / Green Zone configuration and location privacy.
-- `FEDERATION_LINK.md`: optional public or shared connection to the wider Federation.
-- `LOCAL_MANIFEST.json`: machine-readable trust seed metadata.
+## Core Rule
 
-## Local-First Rule
+Every trust begins private by default and federation-capable by consent.
 
-This seed should be usable as a local folder, a Git repository, a Mobox workspace, a Forge repository, or an optional federated node.
+The trust may operate fully locally. It may later publish selected public records, join missions, connect repositories, appear in the Living Atlas, participate in lawful marketplaces, or cooperate with other trusts through its own governance process.
 
-Private data stays local by default. Federation is voluntary and permissioned.
+No generated trust should require public exposure, remote platform dependence, speculative economics, or AI authority in order to exist.
 
-## First Setup Questions
+## Constitutional Documents
 
-1. What is the trust name?
-2. Who or what does this trust steward?
-3. What values guide this trust?
-4. What is private, shared, public, or AI-readable?
-5. What is the trust's local Green Zone?
-6. What are the roots, trunk, branches, leaves, fruit, and future seeds?
-7. What may the AI steward read, write, summarize, or suggest?
-8. What may this trust optionally publish to the Federation?
+This genome includes:
 
-## Constitutional Pattern
+- `TRUST.md`: the canonical trust constitution, defining what a trust is and what it stewards.
+- `IDENTITY.md`: the identity constitution, defining local, trust, public Federation, and AI steward identity layers.
+- `VALUES.md`: the values constitution, defining the ethical operating commitments of the trust.
+- `GOVERNANCE.md`: the governance constitution, defining decision classes, consent, delegation, records, conflict, repair, and amendments.
+- `AI_STEWARD.md`: the AI steward constitution, defining AI roles, permissions, prohibited conduct, human approval boundaries, truthfulness, privacy, and handoff rules.
+- `TREE_OF_LIFE.md`: the growth constitution, defining seed, roots, trunk, branches, leaves, fruit, new seeds, maturity, pruning, and seasonal review.
+- `MAP.md`: the Living Atlas constitution, defining the Green Zone, location sovereignty, map layers, local missions, public discovery, and Atlas records.
+- `ECONOMY.md`: the economy constitution, defining contribution, value flow, missions, bounties, services, marketplace activity, cooperative value, compliance review, and economic maturity.
+- `FEDERATION_LINK.md`: the Federation Link constitution, defining voluntary federation, synchronization, public fields, verification, trust-to-trust relationships, revocation, and disputes.
+- `LOCAL_MANIFEST.json`: the machine-readable manifest that expresses the same defaults for software, scripts, AI agents, and future generators.
 
-The whole Federation pattern is present here in miniature: identity, values, governance, economy, map, AI, records, and federation link.
+## Generator Variables
 
-The trust is sovereign locally and cooperative voluntarily.
+The generator should replace only the following variables during trust creation:
+
+- `{{TRUST_NAME}}`
+- `{{TRUST_SLUG}}`
+- `{{TRUST_PURPOSE}}`
+
+The constitutional text should be preserved unless the trust later amends it through its own governance process.
+
+## Default Operating Posture
+
+A newly generated trust begins with these defaults:
+
+- local-first;
+- private by default;
+- human approval required for material actions;
+- AI steward enabled as assistant, not authority;
+- Federation Link disabled until consented;
+- public profile disabled until consented;
+- location visibility private only;
+- marketplace participation disabled until reviewed;
+- regulated economic claims require qualified review;
+- records should be preserved through Git or an equivalent auditable system.
+
+## First Steward Actions
+
+After generation, the steward should:
+
+1. Read `TRUST.md`, `IDENTITY.md`, and `VALUES.md`.
+2. Confirm the trust name, slug, and purpose.
+3. Review privacy and location defaults.
+4. Initialize or verify Git history.
+5. Record the first governance decision.
+6. Identify the first branches of the Tree of Life.
+7. Decide whether any public Federation profile is needed.
+8. Keep Federation Link disabled until there is a clear reason to share.
+
+## Holographic Pattern
+
+The whole Federation pattern is present here in miniature: identity, values, governance, AI stewardship, Tree of Life, Living Atlas, economy, records, and Federation Link.
+
+The trust is sovereign locally, cooperative voluntarily, and inspectable by design.
