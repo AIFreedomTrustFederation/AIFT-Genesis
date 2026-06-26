@@ -1,0 +1,253 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+AIFT_HOME="${AIFT_HOME:-$HOME/AIFT-Genesis}"
+AIFT_TRUSTS="${AIFT_TRUSTS:-$HOME/AIFT-Trusts}"
+TEMPLATE_DIR="$AIFT_HOME/templates/trust-seed"
+
+print_help() {
+  cat <<'HELP'
+AIFT CLI
+
+Usage:
+  aift help
+  aift doctor
+  aift trust init "Trust Name"
+  aift trust list
+
+Environment:
+  AIFT_HOME     Path to the AIFT-Genesis repository. Default: ~/AIFT-Genesis
+  AIFT_TRUSTS   Path where generated trusts are created. Default: ~/AIFT-Trusts
+
+Generator contract:
+  The trust generator replaces only these variables:
+    {{TRUST_NAME}}
+    {{TRUST_SLUG}}
+    {{TRUST_PURPOSE}}
+
+  The constitutional trust genome text is preserved unless the generated trust later amends it through its own governance process.
+HELP
+}
+
+fail() {
+  echo "error: $*" >&2
+  exit 1
+}
+
+require_command() {
+  command -v "$1" >/dev/null 2>&1 || fail "required command not found: $1"
+}
+
+slugify() {
+  printf '%s' "$1" \
+    | tr '[:upper:]' '[:lower:]' \
+    | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//'
+}
+
+require_genesis_repo() {
+  [ -d "$AIFT_HOME" ] || fail "AIFT_HOME does not exist: $AIFT_HOME"
+  [ -d "$TEMPLATE_DIR" ] || fail "trust genome template not found: $TEMPLATE_DIR"
+}
+
+replace_tokens_in_file() {
+  local file="$1"
+  local trust_name="$2"
+  local trust_slug="$3"
+  local trust_purpose="$4"
+
+  python3 - "$file" "$trust_name" "$trust_slug" "$trust_purpose" <<'PY'
+from pathlib import Path
+import sys
+
+path = Path(sys.argv[1])
+trust_name = sys.argv[2]
+trust_slug = sys.argv[3]
+trust_purpose = sys.argv[4]
+
+text = path.read_text(encoding="utf-8")
+text = text.replace("{{TRUST_NAME}}", trust_name)
+text = text.replace("{{TRUST_SLUG}}", trust_slug)
+text = text.replace("{{TRUST_PURPOSE}}", trust_purpose)
+path.write_text(text, encoding="utf-8")
+PY
+}
+
+validate_no_unreplaced_tokens() {
+  local target="$1"
+  if grep -R "{{TRUST_NAME}}\|{{TRUST_SLUG}}\|{{TRUST_PURPOSE}}" "$target" >/dev/null 2>&1; then
+    echo "Unreplaced generator variables remain:" >&2
+    grep -R -n "{{TRUST_NAME}}\|{{TRUST_SLUG}}\|{{TRUST_PURPOSE}}" "$target" >&2 || true
+    exit 1
+  fi
+}
+
+validate_no_placeholder_language() {
+  local target="$1"
+  if grep -R -n "TODO\|placeholder\|fill in\|Add values specific" "$target" >/dev/null 2>&1; then
+    echo "Potential placeholder language found:" >&2
+    grep -R -n "TODO\|placeholder\|fill in\|Add values specific" "$target" >&2 || true
+    exit 1
+  fi
+}
+
+validate_json() {
+  local target="$1"
+  find "$target" -name '*.json' -print0 | while IFS= read -r -d '' file; do
+    python3 -m json.tool "$file" >/dev/null
+  done
+}
+
+write_generated_readme() {
+  local target="$1"
+  local trust_name="$2"
+  local trust_purpose="$3"
+
+  cat > "$target/README.md" <<EOF
+# $trust_name
+
+$trust_purpose
+
+This trust was generated from the AIFT Genesis trust genome.
+
+## Start Here
+
+Read these documents first:
+
+1. TRUST.md
+2. IDENTITY.md
+3. VALUES.md
+4. GOVERNANCE.md
+5. AI_STEWARD.md
+6. TREE_OF_LIFE.md
+7. MAP.md
+8. ECONOMY.md
+9. FEDERATION_LINK.md
+10. LOCAL_MANIFEST.json
+
+## Default Posture
+
+This trust begins local-first, private by default, and federation-capable by consent.
+
+The Federation Link is disabled until a human steward intentionally enables public or shared participation through governance.
+
+## First Steward Actions
+
+1. Review the constitutional documents.
+2. Confirm the trust purpose.
+3. Keep location visibility private unless there is a clear reason to share.
+4. Record the first governance decision.
+5. Define the first Tree of Life branches and missions.
+EOF
+}
+
+cmd_doctor() {
+  echo "AIFT Doctor"
+  echo "AIFT_HOME:   $AIFT_HOME"
+  echo "AIFT_TRUSTS: $AIFT_TRUSTS"
+  echo "TEMPLATE:    $TEMPLATE_DIR"
+  echo
+
+  require_command git
+  require_command python3
+
+  git --version
+  python3 --version
+
+  require_genesis_repo
+
+  echo
+  echo "Trust genome files:"
+  find "$TEMPLATE_DIR" -maxdepth 1 -type f | sort
+
+  echo
+  echo "Checking template JSON..."
+  validate_json "$TEMPLATE_DIR"
+  echo "OK"
+
+  echo
+  echo "Checking for weak placeholder language in template..."
+  validate_no_placeholder_language "$TEMPLATE_DIR"
+  echo "OK"
+}
+
+cmd_trust_init() {
+  require_command git
+  require_command python3
+  require_genesis_repo
+
+  local trust_name="${1:-}"
+  if [ -z "$trust_name" ]; then
+    read -r -p "Trust name: " trust_name
+  fi
+  [ -n "$trust_name" ] || fail "trust name is required"
+
+  local trust_purpose=""
+  read -r -p "Trust purpose: " trust_purpose
+  if [ -z "$trust_purpose" ]; then
+    trust_purpose="A local-first trust generated from the AIFT Genesis constitutional genome to steward identity, values, governance, AI assistance, Tree of Life growth, Living Atlas context, economy, records, and voluntary Federation participation."
+  fi
+
+  local trust_slug
+  trust_slug="$(slugify "$trust_name")"
+  [ -n "$trust_slug" ] || fail "trust slug could not be generated"
+
+  local target="$AIFT_TRUSTS/$trust_slug"
+  [ ! -e "$target" ] || fail "trust already exists: $target"
+
+  mkdir -p "$AIFT_TRUSTS"
+  cp -R "$TEMPLATE_DIR" "$target"
+
+  find "$target" -type f \( -name '*.md' -o -name '*.json' \) -print0 | while IFS= read -r -d '' file; do
+    replace_tokens_in_file "$file" "$trust_name" "$trust_slug" "$trust_purpose"
+  done
+
+  write_generated_readme "$target" "$trust_name" "$trust_purpose"
+
+  validate_no_unreplaced_tokens "$target"
+  validate_no_placeholder_language "$target"
+  validate_json "$target"
+
+  (
+    cd "$target"
+    git init >/dev/null
+    git add .
+    git commit -m "Initialize trust genome: $trust_name" >/dev/null || true
+  )
+
+  echo "Trust created: $target"
+  echo "Next: cd '$target' && git status"
+}
+
+cmd_trust_list() {
+  mkdir -p "$AIFT_TRUSTS"
+  find "$AIFT_TRUSTS" -mindepth 1 -maxdepth 1 -type d | sort
+}
+
+case "${1:-help}" in
+  help|-h|--help)
+    print_help
+    ;;
+  doctor)
+    cmd_doctor
+    ;;
+  trust)
+    case "${2:-}" in
+      init)
+        shift 2
+        cmd_trust_init "${1:-}"
+        ;;
+      list)
+        cmd_trust_list
+        ;;
+      *)
+        echo "Usage: aift trust init \"Trust Name\" | aift trust list" >&2
+        exit 1
+        ;;
+    esac
+    ;;
+  *)
+    echo "Unknown command: ${1:-}" >&2
+    print_help
+    exit 1
+    ;;
+esac
