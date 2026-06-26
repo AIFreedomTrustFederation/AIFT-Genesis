@@ -1,5 +1,56 @@
 {
+  "schema": "https://aifreedomtrustfederation.org/schemas/trust-seed.v0.json",
   "kind": "trust-seed",
   "version": "0.1.0",
-  "privacyDefault": "local-private"
+  "status": "template",
+  "trust": {
+    "name": "{{TRUST_NAME}}",
+    "slug": "{{TRUST_SLUG}}",
+    "type": ["TODO"],
+    "purpose": "{{TRUST_PURPOSE}}",
+    "visibility": "private-by-default"
+  },
+  "holographicPattern": {
+    "containsFederationPattern": true,
+    "localFirst": true,
+    "offlineFirstGoal": true,
+    "federationOptional": true
+  },
+  "documents": {
+    "trust": "TRUST.md",
+    "identity": "IDENTITY.md",
+    "values": "VALUES.md",
+    "treeOfLife": "TREE_OF_LIFE.md",
+    "governance": "GOVERNANCE.md",
+    "economy": "ECONOMY.md",
+    "aiSteward": "AI_STEWARD.md",
+    "map": "MAP.md",
+    "federationLink": "FEDERATION_LINK.md"
+  },
+  "privacy": {
+    "defaultDataState": "local-private",
+    "locationPrecision": "TODO",
+    "publicProfile": false,
+    "sharedWithFederation": []
+  },
+  "federationLink": {
+    "enabled": false,
+    "publicNode": false,
+    "syncPolicy": "explicit-consent-only"
+  },
+  "treeOfLife": {
+    "seed": [],
+    "roots": [],
+    "trunk": [],
+    "branches": [],
+    "leaves": [],
+    "fruit": [],
+    "newSeeds": []
+  },
+  "agentPolicy": {
+    "aiStewardEnabled": false,
+    "readScopes": [],
+    "writeScopes": [],
+    "humanApprovalRequired": true
+  }
 }
