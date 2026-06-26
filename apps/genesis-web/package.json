@@ -1,0 +1,13 @@
+{
+  "name": "@aift/genesis-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local-first AIFT Genesis dashboard for trust creation, validation, steward context, and Living Atlas context.",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
