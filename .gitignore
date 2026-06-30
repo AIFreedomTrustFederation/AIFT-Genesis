@@ -1,36 +1,41 @@
+
+# AIFT generated runtime state
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
 # debug
+# dependencies
+# local env files
+# misc
+# next.js
+# production
+# testing
+# typescript
+# vercel
+*.pem
+*.tsbuildinfo
+.DS_Store
+.aift/capabilities.json
+.aift/federation-snapshot.json
+.aift/providers.json
+.aift/repos.json
+.aift/workflows.json
+.env
+.env*.local
+.pnp.js
+.vercel
+/.next/
+/.pnp
+/build
+/coverage
+/node_modules
+/out/
+next-env.d.ts
 npm-debug.log*
+registry/*.cypher
+registry/*.dot
+registry/*.graphml
+registry/*.json
+registry/*.rdf
+reports/
+var/events/
 yarn-debug.log*
 yarn-error.log*
-
-# local env files
-.env*.local
-.env
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
