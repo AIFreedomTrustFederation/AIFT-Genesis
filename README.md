@@ -36,7 +36,9 @@ This repository begins as a doctrine-first Genesis Pack. The next phase is to bu
 
 - `AI-Freedom-Trust`: public doctrine, whitepapers, research, and website.
 - `AIFT-Genesis`: canonical genome, templates, schemas, and generators.
-- `AIFT-Forge`: sovereign Git, repository, build, package, and federation infrastructure.
-- `mobox`: personal local-first workspace and operator cockpit.
+- `AIFT-Forge`: repository, build, package, and agent coordination patterns.
+- `AIFT-OS`: truthful discovery, governance, mission, evidence, and federation API control plane.
+- `c-848263` (Mysterion Cortex): immersive Living Federation client candidate.
+- `mobox`: upstream-derived Windows x86/x64 compatibility runtime for Android through Wine and Box64; integrated through governed adapters.
 - `booksmith-ai`: documentation, indexing, and publishing layer.
 - `Aether_Coin_biozonecurrency`: economy, local-first apps, and sovereign value experiments.
