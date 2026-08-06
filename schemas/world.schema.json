@@ -1,0 +1,340 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aifreedomtrust.com/schemas/world.schema.json",
+  "title": "AIFT Living Federation World Snapshot",
+  "description": "Engine-independent, evidence-derived spatial snapshot. Presentation never grants authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "world_id",
+    "revision",
+    "coordinate_system",
+    "entities",
+    "relations",
+    "chunks",
+    "visual_grammar",
+    "governance"
+  ],
+  "properties": {
+    "schema": {
+      "const": "aift.world.v1"
+    },
+    "world_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "coordinate_system": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "dimensions",
+        "unit",
+        "origin"
+      ],
+      "properties": {
+        "name": {
+          "const": "aift.logical.cartesian.v1"
+        },
+        "dimensions": {
+          "const": 3
+        },
+        "unit": {
+          "const": "logical-nanounit"
+        },
+        "origin": {
+          "$ref": "#/$defs/vector64"
+        }
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entity"
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relation"
+      }
+    },
+    "chunks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/chunk"
+      }
+    },
+    "visual_grammar": {
+      "$ref": "#/$defs/visualGrammar"
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "truth_source",
+        "mutation_mode",
+        "human_consent_required"
+      ],
+      "properties": {
+        "truth_source": {
+          "const": "recorded-evidence"
+        },
+        "mutation_mode": {
+          "const": "proposal-only"
+        },
+        "human_consent_required": {
+          "const": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "int64": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]{0,18})$"
+    },
+    "vector64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "x",
+        "y",
+        "z"
+      ],
+      "properties": {
+        "x": {
+          "$ref": "#/$defs/int64"
+        },
+        "y": {
+          "$ref": "#/$defs/int64"
+        },
+        "z": {
+          "$ref": "#/$defs/int64"
+        }
+      }
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "revision",
+        "position",
+        "status",
+        "evidence_refs",
+        "visual"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "federation",
+            "trust",
+            "layer",
+            "repository",
+            "capability",
+            "evidence",
+            "event",
+            "mission",
+            "quest",
+            "runtime",
+            "application",
+            "device",
+            "location"
+          ]
+        },
+        "parent_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "position": {
+          "$ref": "#/$defs/vector64"
+        },
+        "status": {
+          "enum": [
+            "planned",
+            "detected",
+            "ready",
+            "active",
+            "blocked",
+            "deprecated",
+            "removed"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "object"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "visual": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "form",
+            "identity_phase",
+            "coherence"
+          ],
+          "properties": {
+            "form": {
+              "type": "string"
+            },
+            "identity_phase": {
+              "type": "number",
+              "minimum": 0,
+              "exclusiveMaximum": 6.283185307179586
+            },
+            "coherence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "palette_token": {
+              "type": "string"
+            },
+            "lod_priority": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "source",
+        "target",
+        "kind",
+        "directed"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "directed": {
+          "type": "boolean"
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "chunk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "level",
+        "center",
+        "radius",
+        "entity_ids"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "center": {
+          "$ref": "#/$defs/vector64"
+        },
+        "radius": {
+          "$ref": "#/$defs/int64"
+        },
+        "entity_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "content_hash": {
+          "type": "string"
+        }
+      }
+    },
+    "visualGrammar": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "palette",
+        "semantic_lod"
+      ],
+      "properties": {
+        "palette": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          }
+        },
+        "semantic_lod": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "min_altitude",
+              "visible_kinds"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "min_altitude": {
+                "$ref": "#/$defs/int64"
+              },
+              "visible_kinds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
