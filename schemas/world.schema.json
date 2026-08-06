@@ -97,7 +97,7 @@
   "$defs": {
     "int64": {
       "type": "string",
-      "pattern": "^-?(0|[1-9][0-9]{0,18})$"
+      "pattern": "^-?(0|[1-9][0-9]{0,17})$"
     },
     "vector64": {
       "type": "object",
@@ -238,16 +238,20 @@
       ],
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "source": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "target": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "kind": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "directed": {
           "type": "boolean"
@@ -270,7 +274,8 @@
       ],
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "level": {
           "type": "integer",
@@ -280,13 +285,14 @@
           "$ref": "#/$defs/vector64"
         },
         "radius": {
-          "$ref": "#/$defs/int64"
+          "$ref": "#/$defs/uint64"
         },
         "entity_ids": {
           "type": "array",
           "uniqueItems": true,
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         },
         "content_hash": {
@@ -335,6 +341,10 @@
           }
         }
       }
+    },
+    "uint64": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]{0,17})$"
     }
   }
 }
