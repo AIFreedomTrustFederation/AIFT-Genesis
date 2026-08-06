@@ -1,6 +1,6 @@
 # AIFT Living Federation World Protocol
 
-`aift.world.v1` is the engine-independent spatial contract shared by AIFT-OS, Mysterion Cortex, native game clients, accessible web clients, and compatibility runtimes.
+`aift.world.v1` is the engine-independent spatial contract shared by AIFT-OS, Mysterion Cortex, native game clients, and accessible web clients.
 
 ## Ownership
 
@@ -13,7 +13,7 @@
 
 ## Scale
 
-Canonical coordinates use signed 64-bit decimal strings in logical nanounits. Renderers maintain a floating origin and convert only the visible neighborhood to GPU floating-point coordinates. Worlds are partitioned into independently streamable spatial chunks.
+Canonical coordinates use portable signed decimal strings in logical nanounits. Version 1 intentionally limits magnitude to 18 digits so every schema-valid value fits safely within signed 64-bit consumers. Renderers maintain a floating origin and convert only the visible neighborhood to GPU floating-point coordinates. Worlds are partitioned into independently streamable spatial chunks.
 
 ## Truth boundary
 
@@ -27,7 +27,16 @@ Clients should support continuous logarithmic altitude, anchored pinch zoom, pan
 
 ## Synchronization
 
-A client loads an `aift.world.v1` snapshot, then applies ordered `aift.world.delta.v1` updates. Revision gaps require a new snapshot. Delta operations carry evidence references when they change an evidence-derived entity.
+A client loads an `aift.world.v1` snapshot, then applies ordered `aift.world.delta.v1` updates.
+
+Delta consumers must enforce these invariants before mutation:
+
+- `revision > base_revision`; duplicate or stale revisions are ignored.
+- `base_revision` must equal the currently applied revision. A gap requires a fresh snapshot.
+- A complete delta is validated and applied atomically, or not applied at all.
+- Operations changing evidence-derived entities require non-empty `evidence_refs`.
+- Entity operations target `entity_id`; relation operations target `relation_id`.
+- Upserts require a schema-valid `value`; removals prohibit `value`.
 
 ## Schemas
 
