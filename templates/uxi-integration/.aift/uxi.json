@@ -1,0 +1,14 @@
+{
+  "schema": "aift.uxi.integration.v1",
+  "repository": "replace-with-repository-directory-name",
+  "role": "federated-application",
+  "sources": [
+    {
+      "id": "replace.with.globally.unique.source.id",
+      "kind": "json",
+      "path": "path/to/canonical-record.json",
+      "description": "Describe why this JSON file is canonical and safe to inspect.",
+      "status": "planned"
+    }
+  ]
+}

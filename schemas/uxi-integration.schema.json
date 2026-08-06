@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aifreedomtrust.com/schemas/uxi-integration.schema.json",
+  "title": "AIFT UXI Integration Manifest",
+  "description": "Declares canonical read-only repository sources that MoBox UXI may inspect without application-specific code.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "repository", "sources"],
+  "properties": {
+    "schema": {
+      "const": "aift.uxi.integration.v1"
+    },
+    "repository": {
+      "type": "string",
+      "minLength": 1
+    },
+    "role": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sources": {
+      "$comment": "The consuming AIFT-OS manifest validator MUST reject duplicate values in sources[*].id before registering any source. JSON Schema 2020-12 cannot express uniqueness by one object property.",
+      "x-aift-uniqueBy": "id",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "path", "status"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+          },
+          "kind": {
+            "const": "json"
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Repository-relative path. Absolute and parent-traversal paths are forbidden by the runtime."
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "enum": ["ready", "detected", "planned"]
+          }
+        }
+      }
+    }
+  }
+}
