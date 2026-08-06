@@ -16,7 +16,8 @@
       "const": "aift.world.delta.v1"
     },
     "world_id": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "base_revision": {
       "type": "integer",
@@ -29,33 +30,260 @@
     "operations": {
       "type": "array",
       "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "op",
-          "entity_id"
-        ],
-        "properties": {
-          "op": {
-            "enum": [
-              "upsert-entity",
-              "remove-entity",
-              "upsert-relation",
-              "remove-relation"
-            ]
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "op",
+              "entity_id",
+              "value"
+            ],
+            "properties": {
+              "op": {
+                "const": "upsert-entity"
+              },
+              "entity_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "$ref": "#/$defs/entity"
+              },
+              "evidence_refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
           },
-          "entity_id": {
-            "type": "string"
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "op",
+              "entity_id"
+            ],
+            "properties": {
+              "op": {
+                "const": "remove-entity"
+              },
+              "entity_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
           },
-          "value": {
-            "type": "object"
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "op",
+              "relation_id",
+              "value"
+            ],
+            "properties": {
+              "op": {
+                "const": "upsert-relation"
+              },
+              "relation_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "$ref": "#/$defs/relation"
+              },
+              "evidence_refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
           },
-          "evidence_refs": {
-            "type": "array",
-            "items": {
-              "type": "string"
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "op",
+              "relation_id"
+            ],
+            "properties": {
+              "op": {
+                "const": "remove-relation"
+              },
+              "relation_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
             }
           }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "revision",
+        "position",
+        "status",
+        "evidence_refs",
+        "visual"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "federation",
+            "trust",
+            "layer",
+            "repository",
+            "capability",
+            "evidence",
+            "event",
+            "mission",
+            "quest",
+            "runtime",
+            "application",
+            "device",
+            "location"
+          ]
+        },
+        "parent_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "position": {
+          "$ref": "#/$defs/vector64"
+        },
+        "status": {
+          "enum": [
+            "planned",
+            "detected",
+            "ready",
+            "active",
+            "blocked",
+            "deprecated",
+            "removed"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "object"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "visual": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "form",
+            "identity_phase",
+            "coherence"
+          ],
+          "properties": {
+            "form": {
+              "type": "string"
+            },
+            "identity_phase": {
+              "type": "number",
+              "minimum": 0,
+              "exclusiveMaximum": 6.283185307179586
+            },
+            "coherence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "palette_token": {
+              "type": "string"
+            },
+            "lod_priority": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "source",
+        "target",
+        "kind",
+        "directed"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "directed": {
+          "type": "boolean"
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0
         }
       }
     }
