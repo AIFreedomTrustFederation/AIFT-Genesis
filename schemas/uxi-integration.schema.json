@@ -19,6 +19,8 @@
       "minLength": 1
     },
     "sources": {
+      "$comment": "The consuming AIFT-OS manifest validator MUST reject duplicate values in sources[*].id before registering any source. JSON Schema 2020-12 cannot express uniqueness by one object property.",
+      "x-aift-uniqueBy": "id",
       "type": "array",
       "items": {
         "type": "object",
