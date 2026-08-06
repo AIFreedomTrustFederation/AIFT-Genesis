@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aifreedomtrust.com/schemas/world-delta.schema.json",
+  "title": "AIFT Living Federation World Delta",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "world_id",
+    "base_revision",
+    "revision",
+    "operations"
+  ],
+  "properties": {
+    "schema": {
+      "const": "aift.world.delta.v1"
+    },
+    "world_id": {
+      "type": "string"
+    },
+    "base_revision": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "op",
+          "entity_id"
+        ],
+        "properties": {
+          "op": {
+            "enum": [
+              "upsert-entity",
+              "remove-entity",
+              "upsert-relation",
+              "remove-relation"
+            ]
+          },
+          "entity_id": {
+            "type": "string"
+          },
+          "value": {
+            "type": "object"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
