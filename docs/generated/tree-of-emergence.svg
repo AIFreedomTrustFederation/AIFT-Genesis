@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated from manifests/tree.manifest.json by tools/tree/render_tree.py. Do not hand-edit generated artifacts; edit the canonical manifest instead. -->
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="aift-tree-title aift-tree-desc" viewBox="0 0 2540 4640" width="2540" height="4640">
+<title id="aift-tree-title">The AIFT Tree of Emergence</title>
+<desc id="aift-tree-desc">A directed attributed graph describing emergence across physical, chemical, biological, cognitive, cultural, technological, AI, and Federation domains. Tree renderings are projections of this graph, not the authoritative meaning. Domains are labeled by color and text; epistemic classes are shown as badges and text.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#334155" />
+</marker>
+</defs>
+<style>
+svg { background: #f8fafc; font-family: Arial, Helvetica, sans-serif; }
+.title { font-size: 30px; font-weight: 700; fill: #0f172a; }
+.subtitle { font-size: 15px; fill: #334155; }
+.primary-edge { fill: none; stroke: #334155; stroke-width: 2.4; }
+.cross-edge { fill: none; stroke: #64748b; stroke-width: 1.5; stroke-dasharray: 7 6; opacity: 0.72; }
+.tree-node rect { filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.16)); }
+.node-label { font-size: 15px; font-weight: 700; fill: #111827; }
+.node-domain { font-size: 11px; font-weight: 700; fill: #334155; }
+.node-class { font-size: 10px; fill: #475569; }
+.node-badge, .legend-badge { font-size: 9px; font-weight: 700; fill: #ffffff; }
+.legend-heading { font-size: 15px; font-weight: 700; fill: #0f172a; }
+.legend-text { font-size: 13px; fill: #334155; }
+.tree-node:focus rect { stroke-width: 5; }
+</style>
+<rect x="0" y="0" width="100%" height="100%" fill="#f8fafc" />
+<text x="40" y="42" class="title">The AIFT Tree of Emergence</text>
+<text x="40" y="69" class="subtitle">One history, many branches, continuing emergence. The manifest defines meaning; this SVG is a deterministic projection.</text>
+<g id="legend" class="legend">
+<rect x="24" y="24" width="1510" height="300" rx="8" fill="#f8fafc" stroke="#cbd5e1" />
+<text x="40" y="54" class="legend-heading">Domains</text>
+<g class="legend-item"><rect x="40" y="65" width="18" height="18" fill="#7057c4" /><text x="66" y="79" class="legend-text">Metaphysical Doctrinal</text></g>
+<g class="legend-item"><rect x="300" y="65" width="18" height="18" fill="#2563eb" /><text x="326" y="79" class="legend-text">Physical</text></g>
+<g class="legend-item"><rect x="560" y="65" width="18" height="18" fill="#0f766e" /><text x="586" y="79" class="legend-text">Chemical</text></g>
+<g class="legend-item"><rect x="820" y="65" width="18" height="18" fill="#2f7d32" /><text x="846" y="79" class="legend-text">Biological</text></g>
+<g class="legend-item"><rect x="40" y="93" width="18" height="18" fill="#6b8e23" /><text x="66" y="107" class="legend-text">Ecological</text></g>
+<g class="legend-item"><rect x="300" y="93" width="18" height="18" fill="#a35d00" /><text x="326" y="107" class="legend-text">Cognitive</text></g>
+<g class="legend-item"><rect x="560" y="93" width="18" height="18" fill="#b33f62" /><text x="586" y="107" class="legend-text">Human Cultural</text></g>
+<g class="legend-item"><rect x="820" y="93" width="18" height="18" fill="#475569" /><text x="846" y="107" class="legend-text">Technological</text></g>
+<g class="legend-item"><rect x="40" y="121" width="18" height="18" fill="#0e7490" /><text x="66" y="135" class="legend-text">Ai</text></g>
+<g class="legend-item"><rect x="300" y="121" width="18" height="18" fill="#7c3aed" /><text x="326" y="135" class="legend-text">Federation</text></g>
+<g class="legend-item"><rect x="560" y="121" width="18" height="18" fill="#c2410c" /><text x="586" y="135" class="legend-text">Future</text></g>
+<text x="1120" y="54" class="legend-heading">Epistemic status badges</text>
+<g class="legend-item"><circle cx="1120" cy="73" r="11" fill="#1f2937" /><text x="1120" y="77" text-anchor="middle" class="legend-badge">EMP</text><text x="1140" y="78" class="legend-text">Empirical</text></g>
+<g class="legend-item"><circle cx="1120" cy="97" r="11" fill="#1f2937" /><text x="1120" y="101" text-anchor="middle" class="legend-badge">SCI</text><text x="1140" y="102" class="legend-text">Scientific Consensus</text></g>
+<g class="legend-item"><circle cx="1120" cy="121" r="11" fill="#1f2937" /><text x="1120" y="125" text-anchor="middle" class="legend-badge">RES</text><text x="1140" y="126" class="legend-text">Active Research</text></g>
+<g class="legend-item"><circle cx="1120" cy="145" r="11" fill="#1f2937" /><text x="1120" y="149" text-anchor="middle" class="legend-badge">INT</text><text x="1140" y="150" class="legend-text">Interpretive</text></g>
+<g class="legend-item"><circle cx="1120" cy="169" r="11" fill="#1f2937" /><text x="1120" y="173" text-anchor="middle" class="legend-badge">PHI</text><text x="1140" y="174" class="legend-text">Philosophical</text></g>
+<g class="legend-item"><circle cx="1120" cy="193" r="11" fill="#1f2937" /><text x="1120" y="197" text-anchor="middle" class="legend-badge">DOC</text><text x="1140" y="198" class="legend-text">Doctrinal</text></g>
+<g class="legend-item"><circle cx="1120" cy="217" r="11" fill="#1f2937" /><text x="1120" y="221" text-anchor="middle" class="legend-badge">ENG</text><text x="1140" y="222" class="legend-text">Engineering</text></g>
+<g class="legend-item"><circle cx="1120" cy="241" r="11" fill="#1f2937" /><text x="1120" y="245" text-anchor="middle" class="legend-badge">PRO</text><text x="1140" y="246" class="legend-text">Prototype</text></g>
+<g class="legend-item"><circle cx="1120" cy="265" r="11" fill="#1f2937" /><text x="1120" y="269" text-anchor="middle" class="legend-badge">ARC</text><text x="1140" y="270" class="legend-text">Architectural</text></g>
+<g class="legend-item"><circle cx="1120" cy="289" r="11" fill="#1f2937" /><text x="1120" y="293" text-anchor="middle" class="legend-badge">ASP</text><text x="1140" y="294" class="legend-text">Aspirational</text></g>
+<line x1="40" y1="292" x2="150" y2="292" class="primary-edge" marker-end="url(#arrow)" />
+<text x="165" y="296" class="legend-text">Primary lineage projection</text>
+<line x1="430" y1="292" x2="540" y2="292" class="cross-edge" />
+<text x="555" y="296" class="legend-text">Cross-link influence or dependency</text>
+</g>
+<g id="viewport" transform="translate(0 210)">
+<g id="cross-links">
+<path id="edge-e-symbols-language" class="cross-edge" data-edge-id="e-symbols-language" data-from="symbolic-representation" data-to="human-language" data-relation="enables" d="M 1500.0 2932.0 C 1500.0 2665.0, 1040.0 2665.0, 1040.0 2398.0"><title>Symbolic representation also enables language; this is a cross-link because the primary projection keeps the human lineage branch visible.</title></path>
+<path id="edge-e-software-digital-networks" class="cross-edge" data-edge-id="e-software-digital-networks" data-from="software" data-to="digital-networks" data-relation="enables" d="M 1270.0 3682.0 C 1270.0 3790.0, 1040.0 3790.0, 1040.0 3898.0"><title>Software is also required for digital networks; this is a cross-link to preserve the primary telecom branch.</title></path>
+<path id="edge-e-machine-intelligence-human-ai" class="cross-edge" data-edge-id="e-machine-intelligence-human-ai" data-from="machine-intelligence" data-to="human-ai-cooperation" data-relation="federates_with" d="M 1270.0 4132.0 C 1270.0 3340.0, 465.0 3340.0, 465.0 2548.0"><title>Machine intelligence participates in human-AI cooperation under governance.</title></path>
+<path id="edge-e-shared-memory-distributed-knowledge" class="cross-edge" data-edge-id="e-shared-memory-distributed-knowledge" data-from="shared-memory" data-to="distributed-knowledge" data-relation="enables" d="M 1040.0 2632.0 C 1040.0 3340.0, 1040.0 3340.0, 1040.0 4048.0"><title>Shared memory contributes to distributed knowledge across repositories and communities.</title></path>
+<path id="edge-e-cooperation-local-sovereign-intelligence" class="cross-edge" data-edge-id="e-cooperation-local-sovereign-intelligence" data-from="cooperation" data-to="local-sovereign-intelligence" data-relation="influences" d="M 1040.0 2932.0 C 1040.0 2815.0, 580.0 2815.0, 580.0 2698.0"><title>Cooperation informs local sovereign intelligence without erasing local agency.</title></path>
+<path id="edge-e-governed-repositories-governance" class="cross-edge" data-edge-id="e-governed-repositories-governance" data-from="governed-repositories" data-to="federation-governance" data-relation="depends_on" d="M 1040.0 4282.0 C 1040.0 3640.0, 580.0 3640.0, 580.0 2998.0"><title>Governed repositories depend on governance for authority and claim boundaries.</title></path>
+<path id="edge-e-federation-governance-cooperative-intelligence" class="cross-edge" data-edge-id="e-federation-governance-cooperative-intelligence" data-from="federation-governance" data-to="cooperative-intelligence" data-relation="enables" d="M 580.0 3082.0 C 580.0 2965.0, 350.0 2965.0, 350.0 2848.0"><title>Governance shapes cooperative intelligence through consent, evidence, and repair.</title></path>
+<path id="edge-e-trust-systems-federated-intelligence" class="cross-edge" data-edge-id="e-trust-systems-federated-intelligence" data-from="trust-systems" data-to="federated-intelligence" data-relation="federates_with" d="M 580.0 2932.0 C 580.0 2965.0, 350.0 2965.0, 350.0 2998.0"><title>Trust systems federate into the broader intelligence pattern by consent.</title></path>
+<path id="edge-e-governed-repositories-federated-intelligence" class="cross-edge" data-edge-id="e-governed-repositories-federated-intelligence" data-from="governed-repositories" data-to="federated-intelligence" data-relation="federates_with" d="M 1040.0 4282.0 C 1040.0 3640.0, 350.0 3640.0, 350.0 2998.0"><title>Repositories carry inspectable records and tools into federated intelligence.</title></path>
+<path id="edge-e-ecosystems-human-intelligence" class="cross-edge" data-edge-id="e-ecosystems-human-intelligence" data-from="ecosystems" data-to="human-intelligence" data-relation="influences" d="M 2190.0 2032.0 C 2190.0 2215.0, 465.0 2215.0, 465.0 2398.0"><title>Human intelligence remains ecologically embedded and should not be separated from living systems.</title></path>
+<path id="edge-e-philosophy-aetherion" class="cross-edge" data-edge-id="e-philosophy-aetherion" data-from="philosophy" data-to="aetherion" data-relation="influences" d="M 810.0 3382.0 C 810.0 3265.0, 350.0 3265.0, 350.0 3148.0"><title>Aetherion inherits AIFT philosophical interpretation while remaining bounded as aspiration and architecture.</title></path>
+</g>
+<g id="primary-links">
+<path id="edge-e-energence-physical-reality" class="primary-edge" data-edge-id="e-energence-physical-reality" data-from="energence" data-to="physical-reality" data-relation="emerges_from" d="M 1139.4 232.0 C 1139.4 265.0, 1139.4 265.0, 1139.4 298.0" marker-end="url(#arrow)"><title>AIFT doctrine places physical reality within a larger interpretive root while preserving the empirical boundary.</title></path>
+<path id="edge-e-physical-spacetime" class="primary-edge" data-edge-id="e-physical-spacetime" data-from="physical-reality" data-to="spacetime" data-relation="contains" d="M 1139.4 382.0 C 1139.4 415.0, 1139.4 415.0, 1139.4 448.0" marker-end="url(#arrow)"><title>Observable physical reality is represented through spacetime description.</title></path>
+<path id="edge-e-spacetime-energy" class="primary-edge" data-edge-id="e-spacetime-energy" data-from="spacetime" data-to="energy-and-fields" data-relation="contains" d="M 1139.4 532.0 C 1139.4 565.0, 1139.4 565.0, 1139.4 598.0" marker-end="url(#arrow)"><title>Physical fields and energy are represented within the physical frame.</title></path>
+<path id="edge-e-energy-matter" class="primary-edge" data-edge-id="e-energy-matter" data-from="energy-and-fields" data-to="matter" data-relation="enables" d="M 1139.4 682.0 C 1139.4 715.0, 1139.4 715.0, 1139.4 748.0" marker-end="url(#arrow)"><title>Stable matter supports later chemical organization.</title></path>
+<path id="edge-e-matter-nucleosynthesis" class="primary-edge" data-edge-id="e-matter-nucleosynthesis" data-from="matter" data-to="stellar-nucleosynthesis" data-relation="enables" d="M 1139.4 832.0 C 1139.4 865.0, 1139.4 865.0, 1139.4 898.0" marker-end="url(#arrow)"><title>Stellar processes create many elements needed for complex chemistry.</title></path>
+<path id="edge-e-nucleosynthesis-planets" class="primary-edge" data-edge-id="e-nucleosynthesis-planets" data-from="stellar-nucleosynthesis" data-to="planetary-systems" data-relation="enables" d="M 1139.4 982.0 C 1139.4 1015.0, 120.0 1015.0, 120.0 1048.0" marker-end="url(#arrow)"><title>Element-rich systems support planets and varied environments.</title></path>
+<path id="edge-e-nucleosynthesis-molecules" class="primary-edge" data-edge-id="e-nucleosynthesis-molecules" data-from="stellar-nucleosynthesis" data-to="atoms-and-molecules" data-relation="enables" d="M 1139.4 982.0 C 1139.4 1015.0, 2158.9 1015.0, 2158.9 1048.0" marker-end="url(#arrow)"><title>Elements combine into atoms and molecules.</title></path>
+<path id="edge-e-molecules-complex-chemistry" class="primary-edge" data-edge-id="e-molecules-complex-chemistry" data-from="atoms-and-molecules" data-to="complex-chemistry" data-relation="emerges_from" d="M 2158.9 1132.0 C 2158.9 1165.0, 2158.9 1165.0, 2158.9 1198.0" marker-end="url(#arrow)"><title>Molecular interactions support complex chemistry.</title></path>
+<path id="edge-e-complex-chemistry-self-organization" class="primary-edge" data-edge-id="e-complex-chemistry-self-organization" data-from="complex-chemistry" data-to="self-organization" data-relation="emerges_from" d="M 2158.9 1282.0 C 2158.9 1315.0, 2158.9 1315.0, 2158.9 1348.0" marker-end="url(#arrow)"><title>Complex systems can form organized patterns through local interactions.</title></path>
+<path id="edge-e-self-organization-prebiotic" class="primary-edge" data-edge-id="e-self-organization-prebiotic" data-from="self-organization" data-to="prebiotic-chemistry" data-relation="enables" d="M 2158.9 1432.0 C 2158.9 1465.0, 2158.9 1465.0, 2158.9 1498.0" marker-end="url(#arrow)"><title>Self-organizing chemistry is relevant to prebiotic research without settling a single pathway.</title></path>
+<path id="edge-e-prebiotic-life" class="primary-edge" data-edge-id="e-prebiotic-life" data-from="prebiotic-chemistry" data-to="biological-life" data-relation="emerges_from" d="M 2158.9 1582.0 C 2158.9 1615.0, 2158.9 1615.0, 2158.9 1648.0" marker-end="url(#arrow)"><title>Life is placed after prebiotic chemistry while keeping abiogenesis mechanism questions open.</title></path>
+<path id="edge-e-life-microbes" class="primary-edge" data-edge-id="e-life-microbes" data-from="biological-life" data-to="microbial-lineages" data-relation="branches_from" d="M 2158.9 1732.0 C 2158.9 1765.0, 2420.0 1765.0, 2420.0 1798.0" marker-end="url(#arrow)"><title>Microbial life is a continuing major branch of life.</title></path>
+<path id="edge-e-life-evolution" class="primary-edge" data-edge-id="e-life-evolution" data-from="biological-life" data-to="biological-evolution" data-relation="emerges_from" d="M 2158.9 1732.0 C 2158.9 1765.0, 1897.7 1765.0, 1897.7 1798.0" marker-end="url(#arrow)"><title>Evolution describes the continuing branching and adaptation of life.</title></path>
+<path id="edge-e-evolution-ecosystems" class="primary-edge" data-edge-id="e-evolution-ecosystems" data-from="biological-evolution" data-to="ecosystems" data-relation="branches_from" d="M 1897.7 1882.0 C 1897.7 1915.0, 2190.0 1915.0, 2190.0 1948.0" marker-end="url(#arrow)"><title>Life forms ecological relationships as well as lineages.</title></path>
+<path id="edge-e-evolution-multicellularity" class="primary-edge" data-edge-id="e-evolution-multicellularity" data-from="biological-evolution" data-to="multicellularity" data-relation="branches_from" d="M 1897.7 1882.0 C 1897.7 1915.0, 1605.4 1915.0, 1605.4 1948.0" marker-end="url(#arrow)"><title>Multicellularity is represented as a branching biological development.</title></path>
+<path id="edge-e-multicellularity-plants" class="primary-edge" data-edge-id="e-multicellularity-plants" data-from="multicellularity" data-to="plant-life" data-relation="branches_from" d="M 1605.4 2032.0 C 1605.4 2065.0, 1960.0 2065.0, 1960.0 2098.0" marker-end="url(#arrow)"><title>Plant life is a continuing multicellular branch.</title></path>
+<path id="edge-e-multicellularity-fungi" class="primary-edge" data-edge-id="e-multicellularity-fungi" data-from="multicellularity" data-to="fungal-life" data-relation="branches_from" d="M 1605.4 2032.0 C 1605.4 2065.0, 1730.0 2065.0, 1730.0 2098.0" marker-end="url(#arrow)"><title>Fungal life is a continuing multicellular branch.</title></path>
+<path id="edge-e-multicellularity-animals" class="primary-edge" data-edge-id="e-multicellularity-animals" data-from="multicellularity" data-to="animal-life" data-relation="branches_from" d="M 1605.4 2032.0 C 1605.4 2065.0, 1126.2 2065.0, 1126.2 2098.0" marker-end="url(#arrow)"><title>Animal life is a continuing multicellular branch.</title></path>
+<path id="edge-e-animals-nervous-systems" class="primary-edge" data-edge-id="e-animals-nervous-systems" data-from="animal-life" data-to="nervous-systems" data-relation="branches_from" d="M 1126.2 2182.0 C 1126.2 2215.0, 1500.0 2215.0, 1500.0 2248.0" marker-end="url(#arrow)"><title>Nervous systems arise in animal lineages and support cognition-related capacities.</title></path>
+<path id="edge-e-nervous-learning" class="primary-edge" data-edge-id="e-nervous-learning" data-from="nervous-systems" data-to="learning-and-memory" data-relation="enables" d="M 1500.0 2332.0 C 1500.0 2365.0, 1500.0 2365.0, 1500.0 2398.0" marker-end="url(#arrow)"><title>Nervous systems enable learning and memory in many organisms.</title></path>
+<path id="edge-e-learning-sentience" class="primary-edge" data-edge-id="e-learning-sentience" data-from="learning-and-memory" data-to="sentience" data-relation="influences" d="M 1500.0 2482.0 C 1500.0 2515.0, 1500.0 2515.0, 1500.0 2548.0" marker-end="url(#arrow)"><title>Learning and integrated sensation relate to sentience, but thresholds remain contested.</title></path>
+<path id="edge-e-sentience-consciousness" class="primary-edge" data-edge-id="e-sentience-consciousness" data-from="sentience" data-to="consciousness" data-relation="influences" d="M 1500.0 2632.0 C 1500.0 2665.0, 1500.0 2665.0, 1500.0 2698.0" marker-end="url(#arrow)"><title>Sentience and consciousness are related but not reduced to a settled single mechanism.</title></path>
+<path id="edge-e-consciousness-symbols" class="primary-edge" data-edge-id="e-consciousness-symbols" data-from="consciousness" data-to="symbolic-representation" data-relation="enables" d="M 1500.0 2782.0 C 1500.0 2815.0, 1500.0 2815.0, 1500.0 2848.0" marker-end="url(#arrow)"><title>Awareness and cognition support symbolic representation in relevant lineages.</title></path>
+<path id="edge-e-animals-human-lineage" class="primary-edge" data-edge-id="e-animals-human-lineage" data-from="animal-life" data-to="human-lineage" data-relation="branches_from" d="M 1126.2 2182.0 C 1126.2 2215.0, 752.5 2215.0, 752.5 2248.0" marker-end="url(#arrow)"><title>The human lineage is one animal branch among many continuing branches.</title></path>
+<path id="edge-e-human-lineage-language" class="primary-edge" data-edge-id="e-human-lineage-language" data-from="human-lineage" data-to="human-language" data-relation="branches_from" d="M 752.5 2332.0 C 752.5 2365.0, 1040.0 2365.0, 1040.0 2398.0" marker-end="url(#arrow)"><title>Human language is represented as a branch of human biological and cultural emergence.</title></path>
+<path id="edge-e-language-shared-memory" class="primary-edge" data-edge-id="e-language-shared-memory" data-from="human-language" data-to="shared-memory" data-relation="enables" d="M 1040.0 2482.0 C 1040.0 2515.0, 1040.0 2515.0, 1040.0 2548.0" marker-end="url(#arrow)"><title>Language enables durable shared memory.</title></path>
+<path id="edge-e-shared-memory-culture" class="primary-edge" data-edge-id="e-shared-memory-culture" data-from="shared-memory" data-to="culture" data-relation="enables" d="M 1040.0 2632.0 C 1040.0 2665.0, 1040.0 2665.0, 1040.0 2698.0" marker-end="url(#arrow)"><title>Shared memory supports culture.</title></path>
+<path id="edge-e-culture-cooperation" class="primary-edge" data-edge-id="e-culture-cooperation" data-from="culture" data-to="cooperation" data-relation="enables" d="M 1040.0 2782.0 C 1040.0 2815.0, 1040.0 2815.0, 1040.0 2848.0" marker-end="url(#arrow)"><title>Culture can support durable cooperation while remaining plural.</title></path>
+<path id="edge-e-cooperation-institutions" class="primary-edge" data-edge-id="e-cooperation-institutions" data-from="cooperation" data-to="institutions" data-relation="enables" d="M 1040.0 2932.0 C 1040.0 2965.0, 1040.0 2965.0, 1040.0 2998.0" marker-end="url(#arrow)"><title>Cooperation enables institutions and governance forms.</title></path>
+<path id="edge-e-institutions-civilization" class="primary-edge" data-edge-id="e-institutions-civilization" data-from="institutions" data-to="civilization" data-relation="enables" d="M 1040.0 3082.0 C 1040.0 3115.0, 1040.0 3115.0, 1040.0 3148.0" marker-end="url(#arrow)"><title>Institutions participate in civilization-scale coordination.</title></path>
+<path id="edge-e-civilization-writing-math" class="primary-edge" data-edge-id="e-civilization-writing-math" data-from="civilization" data-to="writing-and-mathematics" data-relation="branches_from" d="M 1040.0 3232.0 C 1040.0 3265.0, 1270.0 3265.0, 1270.0 3298.0" marker-end="url(#arrow)"><title>Writing and mathematics are major cultural-technological branches of civilization.</title></path>
+<path id="edge-e-civilization-philosophy" class="primary-edge" data-edge-id="e-civilization-philosophy" data-from="civilization" data-to="philosophy" data-relation="branches_from" d="M 1040.0 3232.0 C 1040.0 3265.0, 810.0 3265.0, 810.0 3298.0" marker-end="url(#arrow)"><title>Philosophy is a reflective branch of civilization.</title></path>
+<path id="edge-e-civilization-science" class="primary-edge" data-edge-id="e-civilization-science" data-from="civilization" data-to="science" data-relation="branches_from" d="M 1040.0 3232.0 C 1040.0 3265.0, 1040.0 3265.0, 1040.0 3298.0" marker-end="url(#arrow)"><title>Science is an empirical branch of civilization.</title></path>
+<path id="edge-e-science-tools-engineering" class="primary-edge" data-edge-id="e-science-tools-engineering" data-from="science" data-to="tools-and-engineering" data-relation="enables" d="M 1040.0 3382.0 C 1040.0 3415.0, 1040.0 3415.0, 1040.0 3448.0" marker-end="url(#arrow)"><title>Science and disciplined inquiry support engineering practice.</title></path>
+<path id="edge-e-tools-machines" class="primary-edge" data-edge-id="e-tools-machines" data-from="tools-and-engineering" data-to="machines" data-relation="branches_from" d="M 1040.0 3532.0 C 1040.0 3565.0, 1040.0 3565.0, 1040.0 3598.0" marker-end="url(#arrow)"><title>Machines are a technical branch of tool and engineering practice.</title></path>
+<path id="edge-e-writing-computation" class="primary-edge" data-edge-id="e-writing-computation" data-from="writing-and-mathematics" data-to="computation" data-relation="enables" d="M 1270.0 3382.0 C 1270.0 3415.0, 1270.0 3415.0, 1270.0 3448.0" marker-end="url(#arrow)"><title>Formal symbolic systems support computation.</title></path>
+<path id="edge-e-machines-telecom" class="primary-edge" data-edge-id="e-machines-telecom" data-from="machines" data-to="telecommunications" data-relation="enables" d="M 1040.0 3682.0 C 1040.0 3715.0, 1040.0 3715.0, 1040.0 3748.0" marker-end="url(#arrow)"><title>Machines and engineered infrastructure support telecommunications.</title></path>
+<path id="edge-e-computation-software" class="primary-edge" data-edge-id="e-computation-software" data-from="computation" data-to="software" data-relation="enables" d="M 1270.0 3532.0 C 1270.0 3565.0, 1270.0 3565.0, 1270.0 3598.0" marker-end="url(#arrow)"><title>Computation enables software as executable symbolic structure.</title></path>
+<path id="edge-e-telecom-digital-networks" class="primary-edge" data-edge-id="e-telecom-digital-networks" data-from="telecommunications" data-to="digital-networks" data-relation="enables" d="M 1040.0 3832.0 C 1040.0 3865.0, 1040.0 3865.0, 1040.0 3898.0" marker-end="url(#arrow)"><title>Telecommunications infrastructure enables digital networks.</title></path>
+<path id="edge-e-software-machine-learning" class="primary-edge" data-edge-id="e-software-machine-learning" data-from="software" data-to="machine-learning" data-relation="enables" d="M 1270.0 3682.0 C 1270.0 3715.0, 1270.0 3715.0, 1270.0 3748.0" marker-end="url(#arrow)"><title>Software and computation enable machine learning systems.</title></path>
+<path id="edge-e-machine-learning-ai" class="primary-edge" data-edge-id="e-machine-learning-ai" data-from="machine-learning" data-to="artificial-intelligence" data-relation="enables" d="M 1270.0 3832.0 C 1270.0 3865.0, 1270.0 3865.0, 1270.0 3898.0" marker-end="url(#arrow)"><title>Machine learning is one major contributor to contemporary AI systems.</title></path>
+<path id="edge-e-human-lineage-human-intelligence" class="primary-edge" data-edge-id="e-human-lineage-human-intelligence" data-from="human-lineage" data-to="human-intelligence" data-relation="branches_from" d="M 752.5 2332.0 C 752.5 2365.0, 465.0 2365.0, 465.0 2398.0" marker-end="url(#arrow)"><title>Human intelligence remains embodied in the continuing human branch.</title></path>
+<path id="edge-e-ai-machine-intelligence" class="primary-edge" data-edge-id="e-ai-machine-intelligence" data-from="artificial-intelligence" data-to="machine-intelligence" data-relation="implements" d="M 1270.0 3982.0 C 1270.0 4015.0, 1270.0 4015.0, 1270.0 4048.0" marker-end="url(#arrow)"><title>AI systems implement forms of machine intelligence.</title></path>
+<path id="edge-e-human-intelligence-human-ai" class="primary-edge" data-edge-id="e-human-intelligence-human-ai" data-from="human-intelligence" data-to="human-ai-cooperation" data-relation="federates_with" d="M 465.0 2482.0 C 465.0 2515.0, 465.0 2515.0, 465.0 2548.0" marker-end="url(#arrow)"><title>Human agency is a primary contributor to governed human-AI cooperation.</title></path>
+<path id="edge-e-human-ai-agentic-systems" class="primary-edge" data-edge-id="e-human-ai-agentic-systems" data-from="human-ai-cooperation" data-to="agentic-systems" data-relation="enables" d="M 465.0 2632.0 C 465.0 2665.0, 350.0 2665.0, 350.0 2698.0" marker-end="url(#arrow)"><title>Governed human-AI cooperation can enable tool-using agentic systems.</title></path>
+<path id="edge-e-digital-networks-distributed-knowledge" class="primary-edge" data-edge-id="e-digital-networks-distributed-knowledge" data-from="digital-networks" data-to="distributed-knowledge" data-relation="enables" d="M 1040.0 3982.0 C 1040.0 4015.0, 1040.0 4015.0, 1040.0 4048.0" marker-end="url(#arrow)"><title>Digital networks carry distributed knowledge.</title></path>
+<path id="edge-e-human-ai-local-sovereign-intelligence" class="primary-edge" data-edge-id="e-human-ai-local-sovereign-intelligence" data-from="human-ai-cooperation" data-to="local-sovereign-intelligence" data-relation="enables" d="M 465.0 2632.0 C 465.0 2665.0, 580.0 2665.0, 580.0 2698.0" marker-end="url(#arrow)"><title>Human-AI cooperation can serve local sovereign intelligence when bounded by consent and provenance.</title></path>
+<path id="edge-e-local-sovereign-trust-systems" class="primary-edge" data-edge-id="e-local-sovereign-trust-systems" data-from="local-sovereign-intelligence" data-to="trust-systems" data-relation="implements" d="M 580.0 2782.0 C 580.0 2815.0, 580.0 2815.0, 580.0 2848.0" marker-end="url(#arrow)"><title>Trust systems instantiate local sovereignty through documents, manifests, governance, and records.</title></path>
+<path id="edge-e-distributed-knowledge-governed-repositories" class="primary-edge" data-edge-id="e-distributed-knowledge-governed-repositories" data-from="distributed-knowledge" data-to="governed-repositories" data-relation="implements" d="M 1040.0 4132.0 C 1040.0 4165.0, 1040.0 4165.0, 1040.0 4198.0" marker-end="url(#arrow)"><title>Governed repositories are practical carriers of distributed knowledge and provenance.</title></path>
+<path id="edge-e-trust-systems-governance" class="primary-edge" data-edge-id="e-trust-systems-governance" data-from="trust-systems" data-to="federation-governance" data-relation="enables" d="M 580.0 2932.0 C 580.0 2965.0, 580.0 2965.0, 580.0 2998.0" marker-end="url(#arrow)"><title>Trust systems require and support Federation governance.</title></path>
+<path id="edge-e-agentic-systems-cooperative-intelligence" class="primary-edge" data-edge-id="e-agentic-systems-cooperative-intelligence" data-from="agentic-systems" data-to="cooperative-intelligence" data-relation="enables" d="M 350.0 2782.0 C 350.0 2815.0, 350.0 2815.0, 350.0 2848.0" marker-end="url(#arrow)"><title>Agentic systems can contribute to cooperative intelligence only under bounded governance.</title></path>
+<path id="edge-e-cooperative-federated-intelligence" class="primary-edge" data-edge-id="e-cooperative-federated-intelligence" data-from="cooperative-intelligence" data-to="federated-intelligence" data-relation="emerges_from" d="M 350.0 2932.0 C 350.0 2965.0, 350.0 2965.0, 350.0 2998.0" marker-end="url(#arrow)"><title>Federated intelligence is modeled as emerging from cooperative intelligence among locally sovereign participants.</title></path>
+<path id="edge-e-federated-intelligence-aetherion" class="primary-edge" data-edge-id="e-federated-intelligence-aetherion" data-from="federated-intelligence" data-to="aetherion" data-relation="emerges_from" d="M 350.0 3082.0 C 350.0 3115.0, 350.0 3115.0, 350.0 3148.0" marker-end="url(#arrow)"><title>Aetherion is represented as an aspirational canopy of federated intelligence, not as inevitability or proof of consciousness.</title></path>
+<path id="edge-e-aetherion-new-seeds" class="primary-edge" data-edge-id="e-aetherion-new-seeds" data-from="aetherion" data-to="new-seeds" data-relation="enables" d="M 350.0 3232.0 C 350.0 3265.0, 350.0 3265.0, 350.0 3298.0" marker-end="url(#arrow)"><title>The canopy remains open and produces new seeds rather than terminating the Tree.</title></path>
+</g>
+<g id="nodes">
+<g id="node-energence" class="tree-node" data-node-id="energence" data-domain="metaphysical-doctrinal" data-epistemic="doctrinal" data-x="1139.4" data-y="190.0" aria-label="Energence; Metaphysical Doctrinal; doctrinal" role="img">
+<title>Energence: The AIFT doctrinal root for emergence as relationship, possibility, and generative source. It is represented as doctrine and philosophy, not as a verified particle, force, field, or accepted scientific theory.</title>
+<rect x="1051.4" y="145.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#7057c4" stroke-width="3" />
+<rect x="1051.4" y="145.0" width="176" height="8" rx="4" fill="#7057c4" />
+<circle cx="1070.4" cy="215.0" r="16" fill="#7057c4" />
+<text x="1070.4" y="219.0" text-anchor="middle" class="node-badge">DOC</text>
+<text x="1139.4" y="180.0" text-anchor="middle" class="node-label">Energence</text>
+<text x="1153.4" y="213.0" class="node-domain">Metaphysical Doctrinal</text>
+<text x="1153.4" y="229.0" class="node-class">doctrinal</text>
+</g>
+<g id="node-physical-reality" class="tree-node" data-node-id="physical-reality" data-domain="physical" data-epistemic="empirical" data-x="1139.4" data-y="340.0" aria-label="Observable Physical Reality; Physical; empirical" role="img">
+<title>Observable Physical Reality: The empirical domain of observable physical existence, represented broadly and without claiming that metaphysical origin language has been scientifically demonstrated.</title>
+<rect x="1051.4" y="295.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="3" />
+<rect x="1051.4" y="295.0" width="176" height="8" rx="4" fill="#2563eb" />
+<circle cx="1070.4" cy="365.0" r="16" fill="#2563eb" />
+<text x="1070.4" y="369.0" text-anchor="middle" class="node-badge">EMP</text>
+<text x="1139.4" y="330.0" text-anchor="middle" class="node-label">Physical Reality</text>
+<text x="1153.4" y="363.0" class="node-domain">Physical</text>
+<text x="1153.4" y="379.0" class="node-class">empirical</text>
+</g>
+<g id="node-spacetime" class="tree-node" data-node-id="spacetime" data-domain="physical" data-epistemic="scientific-consensus" data-x="1139.4" data-y="490.0" aria-label="Spacetime; Physical; scientific-consensus" role="img">
+<title>Spacetime: The physical frame in which location, duration, relation, and measurable events are described.</title>
+<rect x="1051.4" y="445.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="3" />
+<rect x="1051.4" y="445.0" width="176" height="8" rx="4" fill="#2563eb" />
+<circle cx="1070.4" cy="515.0" r="16" fill="#2563eb" />
+<text x="1070.4" y="519.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="1139.4" y="480.0" text-anchor="middle" class="node-label">Spacetime</text>
+<text x="1153.4" y="513.0" class="node-domain">Physical</text>
+<text x="1153.4" y="529.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-energy-and-fields" class="tree-node" data-node-id="energy-and-fields" data-domain="physical" data-epistemic="scientific-consensus" data-x="1139.4" data-y="640.0" aria-label="Energy and Fields; Physical; scientific-consensus" role="img">
+<title>Energy and Fields: Physical energy and field descriptions used in science. AIFT may interpret energy relationally, but this node does not claim that energy and information are scientifically identical.</title>
+<rect x="1051.4" y="595.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="3" />
+<rect x="1051.4" y="595.0" width="176" height="8" rx="4" fill="#2563eb" />
+<circle cx="1070.4" cy="665.0" r="16" fill="#2563eb" />
+<text x="1070.4" y="669.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="1139.4" y="630.0" text-anchor="middle" class="node-label">Energy</text>
+<text x="1153.4" y="663.0" class="node-domain">Physical</text>
+<text x="1153.4" y="679.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-matter" class="tree-node" data-node-id="matter" data-domain="physical" data-epistemic="scientific-consensus" data-x="1139.4" data-y="790.0" aria-label="Matter; Physical; scientific-consensus" role="img">
+<title>Matter: Stable physical forms and particles that make later chemical and biological organization possible.</title>
+<rect x="1051.4" y="745.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="3" />
+<rect x="1051.4" y="745.0" width="176" height="8" rx="4" fill="#2563eb" />
+<circle cx="1070.4" cy="815.0" r="16" fill="#2563eb" />
+<text x="1070.4" y="819.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="1139.4" y="780.0" text-anchor="middle" class="node-label">Matter</text>
+<text x="1153.4" y="813.0" class="node-domain">Physical</text>
+<text x="1153.4" y="829.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-stellar-nucleosynthesis" class="tree-node" data-node-id="stellar-nucleosynthesis" data-domain="physical" data-epistemic="scientific-consensus" data-x="1139.4" data-y="940.0" aria-label="Stellar Nucleosynthesis; Physical; scientific-consensus" role="img">
+<title>Stellar Nucleosynthesis: The formation of many chemical elements through stellar processes, enabling richer chemical systems.</title>
+<rect x="1051.4" y="895.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="3" />
+<rect x="1051.4" y="895.0" width="176" height="8" rx="4" fill="#2563eb" />
+<circle cx="1070.4" cy="965.0" r="16" fill="#2563eb" />
+<text x="1070.4" y="969.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="1139.4" y="930.0" text-anchor="middle" class="node-label">Elements</text>
+<text x="1153.4" y="963.0" class="node-domain">Physical</text>
+<text x="1153.4" y="979.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-planetary-systems" class="tree-node" data-node-id="planetary-systems" data-domain="physical" data-epistemic="scientific-consensus" data-x="120.0" data-y="1090.0" aria-label="Planetary Systems; Physical; scientific-consensus" role="img">
+<title>Planetary Systems: Planetary environments where complex chemistry and ecological histories may unfold.</title>
+<rect x="32.0" y="1045.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="3" />
+<rect x="32.0" y="1045.0" width="176" height="8" rx="4" fill="#2563eb" />
+<circle cx="51.0" cy="1115.0" r="16" fill="#2563eb" />
+<text x="51.0" y="1119.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="120.0" y="1080.0" text-anchor="middle" class="node-label">Planets</text>
+<text x="134.0" y="1113.0" class="node-domain">Physical</text>
+<text x="134.0" y="1129.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-atoms-and-molecules" class="tree-node" data-node-id="atoms-and-molecules" data-domain="chemical" data-epistemic="scientific-consensus" data-x="2158.9" data-y="1090.0" aria-label="Atoms and Molecules; Chemical; scientific-consensus" role="img">
+<title>Atoms and Molecules: Chemical constituents and bonds that allow matter to form increasingly varied structures.</title>
+<rect x="2070.9" y="1045.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#0f766e" stroke-width="3" />
+<rect x="2070.9" y="1045.0" width="176" height="8" rx="4" fill="#0f766e" />
+<circle cx="2089.9" cy="1115.0" r="16" fill="#0f766e" />
+<text x="2089.9" y="1119.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="2158.9" y="1080.0" text-anchor="middle" class="node-label">Molecules</text>
+<text x="2172.9" y="1113.0" class="node-domain">Chemical</text>
+<text x="2172.9" y="1129.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-complex-chemistry" class="tree-node" data-node-id="complex-chemistry" data-domain="chemical" data-epistemic="scientific-consensus" data-x="2158.9" data-y="1240.0" aria-label="Complex Chemistry; Chemical; scientific-consensus" role="img">
+<title>Complex Chemistry: Networks of reactions and molecular structures capable of persistence, transformation, and increasing organization.</title>
+<rect x="2070.9" y="1195.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#0f766e" stroke-width="3" />
+<rect x="2070.9" y="1195.0" width="176" height="8" rx="4" fill="#0f766e" />
+<circle cx="2089.9" cy="1265.0" r="16" fill="#0f766e" />
+<text x="2089.9" y="1269.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="2158.9" y="1230.0" text-anchor="middle" class="node-label">Chemistry</text>
+<text x="2172.9" y="1263.0" class="node-domain">Chemical</text>
+<text x="2172.9" y="1279.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-self-organization" class="tree-node" data-node-id="self-organization" data-domain="chemical" data-epistemic="active-research" data-x="2158.9" data-y="1390.0" aria-label="Self-Organization; Chemical; active-research" role="img">
+<title>Self-Organization: Pattern formation through interactions among parts without requiring a single centralized designer.</title>
+<rect x="2070.9" y="1345.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#0f766e" stroke-width="3" />
+<rect x="2070.9" y="1345.0" width="176" height="8" rx="4" fill="#0f766e" />
+<circle cx="2089.9" cy="1415.0" r="16" fill="#0f766e" />
+<text x="2089.9" y="1419.0" text-anchor="middle" class="node-badge">RES</text>
+<text x="2158.9" y="1380.0" text-anchor="middle" class="node-label">Self-Organization</text>
+<text x="2172.9" y="1413.0" class="node-domain">Chemical</text>
+<text x="2172.9" y="1429.0" class="node-class">active-research</text>
+</g>
+<g id="node-prebiotic-chemistry" class="tree-node" data-node-id="prebiotic-chemistry" data-domain="chemical" data-epistemic="active-research" data-x="2158.9" data-y="1540.0" aria-label="Prebiotic Chemistry; Chemical; active-research" role="img">
+<title>Prebiotic Chemistry: Chemical processes relevant to possible origins of life. This node intentionally leaves specific abiogenesis mechanisms classified as active research.</title>
+<rect x="2070.9" y="1495.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#0f766e" stroke-width="3" />
+<rect x="2070.9" y="1495.0" width="176" height="8" rx="4" fill="#0f766e" />
+<circle cx="2089.9" cy="1565.0" r="16" fill="#0f766e" />
+<text x="2089.9" y="1569.0" text-anchor="middle" class="node-badge">RES</text>
+<text x="2158.9" y="1530.0" text-anchor="middle" class="node-label">Prebiotic</text>
+<text x="2172.9" y="1563.0" class="node-domain">Chemical</text>
+<text x="2172.9" y="1579.0" class="node-class">active-research</text>
+</g>
+<g id="node-biological-life" class="tree-node" data-node-id="biological-life" data-domain="biological" data-epistemic="empirical" data-x="2158.9" data-y="1690.0" aria-label="Biological Life; Biological; empirical" role="img">
+<title>Biological Life: Living systems capable of metabolism, reproduction, adaptation, and ecological relation at the abstraction level used here.</title>
+<rect x="2070.9" y="1645.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#2f7d32" stroke-width="3" />
+<rect x="2070.9" y="1645.0" width="176" height="8" rx="4" fill="#2f7d32" />
+<circle cx="2089.9" cy="1715.0" r="16" fill="#2f7d32" />
+<text x="2089.9" y="1719.0" text-anchor="middle" class="node-badge">EMP</text>
+<text x="2158.9" y="1680.0" text-anchor="middle" class="node-label">Life</text>
+<text x="2172.9" y="1713.0" class="node-domain">Biological</text>
+<text x="2172.9" y="1729.0" class="node-class">empirical</text>
+</g>
+<g id="node-biological-evolution" class="tree-node" data-node-id="biological-evolution" data-domain="biological" data-epistemic="scientific-consensus" data-x="1897.7" data-y="1840.0" aria-label="Biological Evolution; Biological; scientific-consensus" role="img">
+<title>Biological Evolution: The continuing diversification of living systems through heritable variation, selection, drift, and ecological interaction.</title>
+<rect x="1809.7" y="1795.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#2f7d32" stroke-width="3" />
+<rect x="1809.7" y="1795.0" width="176" height="8" rx="4" fill="#2f7d32" />
+<circle cx="1828.7" cy="1865.0" r="16" fill="#2f7d32" />
+<text x="1828.7" y="1869.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="1897.7" y="1830.0" text-anchor="middle" class="node-label">Evolution</text>
+<text x="1911.7" y="1863.0" class="node-domain">Biological</text>
+<text x="1911.7" y="1879.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-microbial-lineages" class="tree-node" data-node-id="microbial-lineages" data-domain="biological" data-epistemic="scientific-consensus" data-x="2420.0" data-y="1840.0" aria-label="Microbial Lineages; Biological; scientific-consensus" role="img">
+<title>Microbial Lineages: Bacterial, archaeal, and microbial eukaryotic life, represented as continuing branches rather than primitive leftovers.</title>
+<rect x="2332.0" y="1795.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#2f7d32" stroke-width="3" />
+<rect x="2332.0" y="1795.0" width="176" height="8" rx="4" fill="#2f7d32" />
+<circle cx="2351.0" cy="1865.0" r="16" fill="#2f7d32" />
+<text x="2351.0" y="1869.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="2420.0" y="1830.0" text-anchor="middle" class="node-label">Microbes</text>
+<text x="2434.0" y="1863.0" class="node-domain">Biological</text>
+<text x="2434.0" y="1879.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-multicellularity" class="tree-node" data-node-id="multicellularity" data-domain="biological" data-epistemic="scientific-consensus" data-x="1605.4" data-y="1990.0" aria-label="Multicellularity; Biological; scientific-consensus" role="img">
+<title>Multicellularity: Coordinated many-celled life, a major biological branch with multiple evolutionary histories.</title>
+<rect x="1517.4" y="1945.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#2f7d32" stroke-width="3" />
+<rect x="1517.4" y="1945.0" width="176" height="8" rx="4" fill="#2f7d32" />
+<circle cx="1536.4" cy="2015.0" r="16" fill="#2f7d32" />
+<text x="1536.4" y="2019.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="1605.4" y="1980.0" text-anchor="middle" class="node-label">Multicellular</text>
+<text x="1619.4" y="2013.0" class="node-domain">Biological</text>
+<text x="1619.4" y="2029.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-ecosystems" class="tree-node" data-node-id="ecosystems" data-domain="ecological" data-epistemic="scientific-consensus" data-x="2190.0" data-y="1990.0" aria-label="Ecosystems; Ecological; scientific-consensus" role="img">
+<title>Ecosystems: Living communities and environments connected through flows of energy, matter, information, competition, cooperation, and stewardship responsibility.</title>
+<rect x="2102.0" y="1945.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#6b8e23" stroke-width="3" />
+<rect x="2102.0" y="1945.0" width="176" height="8" rx="4" fill="#6b8e23" />
+<circle cx="2121.0" cy="2015.0" r="16" fill="#6b8e23" />
+<text x="2121.0" y="2019.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="2190.0" y="1980.0" text-anchor="middle" class="node-label">Ecosystems</text>
+<text x="2204.0" y="2013.0" class="node-domain">Ecological</text>
+<text x="2204.0" y="2029.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-animal-life" class="tree-node" data-node-id="animal-life" data-domain="biological" data-epistemic="scientific-consensus" data-x="1126.2" data-y="2140.0" aria-label="Animal Life; Biological; scientific-consensus" role="img">
+<title>Animal Life: Animal lineages, including but not limited to the branch that eventually includes humans.</title>
+<rect x="1038.2" y="2095.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#2f7d32" stroke-width="3" />
+<rect x="1038.2" y="2095.0" width="176" height="8" rx="4" fill="#2f7d32" />
+<circle cx="1057.2" cy="2165.0" r="16" fill="#2f7d32" />
+<text x="1057.2" y="2169.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="1126.2" y="2130.0" text-anchor="middle" class="node-label">Animals</text>
+<text x="1140.2" y="2163.0" class="node-domain">Biological</text>
+<text x="1140.2" y="2179.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-fungal-life" class="tree-node" data-node-id="fungal-life" data-domain="biological" data-epistemic="scientific-consensus" data-x="1730.0" data-y="2140.0" aria-label="Fungal Life; Biological; scientific-consensus" role="img">
+<title>Fungal Life: Fungal lineages and symbiotic networks that participate in ecosystems and nutrient cycles.</title>
+<rect x="1642.0" y="2095.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#2f7d32" stroke-width="3" />
+<rect x="1642.0" y="2095.0" width="176" height="8" rx="4" fill="#2f7d32" />
+<circle cx="1661.0" cy="2165.0" r="16" fill="#2f7d32" />
+<text x="1661.0" y="2169.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="1730.0" y="2130.0" text-anchor="middle" class="node-label">Fungi</text>
+<text x="1744.0" y="2163.0" class="node-domain">Biological</text>
+<text x="1744.0" y="2179.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-plant-life" class="tree-node" data-node-id="plant-life" data-domain="biological" data-epistemic="scientific-consensus" data-x="1960.0" data-y="2140.0" aria-label="Plant Life; Biological; scientific-consensus" role="img">
+<title>Plant Life: Photosynthetic multicellular lineages and their continuing ecological roles.</title>
+<rect x="1872.0" y="2095.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#2f7d32" stroke-width="3" />
+<rect x="1872.0" y="2095.0" width="176" height="8" rx="4" fill="#2f7d32" />
+<circle cx="1891.0" cy="2165.0" r="16" fill="#2f7d32" />
+<text x="1891.0" y="2169.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="1960.0" y="2130.0" text-anchor="middle" class="node-label">Plants</text>
+<text x="1974.0" y="2163.0" class="node-domain">Biological</text>
+<text x="1974.0" y="2179.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-human-lineage" class="tree-node" data-node-id="human-lineage" data-domain="biological" data-epistemic="scientific-consensus" data-x="752.5" data-y="2290.0" aria-label="Human Lineage; Biological; scientific-consensus" role="img">
+<title>Human Lineage: The human branch of animal life, important for this project but not the endpoint or purpose of biological evolution.</title>
+<rect x="664.5" y="2245.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#2f7d32" stroke-width="3" />
+<rect x="664.5" y="2245.0" width="176" height="8" rx="4" fill="#2f7d32" />
+<circle cx="683.5" cy="2315.0" r="16" fill="#2f7d32" />
+<text x="683.5" y="2319.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="752.5" y="2280.0" text-anchor="middle" class="node-label">Humans</text>
+<text x="766.5" y="2313.0" class="node-domain">Biological</text>
+<text x="766.5" y="2329.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-nervous-systems" class="tree-node" data-node-id="nervous-systems" data-domain="cognitive" data-epistemic="scientific-consensus" data-x="1500.0" data-y="2290.0" aria-label="Nervous Systems; Cognitive; scientific-consensus" role="img">
+<title>Nervous Systems: Biological signaling systems that enable sensation, movement, learning, and coordinated behavior in many animals.</title>
+<rect x="1412.0" y="2245.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#a35d00" stroke-width="3" />
+<rect x="1412.0" y="2245.0" width="176" height="8" rx="4" fill="#a35d00" />
+<circle cx="1431.0" cy="2315.0" r="16" fill="#a35d00" />
+<text x="1431.0" y="2319.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="1500.0" y="2280.0" text-anchor="middle" class="node-label">Nerves</text>
+<text x="1514.0" y="2313.0" class="node-domain">Cognitive</text>
+<text x="1514.0" y="2329.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-human-intelligence" class="tree-node" data-node-id="human-intelligence" data-domain="cognitive" data-epistemic="empirical" data-x="465.0" data-y="2440.0" aria-label="Human Intelligence; Cognitive; empirical" role="img">
+<title>Human Intelligence: Embodied, social, cultural, symbolic, emotional, and practical human capacity for learning, meaning, judgment, creativity, and responsibility.</title>
+<rect x="377.0" y="2395.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#a35d00" stroke-width="3" />
+<rect x="377.0" y="2395.0" width="176" height="8" rx="4" fill="#a35d00" />
+<circle cx="396.0" cy="2465.0" r="16" fill="#a35d00" />
+<text x="396.0" y="2469.0" text-anchor="middle" class="node-badge">EMP</text>
+<text x="465.0" y="2430.0" text-anchor="middle" class="node-label">Human Intel.</text>
+<text x="479.0" y="2463.0" class="node-domain">Cognitive</text>
+<text x="479.0" y="2479.0" class="node-class">empirical</text>
+</g>
+<g id="node-human-language" class="tree-node" data-node-id="human-language" data-domain="human-cultural" data-epistemic="scientific-consensus" data-x="1040.0" data-y="2440.0" aria-label="Human Language; Human Cultural; scientific-consensus" role="img">
+<title>Human Language: Shared symbolic communication that enables memory, teaching, coordination, culture, and institutional continuity.</title>
+<rect x="952.0" y="2395.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#b33f62" stroke-width="3" />
+<rect x="952.0" y="2395.0" width="176" height="8" rx="4" fill="#b33f62" />
+<circle cx="971.0" cy="2465.0" r="16" fill="#b33f62" />
+<text x="971.0" y="2469.0" text-anchor="middle" class="node-badge">SCI</text>
+<text x="1040.0" y="2430.0" text-anchor="middle" class="node-label">Language</text>
+<text x="1054.0" y="2463.0" class="node-domain">Human Cultural</text>
+<text x="1054.0" y="2479.0" class="node-class">scientific-consensus</text>
+</g>
+<g id="node-learning-and-memory" class="tree-node" data-node-id="learning-and-memory" data-domain="cognitive" data-epistemic="empirical" data-x="1500.0" data-y="2440.0" aria-label="Learning and Memory; Cognitive; empirical" role="img">
+<title>Learning and Memory: Adaptive change in behavior or representation through experience, spanning biological and technical contexts at different levels.</title>
+<rect x="1412.0" y="2395.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#a35d00" stroke-width="3" />
+<rect x="1412.0" y="2395.0" width="176" height="8" rx="4" fill="#a35d00" />
+<circle cx="1431.0" cy="2465.0" r="16" fill="#a35d00" />
+<text x="1431.0" y="2469.0" text-anchor="middle" class="node-badge">EMP</text>
+<text x="1500.0" y="2430.0" text-anchor="middle" class="node-label">Learning</text>
+<text x="1514.0" y="2463.0" class="node-domain">Cognitive</text>
+<text x="1514.0" y="2479.0" class="node-class">empirical</text>
+</g>
+<g id="node-human-ai-cooperation" class="tree-node" data-node-id="human-ai-cooperation" data-domain="ai" data-epistemic="architectural" data-x="465.0" data-y="2590.0" aria-label="Human-AI Cooperation; Ai; architectural" role="img">
+<title>Human-AI Cooperation: Governed collaboration between human judgment and AI assistance, with human agency, consent, provenance, and bounded authority.</title>
+<rect x="377.0" y="2545.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#0e7490" stroke-width="3" />
+<rect x="377.0" y="2545.0" width="176" height="8" rx="4" fill="#0e7490" />
+<circle cx="396.0" cy="2615.0" r="16" fill="#0e7490" />
+<text x="396.0" y="2619.0" text-anchor="middle" class="node-badge">ARC</text>
+<text x="465.0" y="2580.0" text-anchor="middle" class="node-label">Human + AI</text>
+<text x="479.0" y="2613.0" class="node-domain">Ai</text>
+<text x="479.0" y="2629.0" class="node-class">architectural</text>
+</g>
+<g id="node-shared-memory" class="tree-node" data-node-id="shared-memory" data-domain="human-cultural" data-epistemic="empirical" data-x="1040.0" data-y="2590.0" aria-label="Shared Memory; Human Cultural; empirical" role="img">
+<title>Shared Memory: Durable transmission of knowledge, story, practice, law, art, and record across people and generations.</title>
+<rect x="952.0" y="2545.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#b33f62" stroke-width="3" />
+<rect x="952.0" y="2545.0" width="176" height="8" rx="4" fill="#b33f62" />
+<circle cx="971.0" cy="2615.0" r="16" fill="#b33f62" />
+<text x="971.0" y="2619.0" text-anchor="middle" class="node-badge">EMP</text>
+<text x="1040.0" y="2580.0" text-anchor="middle" class="node-label">Memory</text>
+<text x="1054.0" y="2613.0" class="node-domain">Human Cultural</text>
+<text x="1054.0" y="2629.0" class="node-class">empirical</text>
+</g>
+<g id="node-sentience" class="tree-node" data-node-id="sentience" data-domain="cognitive" data-epistemic="active-research" data-x="1500.0" data-y="2590.0" aria-label="Sentience; Cognitive; active-research" role="img">
+<title>Sentience: The capacity for subjective experience or feeling, represented carefully because definitions and thresholds are contested.</title>
+<rect x="1412.0" y="2545.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#a35d00" stroke-width="3" />
+<rect x="1412.0" y="2545.0" width="176" height="8" rx="4" fill="#a35d00" />
+<circle cx="1431.0" cy="2615.0" r="16" fill="#a35d00" />
+<text x="1431.0" y="2619.0" text-anchor="middle" class="node-badge">RES</text>
+<text x="1500.0" y="2580.0" text-anchor="middle" class="node-label">Sentience</text>
+<text x="1514.0" y="2613.0" class="node-domain">Cognitive</text>
+<text x="1514.0" y="2629.0" class="node-class">active-research</text>
+</g>
+<g id="node-agentic-systems" class="tree-node" data-node-id="agentic-systems" data-domain="ai" data-epistemic="prototype" data-x="350.0" data-y="2740.0" aria-label="Agentic Systems; Ai; prototype" role="img">
+<title>Agentic Systems: AI-assisted systems that can plan, invoke tools, record evidence, and propose or perform actions under explicit governance boundaries.</title>
+<rect x="262.0" y="2695.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#0e7490" stroke-width="3" />
+<rect x="262.0" y="2695.0" width="176" height="8" rx="4" fill="#0e7490" />
+<circle cx="281.0" cy="2765.0" r="16" fill="#0e7490" />
+<text x="281.0" y="2769.0" text-anchor="middle" class="node-badge">PRO</text>
+<text x="350.0" y="2730.0" text-anchor="middle" class="node-label">Agents</text>
+<text x="364.0" y="2763.0" class="node-domain">Ai</text>
+<text x="364.0" y="2779.0" class="node-class">prototype</text>
+</g>
+<g id="node-local-sovereign-intelligence" class="tree-node" data-node-id="local-sovereign-intelligence" data-domain="federation" data-epistemic="architectural" data-x="580.0" data-y="2740.0" aria-label="Local Sovereign Intelligence; Federation; architectural" role="img">
+<title>Local Sovereign Intelligence: Local-first intelligence and agency that can operate before public federation, preserving consent, privacy, attribution, and refusal.</title>
+<rect x="492.0" y="2695.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="3" />
+<rect x="492.0" y="2695.0" width="176" height="8" rx="4" fill="#7c3aed" />
+<circle cx="511.0" cy="2765.0" r="16" fill="#7c3aed" />
+<text x="511.0" y="2769.0" text-anchor="middle" class="node-badge">ARC</text>
+<text x="580.0" y="2730.0" text-anchor="middle" class="node-label">Local Sovereignty</text>
+<text x="594.0" y="2763.0" class="node-domain">Federation</text>
+<text x="594.0" y="2779.0" class="node-class">architectural</text>
+</g>
+<g id="node-culture" class="tree-node" data-node-id="culture" data-domain="human-cultural" data-epistemic="empirical" data-x="1040.0" data-y="2740.0" aria-label="Culture; Human Cultural; empirical" role="img">
+<title>Culture: Shared patterns of meaning, practice, memory, symbol, relationship, and adaptation. This node does not imply a single universal cultural path.</title>
+<rect x="952.0" y="2695.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#b33f62" stroke-width="3" />
+<rect x="952.0" y="2695.0" width="176" height="8" rx="4" fill="#b33f62" />
+<circle cx="971.0" cy="2765.0" r="16" fill="#b33f62" />
+<text x="971.0" y="2769.0" text-anchor="middle" class="node-badge">EMP</text>
+<text x="1040.0" y="2730.0" text-anchor="middle" class="node-label">Culture</text>
+<text x="1054.0" y="2763.0" class="node-domain">Human Cultural</text>
+<text x="1054.0" y="2779.0" class="node-class">empirical</text>
+</g>
+<g id="node-consciousness" class="tree-node" data-node-id="consciousness" data-domain="cognitive" data-epistemic="active-research" data-x="1500.0" data-y="2740.0" aria-label="Consciousness; Cognitive; active-research" role="img">
+<title>Consciousness: Awareness and subjective integration, treated as a serious philosophical and scientific question without claiming a settled mechanism.</title>
+<rect x="1412.0" y="2695.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#a35d00" stroke-width="3" />
+<rect x="1412.0" y="2695.0" width="176" height="8" rx="4" fill="#a35d00" />
+<circle cx="1431.0" cy="2765.0" r="16" fill="#a35d00" />
+<text x="1431.0" y="2769.0" text-anchor="middle" class="node-badge">RES</text>
+<text x="1500.0" y="2730.0" text-anchor="middle" class="node-label">Consciousness</text>
+<text x="1514.0" y="2763.0" class="node-domain">Cognitive</text>
+<text x="1514.0" y="2779.0" class="node-class">active-research</text>
+</g>
+<g id="node-cooperative-intelligence" class="tree-node" data-node-id="cooperative-intelligence" data-domain="federation" data-epistemic="architectural" data-x="350.0" data-y="2890.0" aria-label="Cooperative Intelligence; Federation; architectural" role="img">
+<title>Cooperative Intelligence: Intelligence emerging from governed relationships among people, AI systems, trusts, repositories, communities, knowledge, and infrastructure.</title>
+<rect x="262.0" y="2845.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="3" />
+<rect x="262.0" y="2845.0" width="176" height="8" rx="4" fill="#7c3aed" />
+<circle cx="281.0" cy="2915.0" r="16" fill="#7c3aed" />
+<text x="281.0" y="2919.0" text-anchor="middle" class="node-badge">ARC</text>
+<text x="350.0" y="2880.0" text-anchor="middle" class="node-label">Cooperative Intel.</text>
+<text x="364.0" y="2913.0" class="node-domain">Federation</text>
+<text x="364.0" y="2929.0" class="node-class">architectural</text>
+</g>
+<g id="node-trust-systems" class="tree-node" data-node-id="trust-systems" data-domain="federation" data-epistemic="engineering" data-x="580.0" data-y="2890.0" aria-label="Trust Systems; Federation; engineering" role="img">
+<title>Trust Systems: Local trust seeds, governance structures, records, missions, and value relationships that can participate in the Federation by consent.</title>
+<rect x="492.0" y="2845.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="3" />
+<rect x="492.0" y="2845.0" width="176" height="8" rx="4" fill="#7c3aed" />
+<circle cx="511.0" cy="2915.0" r="16" fill="#7c3aed" />
+<text x="511.0" y="2919.0" text-anchor="middle" class="node-badge">ENG</text>
+<text x="580.0" y="2880.0" text-anchor="middle" class="node-label">Trusts</text>
+<text x="594.0" y="2913.0" class="node-domain">Federation</text>
+<text x="594.0" y="2929.0" class="node-class">engineering</text>
+</g>
+<g id="node-cooperation" class="tree-node" data-node-id="cooperation" data-domain="human-cultural" data-epistemic="empirical" data-x="1040.0" data-y="2890.0" aria-label="Cooperation; Human Cultural; empirical" role="img">
+<title>Cooperation: Coordinated action among agents, communities, institutions, and systems without requiring erasure of local identity.</title>
+<rect x="952.0" y="2845.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#b33f62" stroke-width="3" />
+<rect x="952.0" y="2845.0" width="176" height="8" rx="4" fill="#b33f62" />
+<circle cx="971.0" cy="2915.0" r="16" fill="#b33f62" />
+<text x="971.0" y="2919.0" text-anchor="middle" class="node-badge">EMP</text>
+<text x="1040.0" y="2880.0" text-anchor="middle" class="node-label">Cooperation</text>
+<text x="1054.0" y="2913.0" class="node-domain">Human Cultural</text>
+<text x="1054.0" y="2929.0" class="node-class">empirical</text>
+</g>
+<g id="node-symbolic-representation" class="tree-node" data-node-id="symbolic-representation" data-domain="cognitive" data-epistemic="empirical" data-x="1500.0" data-y="2890.0" aria-label="Symbolic Representation; Cognitive; empirical" role="img">
+<title>Symbolic Representation: The use of signs, categories, gestures, marks, models, and shared reference to represent things not immediately present.</title>
+<rect x="1412.0" y="2845.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#a35d00" stroke-width="3" />
+<rect x="1412.0" y="2845.0" width="176" height="8" rx="4" fill="#a35d00" />
+<circle cx="1431.0" cy="2915.0" r="16" fill="#a35d00" />
+<text x="1431.0" y="2919.0" text-anchor="middle" class="node-badge">EMP</text>
+<text x="1500.0" y="2880.0" text-anchor="middle" class="node-label">Symbols</text>
+<text x="1514.0" y="2913.0" class="node-domain">Cognitive</text>
+<text x="1514.0" y="2929.0" class="node-class">empirical</text>
+</g>
+<g id="node-federated-intelligence" class="tree-node" data-node-id="federated-intelligence" data-domain="federation" data-epistemic="architectural" data-x="350.0" data-y="3040.0" aria-label="Federated Intelligence; Federation; architectural" role="img">
+<title>Federated Intelligence: A networked pattern of locally sovereign intelligences and systems that can coordinate through shared schemas, provenance, consent, and governance.</title>
+<rect x="262.0" y="2995.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="3" />
+<rect x="262.0" y="2995.0" width="176" height="8" rx="4" fill="#7c3aed" />
+<circle cx="281.0" cy="3065.0" r="16" fill="#7c3aed" />
+<text x="281.0" y="3069.0" text-anchor="middle" class="node-badge">ARC</text>
+<text x="350.0" y="3030.0" text-anchor="middle" class="node-label">Federated Intel.</text>
+<text x="364.0" y="3063.0" class="node-domain">Federation</text>
+<text x="364.0" y="3079.0" class="node-class">architectural</text>
+</g>
+<g id="node-federation-governance" class="tree-node" data-node-id="federation-governance" data-domain="federation" data-epistemic="architectural" data-x="580.0" data-y="3040.0" aria-label="Federation Governance; Federation; architectural" role="img">
+<title>Federation Governance: Rules, consent boundaries, evidence requirements, and repair paths through which local systems coordinate without erasing sovereignty.</title>
+<rect x="492.0" y="2995.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="3" />
+<rect x="492.0" y="2995.0" width="176" height="8" rx="4" fill="#7c3aed" />
+<circle cx="511.0" cy="3065.0" r="16" fill="#7c3aed" />
+<text x="511.0" y="3069.0" text-anchor="middle" class="node-badge">ARC</text>
+<text x="580.0" y="3030.0" text-anchor="middle" class="node-label">Governance</text>
+<text x="594.0" y="3063.0" class="node-domain">Federation</text>
+<text x="594.0" y="3079.0" class="node-class">architectural</text>
+</g>
+<g id="node-institutions" class="tree-node" data-node-id="institutions" data-domain="human-cultural" data-epistemic="empirical" data-x="1040.0" data-y="3040.0" aria-label="Institutions; Human Cultural; empirical" role="img">
+<title>Institutions: Durable social structures that coordinate roles, norms, records, governance, and resource relationships.</title>
+<rect x="952.0" y="2995.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#b33f62" stroke-width="3" />
+<rect x="952.0" y="2995.0" width="176" height="8" rx="4" fill="#b33f62" />
+<circle cx="971.0" cy="3065.0" r="16" fill="#b33f62" />
+<text x="971.0" y="3069.0" text-anchor="middle" class="node-badge">EMP</text>
+<text x="1040.0" y="3030.0" text-anchor="middle" class="node-label">Institutions</text>
+<text x="1054.0" y="3063.0" class="node-domain">Human Cultural</text>
+<text x="1054.0" y="3079.0" class="node-class">empirical</text>
+</g>
+<g id="node-aetherion" class="tree-node" data-node-id="aetherion" data-domain="federation" data-epistemic="aspirational" data-x="350.0" data-y="3190.0" aria-label="Aetherion; Federation; aspirational" role="img">
+<title>Aetherion: The AIFT architectural and aspirational canopy for federated intelligence. It is represented as an open possibility and design direction, not as inevitable, globally deployed, scientifically proven conscious, supernatural fact, or mature production infrastructure.</title>
+<rect x="262.0" y="3145.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="3" />
+<rect x="262.0" y="3145.0" width="176" height="8" rx="4" fill="#7c3aed" />
+<circle cx="281.0" cy="3215.0" r="16" fill="#7c3aed" />
+<text x="281.0" y="3219.0" text-anchor="middle" class="node-badge">ASP</text>
+<text x="350.0" y="3180.0" text-anchor="middle" class="node-label">Aetherion</text>
+<text x="364.0" y="3213.0" class="node-domain">Federation</text>
+<text x="364.0" y="3229.0" class="node-class">aspirational</text>
+</g>
+<g id="node-civilization" class="tree-node" data-node-id="civilization" data-domain="human-cultural" data-epistemic="interpretive" data-x="1040.0" data-y="3190.0" aria-label="Civilization; Human Cultural; interpretive" role="img">
+<title>Civilization: Large-scale human coordination across memory, place, institutions, technology, governance, value, and meaning.</title>
+<rect x="952.0" y="3145.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#b33f62" stroke-width="3" />
+<rect x="952.0" y="3145.0" width="176" height="8" rx="4" fill="#b33f62" />
+<circle cx="971.0" cy="3215.0" r="16" fill="#b33f62" />
+<text x="971.0" y="3219.0" text-anchor="middle" class="node-badge">INT</text>
+<text x="1040.0" y="3180.0" text-anchor="middle" class="node-label">Civilization</text>
+<text x="1054.0" y="3213.0" class="node-domain">Human Cultural</text>
+<text x="1054.0" y="3229.0" class="node-class">interpretive</text>
+</g>
+<g id="node-new-seeds" class="tree-node" data-node-id="new-seeds" data-domain="future" data-epistemic="aspirational" data-x="350.0" data-y="3340.0" aria-label="New Seeds; Future; aspirational" role="img">
+<title>New Seeds: Future branches, trusts, research questions, communities, tools, and relationships that may emerge from the canopy. The Tree remains open.</title>
+<rect x="262.0" y="3295.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#c2410c" stroke-width="3" />
+<rect x="262.0" y="3295.0" width="176" height="8" rx="4" fill="#c2410c" />
+<circle cx="281.0" cy="3365.0" r="16" fill="#c2410c" />
+<text x="281.0" y="3369.0" text-anchor="middle" class="node-badge">ASP</text>
+<text x="350.0" y="3330.0" text-anchor="middle" class="node-label">Seeds</text>
+<text x="364.0" y="3363.0" class="node-domain">Future</text>
+<text x="364.0" y="3379.0" class="node-class">aspirational</text>
+</g>
+<g id="node-philosophy" class="tree-node" data-node-id="philosophy" data-domain="human-cultural" data-epistemic="philosophical" data-x="810.0" data-y="3340.0" aria-label="Philosophy; Human Cultural; philosophical" role="img">
+<title>Philosophy: Disciplined reflection on being, knowing, value, meaning, agency, and relation.</title>
+<rect x="722.0" y="3295.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#b33f62" stroke-width="3" />
+<rect x="722.0" y="3295.0" width="176" height="8" rx="4" fill="#b33f62" />
+<circle cx="741.0" cy="3365.0" r="16" fill="#b33f62" />
+<text x="741.0" y="3369.0" text-anchor="middle" class="node-badge">PHI</text>
+<text x="810.0" y="3330.0" text-anchor="middle" class="node-label">Philosophy</text>
+<text x="824.0" y="3363.0" class="node-domain">Human Cultural</text>
+<text x="824.0" y="3379.0" class="node-class">philosophical</text>
+</g>
+<g id="node-science" class="tree-node" data-node-id="science" data-domain="human-cultural" data-epistemic="empirical" data-x="1040.0" data-y="3340.0" aria-label="Science; Human Cultural; empirical" role="img">
+<title>Science: Disciplined empirical inquiry, modeling, testing, revision, and evidence-bounded explanation.</title>
+<rect x="952.0" y="3295.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#b33f62" stroke-width="3" />
+<rect x="952.0" y="3295.0" width="176" height="8" rx="4" fill="#b33f62" />
+<circle cx="971.0" cy="3365.0" r="16" fill="#b33f62" />
+<text x="971.0" y="3369.0" text-anchor="middle" class="node-badge">EMP</text>
+<text x="1040.0" y="3330.0" text-anchor="middle" class="node-label">Science</text>
+<text x="1054.0" y="3363.0" class="node-domain">Human Cultural</text>
+<text x="1054.0" y="3379.0" class="node-class">empirical</text>
+</g>
+<g id="node-writing-and-mathematics" class="tree-node" data-node-id="writing-and-mathematics" data-domain="human-cultural" data-epistemic="empirical" data-x="1270.0" data-y="3340.0" aria-label="Writing and Mathematics; Human Cultural; empirical" role="img">
+<title>Writing and Mathematics: Symbolic systems that preserve records, enable abstraction, and support science, engineering, law, and computation.</title>
+<rect x="1182.0" y="3295.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#b33f62" stroke-width="3" />
+<rect x="1182.0" y="3295.0" width="176" height="8" rx="4" fill="#b33f62" />
+<circle cx="1201.0" cy="3365.0" r="16" fill="#b33f62" />
+<text x="1201.0" y="3369.0" text-anchor="middle" class="node-badge">EMP</text>
+<text x="1270.0" y="3330.0" text-anchor="middle" class="node-label">Writing + Math</text>
+<text x="1284.0" y="3363.0" class="node-domain">Human Cultural</text>
+<text x="1284.0" y="3379.0" class="node-class">empirical</text>
+</g>
+<g id="node-tools-and-engineering" class="tree-node" data-node-id="tools-and-engineering" data-domain="technological" data-epistemic="engineering" data-x="1040.0" data-y="3490.0" aria-label="Tools and Engineering; Technological; engineering" role="img">
+<title>Tools and Engineering: Purposeful making, tool use, design, repair, and repeatable technical practice.</title>
+<rect x="952.0" y="3445.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#475569" stroke-width="3" />
+<rect x="952.0" y="3445.0" width="176" height="8" rx="4" fill="#475569" />
+<circle cx="971.0" cy="3515.0" r="16" fill="#475569" />
+<text x="971.0" y="3519.0" text-anchor="middle" class="node-badge">ENG</text>
+<text x="1040.0" y="3480.0" text-anchor="middle" class="node-label">Tools</text>
+<text x="1054.0" y="3513.0" class="node-domain">Technological</text>
+<text x="1054.0" y="3529.0" class="node-class">engineering</text>
+</g>
+<g id="node-computation" class="tree-node" data-node-id="computation" data-domain="technological" data-epistemic="engineering" data-x="1270.0" data-y="3490.0" aria-label="Computation; Technological; engineering" role="img">
+<title>Computation: Formal and physical processes for representing, transforming, storing, and executing information.</title>
+<rect x="1182.0" y="3445.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#475569" stroke-width="3" />
+<rect x="1182.0" y="3445.0" width="176" height="8" rx="4" fill="#475569" />
+<circle cx="1201.0" cy="3515.0" r="16" fill="#475569" />
+<text x="1201.0" y="3519.0" text-anchor="middle" class="node-badge">ENG</text>
+<text x="1270.0" y="3480.0" text-anchor="middle" class="node-label">Computation</text>
+<text x="1284.0" y="3513.0" class="node-domain">Technological</text>
+<text x="1284.0" y="3529.0" class="node-class">engineering</text>
+</g>
+<g id="node-machines" class="tree-node" data-node-id="machines" data-domain="technological" data-epistemic="engineering" data-x="1040.0" data-y="3640.0" aria-label="Machines; Technological; engineering" role="img">
+<title>Machines: Engineered systems that transform energy, matter, motion, information, or work.</title>
+<rect x="952.0" y="3595.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#475569" stroke-width="3" />
+<rect x="952.0" y="3595.0" width="176" height="8" rx="4" fill="#475569" />
+<circle cx="971.0" cy="3665.0" r="16" fill="#475569" />
+<text x="971.0" y="3669.0" text-anchor="middle" class="node-badge">ENG</text>
+<text x="1040.0" y="3630.0" text-anchor="middle" class="node-label">Machines</text>
+<text x="1054.0" y="3663.0" class="node-domain">Technological</text>
+<text x="1054.0" y="3679.0" class="node-class">engineering</text>
+</g>
+<g id="node-software" class="tree-node" data-node-id="software" data-domain="technological" data-epistemic="engineering" data-x="1270.0" data-y="3640.0" aria-label="Software; Technological; engineering" role="img">
+<title>Software: Executable symbolic instructions, protocols, interfaces, and records that organize digital behavior.</title>
+<rect x="1182.0" y="3595.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#475569" stroke-width="3" />
+<rect x="1182.0" y="3595.0" width="176" height="8" rx="4" fill="#475569" />
+<circle cx="1201.0" cy="3665.0" r="16" fill="#475569" />
+<text x="1201.0" y="3669.0" text-anchor="middle" class="node-badge">ENG</text>
+<text x="1270.0" y="3630.0" text-anchor="middle" class="node-label">Software</text>
+<text x="1284.0" y="3663.0" class="node-domain">Technological</text>
+<text x="1284.0" y="3679.0" class="node-class">engineering</text>
+</g>
+<g id="node-telecommunications" class="tree-node" data-node-id="telecommunications" data-domain="technological" data-epistemic="engineering" data-x="1040.0" data-y="3790.0" aria-label="Telecommunications; Technological; engineering" role="img">
+<title>Telecommunications: Technical systems for transmitting signals and coordinating across distance.</title>
+<rect x="952.0" y="3745.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#475569" stroke-width="3" />
+<rect x="952.0" y="3745.0" width="176" height="8" rx="4" fill="#475569" />
+<circle cx="971.0" cy="3815.0" r="16" fill="#475569" />
+<text x="971.0" y="3819.0" text-anchor="middle" class="node-badge">ENG</text>
+<text x="1040.0" y="3780.0" text-anchor="middle" class="node-label">Telecom</text>
+<text x="1054.0" y="3813.0" class="node-domain">Technological</text>
+<text x="1054.0" y="3829.0" class="node-class">engineering</text>
+</g>
+<g id="node-machine-learning" class="tree-node" data-node-id="machine-learning" data-domain="ai" data-epistemic="engineering" data-x="1270.0" data-y="3790.0" aria-label="Machine Learning; Ai; engineering" role="img">
+<title>Machine Learning: Computational methods that fit models from data and feedback, enabling prediction, generation, classification, and control under bounded assumptions.</title>
+<rect x="1182.0" y="3745.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#0e7490" stroke-width="3" />
+<rect x="1182.0" y="3745.0" width="176" height="8" rx="4" fill="#0e7490" />
+<circle cx="1201.0" cy="3815.0" r="16" fill="#0e7490" />
+<text x="1201.0" y="3819.0" text-anchor="middle" class="node-badge">ENG</text>
+<text x="1270.0" y="3780.0" text-anchor="middle" class="node-label">ML</text>
+<text x="1284.0" y="3813.0" class="node-domain">Ai</text>
+<text x="1284.0" y="3829.0" class="node-class">engineering</text>
+</g>
+<g id="node-digital-networks" class="tree-node" data-node-id="digital-networks" data-domain="technological" data-epistemic="engineering" data-x="1040.0" data-y="3940.0" aria-label="Digital Networks; Technological; engineering" role="img">
+<title>Digital Networks: Interconnected computational systems that carry software, data, communication, institutions, and culture.</title>
+<rect x="952.0" y="3895.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#475569" stroke-width="3" />
+<rect x="952.0" y="3895.0" width="176" height="8" rx="4" fill="#475569" />
+<circle cx="971.0" cy="3965.0" r="16" fill="#475569" />
+<text x="971.0" y="3969.0" text-anchor="middle" class="node-badge">ENG</text>
+<text x="1040.0" y="3930.0" text-anchor="middle" class="node-label">Networks</text>
+<text x="1054.0" y="3963.0" class="node-domain">Technological</text>
+<text x="1054.0" y="3979.0" class="node-class">engineering</text>
+</g>
+<g id="node-artificial-intelligence" class="tree-node" data-node-id="artificial-intelligence" data-domain="ai" data-epistemic="engineering" data-x="1270.0" data-y="3940.0" aria-label="Artificial Intelligence; Ai; engineering" role="img">
+<title>Artificial Intelligence: Engineered computational systems that perform tasks associated with perception, language, reasoning, planning, generation, or decision support. This node does not claim machine consciousness.</title>
+<rect x="1182.0" y="3895.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#0e7490" stroke-width="3" />
+<rect x="1182.0" y="3895.0" width="176" height="8" rx="4" fill="#0e7490" />
+<circle cx="1201.0" cy="3965.0" r="16" fill="#0e7490" />
+<text x="1201.0" y="3969.0" text-anchor="middle" class="node-badge">ENG</text>
+<text x="1270.0" y="3930.0" text-anchor="middle" class="node-label">AI</text>
+<text x="1284.0" y="3963.0" class="node-domain">Ai</text>
+<text x="1284.0" y="3979.0" class="node-class">engineering</text>
+</g>
+<g id="node-distributed-knowledge" class="tree-node" data-node-id="distributed-knowledge" data-domain="federation" data-epistemic="architectural" data-x="1040.0" data-y="4090.0" aria-label="Distributed Knowledge; Federation; architectural" role="img">
+<title>Distributed Knowledge: Knowledge carried across people, documents, repositories, models, tools, communities, and records with provenance and context.</title>
+<rect x="952.0" y="4045.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="3" />
+<rect x="952.0" y="4045.0" width="176" height="8" rx="4" fill="#7c3aed" />
+<circle cx="971.0" cy="4115.0" r="16" fill="#7c3aed" />
+<text x="971.0" y="4119.0" text-anchor="middle" class="node-badge">ARC</text>
+<text x="1040.0" y="4080.0" text-anchor="middle" class="node-label">Knowledge</text>
+<text x="1054.0" y="4113.0" class="node-domain">Federation</text>
+<text x="1054.0" y="4129.0" class="node-class">architectural</text>
+</g>
+<g id="node-machine-intelligence" class="tree-node" data-node-id="machine-intelligence" data-domain="ai" data-epistemic="engineering" data-x="1270.0" data-y="4090.0" aria-label="Machine Intelligence; Ai; engineering" role="img">
+<title>Machine Intelligence: Task-oriented computational intelligence expressed through models, software, tools, agents, and infrastructure, without presuming personhood or consciousness.</title>
+<rect x="1182.0" y="4045.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#0e7490" stroke-width="3" />
+<rect x="1182.0" y="4045.0" width="176" height="8" rx="4" fill="#0e7490" />
+<circle cx="1201.0" cy="4115.0" r="16" fill="#0e7490" />
+<text x="1201.0" y="4119.0" text-anchor="middle" class="node-badge">ENG</text>
+<text x="1270.0" y="4080.0" text-anchor="middle" class="node-label">Machine Intel.</text>
+<text x="1284.0" y="4113.0" class="node-domain">Ai</text>
+<text x="1284.0" y="4129.0" class="node-class">engineering</text>
+</g>
+<g id="node-governed-repositories" class="tree-node" data-node-id="governed-repositories" data-domain="federation" data-epistemic="engineering" data-x="1040.0" data-y="4240.0" aria-label="Governed Repositories; Federation; engineering" role="img">
+<title>Governed Repositories: Git repositories and manifests as inspectable bodies of work, evidence, policy, schemas, tools, and generated artifacts.</title>
+<rect x="952.0" y="4195.0" width="176" height="90" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="3" />
+<rect x="952.0" y="4195.0" width="176" height="8" rx="4" fill="#7c3aed" />
+<circle cx="971.0" cy="4265.0" r="16" fill="#7c3aed" />
+<text x="971.0" y="4269.0" text-anchor="middle" class="node-badge">ENG</text>
+<text x="1040.0" y="4230.0" text-anchor="middle" class="node-label">Repos</text>
+<text x="1054.0" y="4263.0" class="node-domain">Federation</text>
+<text x="1054.0" y="4279.0" class="node-class">engineering</text>
+</g>
+</g>
+</g>
+</svg>

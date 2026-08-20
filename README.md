@@ -23,11 +23,13 @@ Genesis begins from the holographic principle that the pattern of the Federation
 
 This is not merely account creation. It is inheritance. The seed receives a constitutional grammar: how identity is named, how authority is delegated, how missions are related to people and resources, how AI participation is bounded, how records carry provenance, how value connects to stewardship, and how a local system can join the Federation without dissolving into it.
 
-### Illuminated passage — the Tree as genome
+### Illuminated passage — the Tree as genome and emergence graph
 
 ![Biozoe Tree of Life](https://raw.githubusercontent.com/AIFreedomTrustFederation/AI-Freedom-Trust/main/docs/images/aetherion/biozoe-tree-of-life.png)
 
 The Tree of Life belongs naturally to Genesis because it expresses differentiation without fragmentation. Root, trunk, branch, leaf, and fruit remain distinct while carrying one living pattern. Genesis does the same for identity, governance, mission, economy, memory, and AI relation.
+
+Genesis now carries the broader [Tree of Emergence](civilization/TREE_OF_EMERGENCE.md) as a canonical directed graph in [manifests/tree.manifest.json](manifests/tree.manifest.json), with the legacy Tree of Life parts preserved for compatibility. The graph distinguishes empirical science, active research, doctrine, philosophy, engineering, prototypes, architecture, and aspiration so the model can be visually expressive without overstating evidence. Generated review surfaces are available at [docs/generated/tree-of-emergence.svg](docs/generated/tree-of-emergence.svg) and [docs/generated/tree-of-emergence.html](docs/generated/tree-of-emergence.html).
 
 ---
 
@@ -41,9 +43,9 @@ AIFT-Genesis owns the **inheritance pattern**, not the operation of every system
 - `MANIFESTO.md` and `VISION.md` express public purpose and long-range direction.
 - `philosophy/` carries ontology, epistemology, axiology, metaphysics, emergence, and the holographic principle.
 - `science/` carries topology, torus, Fibonacci, fractal, information, and systems models used as design language.
-- `civilization/` carries identity, trust, governance, Tree of Life, Living Atlas, missions, and economy.
+- `civilization/` carries identity, trust, governance, Tree of Life, Tree of Emergence, Living Atlas, missions, and economy.
 - `ai/` carries AI steward architecture, memory, reasoning, safety, alignment, and local-first AI principles.
-- `manifests/`, `schemas/`, `templates/`, and `examples/` make the genome machine-readable and reusable.
+- `manifests/`, `schemas/`, `templates/`, and `examples/` make the genome machine-readable and reusable, including the Tree of Emergence graph contract.
 - `tools/` defines the generator and validation path through which inheritance can become executable.
 
 The federation relationship is directional without being hierarchical in ownership. **AI-Freedom-Trust** supplies the broader doctrine and constitutional philosophy. **Genesis** turns that philosophy into a genome that can be instantiated. **AIFT-Forge** receives stable patterns and turns them into reusable technical structures. **AIFT-OS** discovers instantiated repositories and trust systems from evidence instead of assuming they conform. **BookSmith**, **VPS**, **Aetherion**, **TheMindofAll**, and future applications inherit only the parts of the genome that actually belong to their domain.

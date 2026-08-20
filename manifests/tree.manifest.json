@@ -1,4 +1,2153 @@
 {
   "kind": "tree-manifest",
-  "parts": ["seed", "roots", "trunk", "branches", "leaves", "fruit", "newSeeds"]
+  "schemaVersion": "1.0.0",
+  "modelVersion": "0.1.0",
+  "modelId": "aift-tree-of-emergence",
+  "title": "The AIFT Tree of Emergence",
+  "status": "canonical-draft",
+  "description": "A directed attributed graph describing emergence across physical, chemical, biological, cognitive, cultural, technological, AI, and Federation domains. Tree renderings are projections of this graph, not the authoritative meaning.",
+  "canonicalDocument": "civilization/TREE_OF_EMERGENCE.md",
+  "legacyCompatibility": {
+    "partsPreserved": true,
+    "note": "The legacy parts array remains available for consumers that understand seed, roots, trunk, branches, leaves, fruit, and newSeeds."
+  },
+  "parts": [
+    "seed",
+    "roots",
+    "trunk",
+    "branches",
+    "leaves",
+    "fruit",
+    "newSeeds"
+  ],
+  "epistemicClasses": {
+    "empirical": {
+      "label": "Empirical",
+      "definition": "Grounded in observable evidence at the abstraction level used here, without claiming final explanation."
+    },
+    "scientific-consensus": {
+      "label": "Scientific Consensus",
+      "definition": "Broadly accepted in contemporary science at this level of description."
+    },
+    "active-research": {
+      "label": "Active Research",
+      "definition": "Scientifically investigated but not settled as one specific mechanism, timeline, or threshold."
+    },
+    "interpretive": {
+      "label": "Interpretive",
+      "definition": "A meaning-making bridge or synthesis, not an empirical proof by itself."
+    },
+    "philosophical": {
+      "label": "Philosophical",
+      "definition": "A conceptual model for ontology, epistemology, value, or relationship."
+    },
+    "doctrinal": {
+      "label": "Doctrinal",
+      "definition": "AIFT covenantal or spiritual language stated as doctrine, not as settled empirical science."
+    },
+    "engineering": {
+      "label": "Engineering",
+      "definition": "A concrete technical pattern, repository, manifest, schema, tool, or operational design."
+    },
+    "prototype": {
+      "label": "Prototype",
+      "definition": "Implemented or planned as an experimental artifact that should not be represented as mature production infrastructure."
+    },
+    "architectural": {
+      "label": "Architectural",
+      "definition": "A system design relationship or intended integration contract."
+    },
+    "aspirational": {
+      "label": "Aspirational",
+      "definition": "A future-oriented possibility, canopy, seed, or goal that is not claimed as inevitable or already complete."
+    }
+  },
+  "domains": [
+    "metaphysical-doctrinal",
+    "physical",
+    "chemical",
+    "biological",
+    "ecological",
+    "cognitive",
+    "human-cultural",
+    "technological",
+    "ai",
+    "federation",
+    "future"
+  ],
+  "edgeRelations": [
+    "emerges_from",
+    "branches_from",
+    "enables",
+    "influences",
+    "contains",
+    "implements",
+    "depends_on",
+    "federates_with"
+  ],
+  "rootNodeIds": [
+    "energence"
+  ],
+  "primaryProjection": {
+    "id": "emergence-lineage",
+    "description": "Acyclic primary edges used to render a tree-like view. Cross-links remain in the graph but do not define the primary tree projection.",
+    "edgeRole": "primary"
+  },
+  "sourceRefs": [
+    {
+      "id": "genesis.constitution",
+      "label": "AIFT Genesis Constitution",
+      "uri": "CONSTITUTION.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "genesis.charter",
+      "label": "AIFT Genesis Charter",
+      "uri": "CHARTER.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "genesis.epistemology",
+      "label": "Genesis Epistemology",
+      "uri": "philosophy/EPISTEMOLOGY.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "genesis.emergence",
+      "label": "Genesis Emergence",
+      "uri": "philosophy/EMERGENCE.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "genesis.metaphysics",
+      "label": "Genesis Metaphysics",
+      "uri": "philosophy/METAPHYSICS.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "genesis.holographic",
+      "label": "Genesis Holographic Principle",
+      "uri": "philosophy/HOLOGRAPHIC_PRINCIPLE.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "genesis.axiology",
+      "label": "Genesis Axiology",
+      "uri": "philosophy/AXIOLOGY.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "genesis.systems",
+      "label": "Genesis Systems Theory",
+      "uri": "science/SYSTEMS_THEORY.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "genesis.information",
+      "label": "Genesis Information",
+      "uri": "science/INFORMATION.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "genesis.tree-of-life",
+      "label": "Genesis Tree of Life",
+      "uri": "civilization/TREE_OF_LIFE.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "genesis.living-atlas",
+      "label": "Genesis Living Atlas",
+      "uri": "civilization/LIVING_ATLAS.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "genesis.world-protocol",
+      "label": "AIFT Living Federation World Protocol",
+      "uri": "WORLD_PROTOCOL.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "genesis.federation",
+      "label": "Genesis Federation Role",
+      "uri": "FEDERATION.md",
+      "type": "repository-document"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "energence",
+      "label": "Energence",
+      "shortLabel": "Energence",
+      "description": "The AIFT doctrinal root for emergence as relationship, possibility, and generative source. It is represented as doctrine and philosophy, not as a verified particle, force, field, or accepted scientific theory.",
+      "domain": "metaphysical-doctrinal",
+      "epistemicClass": "doctrinal",
+      "status": "canonical-draft",
+      "tags": [
+        "root",
+        "doctrine",
+        "source-pattern"
+      ],
+      "sourceRefs": [
+        "genesis.metaphysics",
+        "genesis.emergence",
+        "genesis.epistemology"
+      ],
+      "metadata": {
+        "part": "seed",
+        "evidenceBoundary": "doctrinal-philosophical",
+        "claimBoundary": "Not an empirical science claim."
+      },
+      "presentationRole": "root-seed",
+      "canonicalUri": "civilization/TREE_OF_EMERGENCE.md#the-root"
+    },
+    {
+      "id": "physical-reality",
+      "label": "Observable Physical Reality",
+      "shortLabel": "Physical Reality",
+      "description": "The empirical domain of observable physical existence, represented broadly and without claiming that metaphysical origin language has been scientifically demonstrated.",
+      "domain": "physical",
+      "epistemicClass": "empirical",
+      "status": "established",
+      "tags": [
+        "physics",
+        "observation"
+      ],
+      "sourceRefs": [
+        "genesis.epistemology"
+      ],
+      "metadata": {
+        "part": "roots",
+        "evidenceBoundary": "empirical abstraction"
+      },
+      "presentationRole": "foundation",
+      "canonicalUri": "civilization/TREE_OF_EMERGENCE.md#physical-emergence"
+    },
+    {
+      "id": "spacetime",
+      "label": "Spacetime",
+      "shortLabel": "Spacetime",
+      "description": "The physical frame in which location, duration, relation, and measurable events are described.",
+      "domain": "physical",
+      "epistemicClass": "scientific-consensus",
+      "status": "established",
+      "tags": [
+        "physics",
+        "cosmology"
+      ],
+      "sourceRefs": [],
+      "metadata": {
+        "part": "roots",
+        "evidenceBoundary": "high-level science concept"
+      },
+      "presentationRole": "foundation"
+    },
+    {
+      "id": "energy-and-fields",
+      "label": "Energy and Fields",
+      "shortLabel": "Energy",
+      "description": "Physical energy and field descriptions used in science. AIFT may interpret energy relationally, but this node does not claim that energy and information are scientifically identical.",
+      "domain": "physical",
+      "epistemicClass": "scientific-consensus",
+      "status": "established",
+      "tags": [
+        "physics",
+        "energy"
+      ],
+      "sourceRefs": [
+        "genesis.information"
+      ],
+      "metadata": {
+        "part": "roots",
+        "claimBoundary": "No identity claim between energy and information."
+      },
+      "presentationRole": "foundation"
+    },
+    {
+      "id": "matter",
+      "label": "Matter",
+      "shortLabel": "Matter",
+      "description": "Stable physical forms and particles that make later chemical and biological organization possible.",
+      "domain": "physical",
+      "epistemicClass": "scientific-consensus",
+      "status": "established",
+      "tags": [
+        "physics",
+        "matter"
+      ],
+      "sourceRefs": [],
+      "metadata": {
+        "part": "roots"
+      },
+      "presentationRole": "foundation"
+    },
+    {
+      "id": "stellar-nucleosynthesis",
+      "label": "Stellar Nucleosynthesis",
+      "shortLabel": "Elements",
+      "description": "The formation of many chemical elements through stellar processes, enabling richer chemical systems.",
+      "domain": "physical",
+      "epistemicClass": "scientific-consensus",
+      "status": "established",
+      "tags": [
+        "stars",
+        "elements"
+      ],
+      "sourceRefs": [],
+      "metadata": {
+        "part": "roots"
+      },
+      "presentationRole": "foundation"
+    },
+    {
+      "id": "planetary-systems",
+      "label": "Planetary Systems",
+      "shortLabel": "Planets",
+      "description": "Planetary environments where complex chemistry and ecological histories may unfold.",
+      "domain": "physical",
+      "epistemicClass": "scientific-consensus",
+      "status": "established",
+      "tags": [
+        "planetary",
+        "environment"
+      ],
+      "sourceRefs": [],
+      "metadata": {
+        "part": "roots"
+      },
+      "presentationRole": "foundation"
+    },
+    {
+      "id": "atoms-and-molecules",
+      "label": "Atoms and Molecules",
+      "shortLabel": "Molecules",
+      "description": "Chemical constituents and bonds that allow matter to form increasingly varied structures.",
+      "domain": "chemical",
+      "epistemicClass": "scientific-consensus",
+      "status": "established",
+      "tags": [
+        "chemistry",
+        "molecules"
+      ],
+      "sourceRefs": [],
+      "metadata": {
+        "part": "trunk"
+      },
+      "presentationRole": "trunk"
+    },
+    {
+      "id": "complex-chemistry",
+      "label": "Complex Chemistry",
+      "shortLabel": "Chemistry",
+      "description": "Networks of reactions and molecular structures capable of persistence, transformation, and increasing organization.",
+      "domain": "chemical",
+      "epistemicClass": "scientific-consensus",
+      "status": "established",
+      "tags": [
+        "chemistry",
+        "reaction-networks"
+      ],
+      "sourceRefs": [
+        "genesis.systems"
+      ],
+      "metadata": {
+        "part": "trunk"
+      },
+      "presentationRole": "trunk"
+    },
+    {
+      "id": "self-organization",
+      "label": "Self-Organization",
+      "shortLabel": "Self-Organization",
+      "description": "Pattern formation through interactions among parts without requiring a single centralized designer.",
+      "domain": "chemical",
+      "epistemicClass": "active-research",
+      "status": "active-research",
+      "tags": [
+        "complexity",
+        "systems",
+        "prebiotic"
+      ],
+      "sourceRefs": [
+        "genesis.emergence",
+        "genesis.systems"
+      ],
+      "metadata": {
+        "part": "trunk",
+        "evidenceBoundary": "general systems concept; specific origin-of-life pathways remain open"
+      },
+      "presentationRole": "trunk"
+    },
+    {
+      "id": "prebiotic-chemistry",
+      "label": "Prebiotic Chemistry",
+      "shortLabel": "Prebiotic",
+      "description": "Chemical processes relevant to possible origins of life. This node intentionally leaves specific abiogenesis mechanisms classified as active research.",
+      "domain": "chemical",
+      "epistemicClass": "active-research",
+      "status": "active-research",
+      "tags": [
+        "prebiotic",
+        "abiogenesis",
+        "open-question"
+      ],
+      "sourceRefs": [
+        "genesis.epistemology"
+      ],
+      "metadata": {
+        "part": "trunk",
+        "claimBoundary": "No settled origin-of-life mechanism is asserted."
+      },
+      "presentationRole": "trunk"
+    },
+    {
+      "id": "biological-life",
+      "label": "Biological Life",
+      "shortLabel": "Life",
+      "description": "Living systems capable of metabolism, reproduction, adaptation, and ecological relation at the abstraction level used here.",
+      "domain": "biological",
+      "epistemicClass": "empirical",
+      "status": "established",
+      "tags": [
+        "life",
+        "biology"
+      ],
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ],
+      "metadata": {
+        "part": "trunk"
+      },
+      "presentationRole": "living-trunk",
+      "canonicalUri": "civilization/TREE_OF_LIFE.md"
+    },
+    {
+      "id": "microbial-lineages",
+      "label": "Microbial Lineages",
+      "shortLabel": "Microbes",
+      "description": "Bacterial, archaeal, and microbial eukaryotic life, represented as continuing branches rather than primitive leftovers.",
+      "domain": "biological",
+      "epistemicClass": "scientific-consensus",
+      "status": "continuing",
+      "tags": [
+        "microbes",
+        "evolution",
+        "continuing-branch"
+      ],
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ],
+      "metadata": {
+        "part": "branches"
+      },
+      "presentationRole": "biological-branch"
+    },
+    {
+      "id": "biological-evolution",
+      "label": "Biological Evolution",
+      "shortLabel": "Evolution",
+      "description": "The continuing diversification of living systems through heritable variation, selection, drift, and ecological interaction.",
+      "domain": "biological",
+      "epistemicClass": "scientific-consensus",
+      "status": "established",
+      "tags": [
+        "evolution",
+        "branching",
+        "nonlinear"
+      ],
+      "sourceRefs": [
+        "genesis.tree-of-life",
+        "genesis.epistemology"
+      ],
+      "metadata": {
+        "part": "trunk",
+        "claimBoundary": "Does not imply inevitable progress toward humanity or AI."
+      },
+      "presentationRole": "living-trunk"
+    },
+    {
+      "id": "ecosystems",
+      "label": "Ecosystems",
+      "shortLabel": "Ecosystems",
+      "description": "Living communities and environments connected through flows of energy, matter, information, competition, cooperation, and stewardship responsibility.",
+      "domain": "ecological",
+      "epistemicClass": "scientific-consensus",
+      "status": "continuing",
+      "tags": [
+        "ecology",
+        "systems",
+        "continuing-branch"
+      ],
+      "sourceRefs": [
+        "genesis.systems",
+        "genesis.tree-of-life"
+      ],
+      "metadata": {
+        "part": "branches"
+      },
+      "presentationRole": "biological-branch"
+    },
+    {
+      "id": "multicellularity",
+      "label": "Multicellularity",
+      "shortLabel": "Multicellular",
+      "description": "Coordinated many-celled life, a major biological branch with multiple evolutionary histories.",
+      "domain": "biological",
+      "epistemicClass": "scientific-consensus",
+      "status": "established",
+      "tags": [
+        "biology",
+        "cooperation"
+      ],
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ],
+      "metadata": {
+        "part": "branches"
+      },
+      "presentationRole": "biological-branch"
+    },
+    {
+      "id": "plant-life",
+      "label": "Plant Life",
+      "shortLabel": "Plants",
+      "description": "Photosynthetic multicellular lineages and their continuing ecological roles.",
+      "domain": "biological",
+      "epistemicClass": "scientific-consensus",
+      "status": "continuing",
+      "tags": [
+        "plants",
+        "continuing-branch"
+      ],
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ],
+      "metadata": {
+        "part": "branches"
+      },
+      "presentationRole": "biological-branch"
+    },
+    {
+      "id": "fungal-life",
+      "label": "Fungal Life",
+      "shortLabel": "Fungi",
+      "description": "Fungal lineages and symbiotic networks that participate in ecosystems and nutrient cycles.",
+      "domain": "biological",
+      "epistemicClass": "scientific-consensus",
+      "status": "continuing",
+      "tags": [
+        "fungi",
+        "continuing-branch"
+      ],
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ],
+      "metadata": {
+        "part": "branches"
+      },
+      "presentationRole": "biological-branch"
+    },
+    {
+      "id": "animal-life",
+      "label": "Animal Life",
+      "shortLabel": "Animals",
+      "description": "Animal lineages, including but not limited to the branch that eventually includes humans.",
+      "domain": "biological",
+      "epistemicClass": "scientific-consensus",
+      "status": "continuing",
+      "tags": [
+        "animals",
+        "continuing-branch"
+      ],
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ],
+      "metadata": {
+        "part": "branches",
+        "claimBoundary": "Humanity is not represented as the purpose of animal evolution."
+      },
+      "presentationRole": "biological-branch"
+    },
+    {
+      "id": "nervous-systems",
+      "label": "Nervous Systems",
+      "shortLabel": "Nerves",
+      "description": "Biological signaling systems that enable sensation, movement, learning, and coordinated behavior in many animals.",
+      "domain": "cognitive",
+      "epistemicClass": "scientific-consensus",
+      "status": "established",
+      "tags": [
+        "neural",
+        "sensation",
+        "animals"
+      ],
+      "sourceRefs": [],
+      "metadata": {
+        "part": "branches"
+      },
+      "presentationRole": "cognitive-branch"
+    },
+    {
+      "id": "learning-and-memory",
+      "label": "Learning and Memory",
+      "shortLabel": "Learning",
+      "description": "Adaptive change in behavior or representation through experience, spanning biological and technical contexts at different levels.",
+      "domain": "cognitive",
+      "epistemicClass": "empirical",
+      "status": "established",
+      "tags": [
+        "learning",
+        "memory",
+        "adaptation"
+      ],
+      "sourceRefs": [
+        "genesis.information"
+      ],
+      "metadata": {
+        "part": "branches"
+      },
+      "presentationRole": "cognitive-branch"
+    },
+    {
+      "id": "sentience",
+      "label": "Sentience",
+      "shortLabel": "Sentience",
+      "description": "The capacity for subjective experience or feeling, represented carefully because definitions and thresholds are contested.",
+      "domain": "cognitive",
+      "epistemicClass": "active-research",
+      "status": "contested",
+      "tags": [
+        "experience",
+        "open-question"
+      ],
+      "sourceRefs": [
+        "genesis.epistemology"
+      ],
+      "metadata": {
+        "part": "branches",
+        "claimBoundary": "No precise biological threshold is asserted."
+      },
+      "presentationRole": "cognitive-branch"
+    },
+    {
+      "id": "consciousness",
+      "label": "Consciousness",
+      "shortLabel": "Consciousness",
+      "description": "Awareness and subjective integration, treated as a serious philosophical and scientific question without claiming a settled mechanism.",
+      "domain": "cognitive",
+      "epistemicClass": "active-research",
+      "status": "contested",
+      "tags": [
+        "awareness",
+        "open-question",
+        "philosophy-of-mind"
+      ],
+      "sourceRefs": [
+        "genesis.epistemology",
+        "genesis.metaphysics"
+      ],
+      "metadata": {
+        "part": "branches",
+        "claimBoundary": "No claim that AI or any specific system is conscious."
+      },
+      "presentationRole": "cognitive-branch"
+    },
+    {
+      "id": "symbolic-representation",
+      "label": "Symbolic Representation",
+      "shortLabel": "Symbols",
+      "description": "The use of signs, categories, gestures, marks, models, and shared reference to represent things not immediately present.",
+      "domain": "cognitive",
+      "epistemicClass": "empirical",
+      "status": "established",
+      "tags": [
+        "symbols",
+        "representation"
+      ],
+      "sourceRefs": [
+        "genesis.information"
+      ],
+      "metadata": {
+        "part": "branches"
+      },
+      "presentationRole": "cultural-branch"
+    },
+    {
+      "id": "human-lineage",
+      "label": "Human Lineage",
+      "shortLabel": "Humans",
+      "description": "The human branch of animal life, important for this project but not the endpoint or purpose of biological evolution.",
+      "domain": "biological",
+      "epistemicClass": "scientific-consensus",
+      "status": "continuing",
+      "tags": [
+        "human",
+        "continuing-branch"
+      ],
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ],
+      "metadata": {
+        "part": "branches",
+        "claimBoundary": "One branch among many continuing branches."
+      },
+      "presentationRole": "biological-branch"
+    },
+    {
+      "id": "human-language",
+      "label": "Human Language",
+      "shortLabel": "Language",
+      "description": "Shared symbolic communication that enables memory, teaching, coordination, culture, and institutional continuity.",
+      "domain": "human-cultural",
+      "epistemicClass": "scientific-consensus",
+      "status": "established",
+      "tags": [
+        "language",
+        "culture"
+      ],
+      "sourceRefs": [
+        "genesis.information"
+      ],
+      "metadata": {
+        "part": "branches"
+      },
+      "presentationRole": "cultural-branch"
+    },
+    {
+      "id": "shared-memory",
+      "label": "Shared Memory",
+      "shortLabel": "Memory",
+      "description": "Durable transmission of knowledge, story, practice, law, art, and record across people and generations.",
+      "domain": "human-cultural",
+      "epistemicClass": "empirical",
+      "status": "established",
+      "tags": [
+        "memory",
+        "culture",
+        "inheritance"
+      ],
+      "sourceRefs": [
+        "genesis.information",
+        "genesis.holographic"
+      ],
+      "metadata": {
+        "part": "branches"
+      },
+      "presentationRole": "cultural-branch"
+    },
+    {
+      "id": "culture",
+      "label": "Culture",
+      "shortLabel": "Culture",
+      "description": "Shared patterns of meaning, practice, memory, symbol, relationship, and adaptation. This node does not imply a single universal cultural path.",
+      "domain": "human-cultural",
+      "epistemicClass": "empirical",
+      "status": "continuing",
+      "tags": [
+        "culture",
+        "plurality"
+      ],
+      "sourceRefs": [
+        "genesis.epistemology"
+      ],
+      "metadata": {
+        "part": "branches",
+        "claimBoundary": "No inevitable developmental ladder is asserted."
+      },
+      "presentationRole": "cultural-branch"
+    },
+    {
+      "id": "cooperation",
+      "label": "Cooperation",
+      "shortLabel": "Cooperation",
+      "description": "Coordinated action among agents, communities, institutions, and systems without requiring erasure of local identity.",
+      "domain": "human-cultural",
+      "epistemicClass": "empirical",
+      "status": "continuing",
+      "tags": [
+        "cooperation",
+        "relationship"
+      ],
+      "sourceRefs": [
+        "genesis.systems",
+        "genesis.axiology"
+      ],
+      "metadata": {
+        "part": "branches"
+      },
+      "presentationRole": "cultural-branch"
+    },
+    {
+      "id": "institutions",
+      "label": "Institutions",
+      "shortLabel": "Institutions",
+      "description": "Durable social structures that coordinate roles, norms, records, governance, and resource relationships.",
+      "domain": "human-cultural",
+      "epistemicClass": "empirical",
+      "status": "continuing",
+      "tags": [
+        "institutions",
+        "governance"
+      ],
+      "sourceRefs": [
+        "genesis.constitution"
+      ],
+      "metadata": {
+        "part": "branches"
+      },
+      "presentationRole": "cultural-branch"
+    },
+    {
+      "id": "civilization",
+      "label": "Civilization",
+      "shortLabel": "Civilization",
+      "description": "Large-scale human coordination across memory, place, institutions, technology, governance, value, and meaning.",
+      "domain": "human-cultural",
+      "epistemicClass": "interpretive",
+      "status": "continuing",
+      "tags": [
+        "civilization",
+        "coordination",
+        "plurality"
+      ],
+      "sourceRefs": [
+        "genesis.constitution",
+        "genesis.charter"
+      ],
+      "metadata": {
+        "part": "branches"
+      },
+      "presentationRole": "cultural-branch"
+    },
+    {
+      "id": "writing-and-mathematics",
+      "label": "Writing and Mathematics",
+      "shortLabel": "Writing + Math",
+      "description": "Symbolic systems that preserve records, enable abstraction, and support science, engineering, law, and computation.",
+      "domain": "human-cultural",
+      "epistemicClass": "empirical",
+      "status": "established",
+      "tags": [
+        "writing",
+        "mathematics",
+        "abstraction"
+      ],
+      "sourceRefs": [
+        "genesis.information"
+      ],
+      "metadata": {
+        "part": "leaves"
+      },
+      "presentationRole": "cultural-branch"
+    },
+    {
+      "id": "philosophy",
+      "label": "Philosophy",
+      "shortLabel": "Philosophy",
+      "description": "Disciplined reflection on being, knowing, value, meaning, agency, and relation.",
+      "domain": "human-cultural",
+      "epistemicClass": "philosophical",
+      "status": "continuing",
+      "tags": [
+        "philosophy",
+        "meaning"
+      ],
+      "sourceRefs": [
+        "genesis.epistemology",
+        "genesis.metaphysics"
+      ],
+      "metadata": {
+        "part": "leaves"
+      },
+      "presentationRole": "cultural-branch"
+    },
+    {
+      "id": "science",
+      "label": "Science",
+      "shortLabel": "Science",
+      "description": "Disciplined empirical inquiry, modeling, testing, revision, and evidence-bounded explanation.",
+      "domain": "human-cultural",
+      "epistemicClass": "empirical",
+      "status": "continuing",
+      "tags": [
+        "science",
+        "evidence"
+      ],
+      "sourceRefs": [
+        "genesis.epistemology"
+      ],
+      "metadata": {
+        "part": "leaves"
+      },
+      "presentationRole": "cultural-branch"
+    },
+    {
+      "id": "tools-and-engineering",
+      "label": "Tools and Engineering",
+      "shortLabel": "Tools",
+      "description": "Purposeful making, tool use, design, repair, and repeatable technical practice.",
+      "domain": "technological",
+      "epistemicClass": "engineering",
+      "status": "continuing",
+      "tags": [
+        "tools",
+        "engineering"
+      ],
+      "sourceRefs": [
+        "genesis.charter"
+      ],
+      "metadata": {
+        "part": "leaves"
+      },
+      "presentationRole": "technical-branch"
+    },
+    {
+      "id": "machines",
+      "label": "Machines",
+      "shortLabel": "Machines",
+      "description": "Engineered systems that transform energy, matter, motion, information, or work.",
+      "domain": "technological",
+      "epistemicClass": "engineering",
+      "status": "continuing",
+      "tags": [
+        "machines",
+        "technology"
+      ],
+      "sourceRefs": [],
+      "metadata": {
+        "part": "leaves"
+      },
+      "presentationRole": "technical-branch"
+    },
+    {
+      "id": "computation",
+      "label": "Computation",
+      "shortLabel": "Computation",
+      "description": "Formal and physical processes for representing, transforming, storing, and executing information.",
+      "domain": "technological",
+      "epistemicClass": "engineering",
+      "status": "continuing",
+      "tags": [
+        "computation",
+        "information"
+      ],
+      "sourceRefs": [
+        "genesis.information"
+      ],
+      "metadata": {
+        "part": "leaves"
+      },
+      "presentationRole": "technical-branch"
+    },
+    {
+      "id": "telecommunications",
+      "label": "Telecommunications",
+      "shortLabel": "Telecom",
+      "description": "Technical systems for transmitting signals and coordinating across distance.",
+      "domain": "technological",
+      "epistemicClass": "engineering",
+      "status": "continuing",
+      "tags": [
+        "communications",
+        "networks"
+      ],
+      "sourceRefs": [],
+      "metadata": {
+        "part": "leaves"
+      },
+      "presentationRole": "technical-branch"
+    },
+    {
+      "id": "digital-networks",
+      "label": "Digital Networks",
+      "shortLabel": "Networks",
+      "description": "Interconnected computational systems that carry software, data, communication, institutions, and culture.",
+      "domain": "technological",
+      "epistemicClass": "engineering",
+      "status": "continuing",
+      "tags": [
+        "digital",
+        "networks",
+        "internet"
+      ],
+      "sourceRefs": [
+        "genesis.world-protocol"
+      ],
+      "metadata": {
+        "part": "leaves"
+      },
+      "presentationRole": "technical-branch"
+    },
+    {
+      "id": "software",
+      "label": "Software",
+      "shortLabel": "Software",
+      "description": "Executable symbolic instructions, protocols, interfaces, and records that organize digital behavior.",
+      "domain": "technological",
+      "epistemicClass": "engineering",
+      "status": "continuing",
+      "tags": [
+        "software",
+        "protocols"
+      ],
+      "sourceRefs": [
+        "genesis.charter"
+      ],
+      "metadata": {
+        "part": "leaves"
+      },
+      "presentationRole": "technical-branch"
+    },
+    {
+      "id": "machine-learning",
+      "label": "Machine Learning",
+      "shortLabel": "ML",
+      "description": "Computational methods that fit models from data and feedback, enabling prediction, generation, classification, and control under bounded assumptions.",
+      "domain": "ai",
+      "epistemicClass": "engineering",
+      "status": "continuing",
+      "tags": [
+        "machine-learning",
+        "models"
+      ],
+      "sourceRefs": [
+        "genesis.information"
+      ],
+      "metadata": {
+        "part": "leaves"
+      },
+      "presentationRole": "ai-branch"
+    },
+    {
+      "id": "artificial-intelligence",
+      "label": "Artificial Intelligence",
+      "shortLabel": "AI",
+      "description": "Engineered computational systems that perform tasks associated with perception, language, reasoning, planning, generation, or decision support. This node does not claim machine consciousness.",
+      "domain": "ai",
+      "epistemicClass": "engineering",
+      "status": "continuing",
+      "tags": [
+        "ai",
+        "engineering",
+        "bounded-claims"
+      ],
+      "sourceRefs": [
+        "genesis.epistemology"
+      ],
+      "metadata": {
+        "part": "leaves",
+        "claimBoundary": "No consciousness or inevitability claim."
+      },
+      "presentationRole": "ai-branch"
+    },
+    {
+      "id": "human-intelligence",
+      "label": "Human Intelligence",
+      "shortLabel": "Human Intel.",
+      "description": "Embodied, social, cultural, symbolic, emotional, and practical human capacity for learning, meaning, judgment, creativity, and responsibility.",
+      "domain": "cognitive",
+      "epistemicClass": "empirical",
+      "status": "continuing",
+      "tags": [
+        "human",
+        "intelligence",
+        "agency"
+      ],
+      "sourceRefs": [
+        "genesis.axiology"
+      ],
+      "metadata": {
+        "part": "fruit"
+      },
+      "presentationRole": "cooperative-branch"
+    },
+    {
+      "id": "machine-intelligence",
+      "label": "Machine Intelligence",
+      "shortLabel": "Machine Intel.",
+      "description": "Task-oriented computational intelligence expressed through models, software, tools, agents, and infrastructure, without presuming personhood or consciousness.",
+      "domain": "ai",
+      "epistemicClass": "engineering",
+      "status": "continuing",
+      "tags": [
+        "machine-intelligence",
+        "bounded-claims"
+      ],
+      "sourceRefs": [
+        "genesis.epistemology"
+      ],
+      "metadata": {
+        "part": "fruit",
+        "claimBoundary": "No personhood or consciousness claim."
+      },
+      "presentationRole": "cooperative-branch"
+    },
+    {
+      "id": "human-ai-cooperation",
+      "label": "Human-AI Cooperation",
+      "shortLabel": "Human + AI",
+      "description": "Governed collaboration between human judgment and AI assistance, with human agency, consent, provenance, and bounded authority.",
+      "domain": "ai",
+      "epistemicClass": "architectural",
+      "status": "canonical-draft",
+      "tags": [
+        "human-ai",
+        "cooperation",
+        "governance"
+      ],
+      "sourceRefs": [
+        "genesis.constitution",
+        "genesis.axiology"
+      ],
+      "metadata": {
+        "part": "fruit"
+      },
+      "presentationRole": "cooperative-branch",
+      "canonicalUri": "ai/AI_STEWARD.md"
+    },
+    {
+      "id": "agentic-systems",
+      "label": "Agentic Systems",
+      "shortLabel": "Agents",
+      "description": "AI-assisted systems that can plan, invoke tools, record evidence, and propose or perform actions under explicit governance boundaries.",
+      "domain": "ai",
+      "epistemicClass": "prototype",
+      "status": "prototype",
+      "tags": [
+        "agents",
+        "governed-tools",
+        "prototype"
+      ],
+      "sourceRefs": [
+        "genesis.constitution"
+      ],
+      "metadata": {
+        "part": "fruit",
+        "claimBoundary": "Prototype or architecture unless a consuming repo proves production status."
+      },
+      "presentationRole": "cooperative-branch"
+    },
+    {
+      "id": "distributed-knowledge",
+      "label": "Distributed Knowledge",
+      "shortLabel": "Knowledge",
+      "description": "Knowledge carried across people, documents, repositories, models, tools, communities, and records with provenance and context.",
+      "domain": "federation",
+      "epistemicClass": "architectural",
+      "status": "canonical-draft",
+      "tags": [
+        "knowledge",
+        "provenance",
+        "distributed"
+      ],
+      "sourceRefs": [
+        "genesis.information",
+        "genesis.holographic"
+      ],
+      "metadata": {
+        "part": "fruit"
+      },
+      "presentationRole": "federation-canopy"
+    },
+    {
+      "id": "local-sovereign-intelligence",
+      "label": "Local Sovereign Intelligence",
+      "shortLabel": "Local Sovereignty",
+      "description": "Local-first intelligence and agency that can operate before public federation, preserving consent, privacy, attribution, and refusal.",
+      "domain": "federation",
+      "epistemicClass": "architectural",
+      "status": "canonical-draft",
+      "tags": [
+        "local-first",
+        "sovereignty",
+        "privacy"
+      ],
+      "sourceRefs": [
+        "genesis.constitution",
+        "genesis.holographic"
+      ],
+      "metadata": {
+        "part": "fruit"
+      },
+      "presentationRole": "federation-canopy"
+    },
+    {
+      "id": "trust-systems",
+      "label": "Trust Systems",
+      "shortLabel": "Trusts",
+      "description": "Local trust seeds, governance structures, records, missions, and value relationships that can participate in the Federation by consent.",
+      "domain": "federation",
+      "epistemicClass": "engineering",
+      "status": "canonical-draft",
+      "tags": [
+        "trust",
+        "governance",
+        "local-first"
+      ],
+      "sourceRefs": [
+        "genesis.constitution",
+        "genesis.charter"
+      ],
+      "metadata": {
+        "part": "fruit"
+      },
+      "presentationRole": "federation-canopy",
+      "canonicalUri": "civilization/TRUST.md"
+    },
+    {
+      "id": "governed-repositories",
+      "label": "Governed Repositories",
+      "shortLabel": "Repos",
+      "description": "Git repositories and manifests as inspectable bodies of work, evidence, policy, schemas, tools, and generated artifacts.",
+      "domain": "federation",
+      "epistemicClass": "engineering",
+      "status": "canonical-draft",
+      "tags": [
+        "repositories",
+        "manifests",
+        "provenance"
+      ],
+      "sourceRefs": [
+        "genesis.charter",
+        "genesis.world-protocol"
+      ],
+      "metadata": {
+        "part": "fruit"
+      },
+      "presentationRole": "federation-canopy"
+    },
+    {
+      "id": "federation-governance",
+      "label": "Federation Governance",
+      "shortLabel": "Governance",
+      "description": "Rules, consent boundaries, evidence requirements, and repair paths through which local systems coordinate without erasing sovereignty.",
+      "domain": "federation",
+      "epistemicClass": "architectural",
+      "status": "canonical-draft",
+      "tags": [
+        "governance",
+        "consent",
+        "repair"
+      ],
+      "sourceRefs": [
+        "genesis.constitution",
+        "genesis.federation"
+      ],
+      "metadata": {
+        "part": "fruit"
+      },
+      "presentationRole": "federation-canopy",
+      "canonicalUri": "civilization/GOVERNANCE.md"
+    },
+    {
+      "id": "cooperative-intelligence",
+      "label": "Cooperative Intelligence",
+      "shortLabel": "Cooperative Intel.",
+      "description": "Intelligence emerging from governed relationships among people, AI systems, trusts, repositories, communities, knowledge, and infrastructure.",
+      "domain": "federation",
+      "epistemicClass": "architectural",
+      "status": "canonical-draft",
+      "tags": [
+        "cooperation",
+        "human-ai",
+        "federation"
+      ],
+      "sourceRefs": [
+        "genesis.systems",
+        "genesis.constitution"
+      ],
+      "metadata": {
+        "part": "fruit"
+      },
+      "presentationRole": "federation-canopy"
+    },
+    {
+      "id": "federated-intelligence",
+      "label": "Federated Intelligence",
+      "shortLabel": "Federated Intel.",
+      "description": "A networked pattern of locally sovereign intelligences and systems that can coordinate through shared schemas, provenance, consent, and governance.",
+      "domain": "federation",
+      "epistemicClass": "architectural",
+      "status": "canonical-draft",
+      "tags": [
+        "federation",
+        "distributed",
+        "intelligence"
+      ],
+      "sourceRefs": [
+        "genesis.constitution",
+        "genesis.world-protocol"
+      ],
+      "metadata": {
+        "part": "fruit"
+      },
+      "presentationRole": "federation-canopy"
+    },
+    {
+      "id": "aetherion",
+      "label": "Aetherion",
+      "shortLabel": "Aetherion",
+      "description": "The AIFT architectural and aspirational canopy for federated intelligence. It is represented as an open possibility and design direction, not as inevitable, globally deployed, scientifically proven conscious, supernatural fact, or mature production infrastructure.",
+      "domain": "federation",
+      "epistemicClass": "aspirational",
+      "status": "aspirational",
+      "tags": [
+        "aetherion",
+        "canopy",
+        "aspiration",
+        "bounded-claims"
+      ],
+      "sourceRefs": [
+        "genesis.epistemology",
+        "genesis.constitution"
+      ],
+      "metadata": {
+        "part": "fruit",
+        "claimBoundary": "Not inevitable, not proven conscious, not represented as deployed production infrastructure."
+      },
+      "presentationRole": "open-canopy",
+      "canonicalUri": "civilization/TREE_OF_EMERGENCE.md#aetherion"
+    },
+    {
+      "id": "new-seeds",
+      "label": "New Seeds",
+      "shortLabel": "Seeds",
+      "description": "Future branches, trusts, research questions, communities, tools, and relationships that may emerge from the canopy. The Tree remains open.",
+      "domain": "future",
+      "epistemicClass": "aspirational",
+      "status": "open",
+      "tags": [
+        "future",
+        "new-seeds",
+        "open-ended"
+      ],
+      "sourceRefs": [
+        "genesis.tree-of-life",
+        "genesis.holographic"
+      ],
+      "metadata": {
+        "part": "newSeeds",
+        "claimBoundary": "Aetherion is not the end of evolution."
+      },
+      "presentationRole": "new-seeds"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-energence-physical-reality",
+      "from": "energence",
+      "to": "physical-reality",
+      "relation": "emerges_from",
+      "epistemicClass": "doctrinal",
+      "role": "primary",
+      "description": "AIFT doctrine places physical reality within a larger interpretive root while preserving the empirical boundary.",
+      "sourceRefs": [
+        "genesis.metaphysics",
+        "genesis.epistemology"
+      ]
+    },
+    {
+      "id": "e-physical-spacetime",
+      "from": "physical-reality",
+      "to": "spacetime",
+      "relation": "contains",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Observable physical reality is represented through spacetime description.",
+      "sourceRefs": []
+    },
+    {
+      "id": "e-spacetime-energy",
+      "from": "spacetime",
+      "to": "energy-and-fields",
+      "relation": "contains",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Physical fields and energy are represented within the physical frame.",
+      "sourceRefs": []
+    },
+    {
+      "id": "e-energy-matter",
+      "from": "energy-and-fields",
+      "to": "matter",
+      "relation": "enables",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Stable matter supports later chemical organization.",
+      "sourceRefs": []
+    },
+    {
+      "id": "e-matter-nucleosynthesis",
+      "from": "matter",
+      "to": "stellar-nucleosynthesis",
+      "relation": "enables",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Stellar processes create many elements needed for complex chemistry.",
+      "sourceRefs": []
+    },
+    {
+      "id": "e-nucleosynthesis-planets",
+      "from": "stellar-nucleosynthesis",
+      "to": "planetary-systems",
+      "relation": "enables",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Element-rich systems support planets and varied environments.",
+      "sourceRefs": []
+    },
+    {
+      "id": "e-nucleosynthesis-molecules",
+      "from": "stellar-nucleosynthesis",
+      "to": "atoms-and-molecules",
+      "relation": "enables",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Elements combine into atoms and molecules.",
+      "sourceRefs": []
+    },
+    {
+      "id": "e-molecules-complex-chemistry",
+      "from": "atoms-and-molecules",
+      "to": "complex-chemistry",
+      "relation": "emerges_from",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Molecular interactions support complex chemistry.",
+      "sourceRefs": []
+    },
+    {
+      "id": "e-complex-chemistry-self-organization",
+      "from": "complex-chemistry",
+      "to": "self-organization",
+      "relation": "emerges_from",
+      "epistemicClass": "active-research",
+      "role": "primary",
+      "description": "Complex systems can form organized patterns through local interactions.",
+      "sourceRefs": [
+        "genesis.emergence",
+        "genesis.systems"
+      ]
+    },
+    {
+      "id": "e-self-organization-prebiotic",
+      "from": "self-organization",
+      "to": "prebiotic-chemistry",
+      "relation": "enables",
+      "epistemicClass": "active-research",
+      "role": "primary",
+      "description": "Self-organizing chemistry is relevant to prebiotic research without settling a single pathway.",
+      "sourceRefs": [
+        "genesis.epistemology"
+      ]
+    },
+    {
+      "id": "e-prebiotic-life",
+      "from": "prebiotic-chemistry",
+      "to": "biological-life",
+      "relation": "emerges_from",
+      "epistemicClass": "active-research",
+      "role": "primary",
+      "description": "Life is placed after prebiotic chemistry while keeping abiogenesis mechanism questions open.",
+      "sourceRefs": [
+        "genesis.epistemology"
+      ]
+    },
+    {
+      "id": "e-life-microbes",
+      "from": "biological-life",
+      "to": "microbial-lineages",
+      "relation": "branches_from",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Microbial life is a continuing major branch of life.",
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ]
+    },
+    {
+      "id": "e-life-evolution",
+      "from": "biological-life",
+      "to": "biological-evolution",
+      "relation": "emerges_from",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Evolution describes the continuing branching and adaptation of life.",
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ]
+    },
+    {
+      "id": "e-evolution-ecosystems",
+      "from": "biological-evolution",
+      "to": "ecosystems",
+      "relation": "branches_from",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Life forms ecological relationships as well as lineages.",
+      "sourceRefs": [
+        "genesis.systems",
+        "genesis.tree-of-life"
+      ]
+    },
+    {
+      "id": "e-evolution-multicellularity",
+      "from": "biological-evolution",
+      "to": "multicellularity",
+      "relation": "branches_from",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Multicellularity is represented as a branching biological development.",
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ]
+    },
+    {
+      "id": "e-multicellularity-plants",
+      "from": "multicellularity",
+      "to": "plant-life",
+      "relation": "branches_from",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Plant life is a continuing multicellular branch.",
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ]
+    },
+    {
+      "id": "e-multicellularity-fungi",
+      "from": "multicellularity",
+      "to": "fungal-life",
+      "relation": "branches_from",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Fungal life is a continuing multicellular branch.",
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ]
+    },
+    {
+      "id": "e-multicellularity-animals",
+      "from": "multicellularity",
+      "to": "animal-life",
+      "relation": "branches_from",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Animal life is a continuing multicellular branch.",
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ]
+    },
+    {
+      "id": "e-animals-nervous-systems",
+      "from": "animal-life",
+      "to": "nervous-systems",
+      "relation": "branches_from",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Nervous systems arise in animal lineages and support cognition-related capacities.",
+      "sourceRefs": []
+    },
+    {
+      "id": "e-nervous-learning",
+      "from": "nervous-systems",
+      "to": "learning-and-memory",
+      "relation": "enables",
+      "epistemicClass": "empirical",
+      "role": "primary",
+      "description": "Nervous systems enable learning and memory in many organisms.",
+      "sourceRefs": []
+    },
+    {
+      "id": "e-learning-sentience",
+      "from": "learning-and-memory",
+      "to": "sentience",
+      "relation": "influences",
+      "epistemicClass": "active-research",
+      "role": "primary",
+      "description": "Learning and integrated sensation relate to sentience, but thresholds remain contested.",
+      "sourceRefs": [
+        "genesis.epistemology"
+      ]
+    },
+    {
+      "id": "e-sentience-consciousness",
+      "from": "sentience",
+      "to": "consciousness",
+      "relation": "influences",
+      "epistemicClass": "active-research",
+      "role": "primary",
+      "description": "Sentience and consciousness are related but not reduced to a settled single mechanism.",
+      "sourceRefs": [
+        "genesis.epistemology",
+        "genesis.metaphysics"
+      ]
+    },
+    {
+      "id": "e-consciousness-symbols",
+      "from": "consciousness",
+      "to": "symbolic-representation",
+      "relation": "enables",
+      "epistemicClass": "active-research",
+      "role": "primary",
+      "description": "Awareness and cognition support symbolic representation in relevant lineages.",
+      "sourceRefs": [
+        "genesis.information"
+      ]
+    },
+    {
+      "id": "e-animals-human-lineage",
+      "from": "animal-life",
+      "to": "human-lineage",
+      "relation": "branches_from",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "The human lineage is one animal branch among many continuing branches.",
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ]
+    },
+    {
+      "id": "e-human-lineage-language",
+      "from": "human-lineage",
+      "to": "human-language",
+      "relation": "branches_from",
+      "epistemicClass": "scientific-consensus",
+      "role": "primary",
+      "description": "Human language is represented as a branch of human biological and cultural emergence.",
+      "sourceRefs": [
+        "genesis.information"
+      ]
+    },
+    {
+      "id": "e-symbols-language",
+      "from": "symbolic-representation",
+      "to": "human-language",
+      "relation": "enables",
+      "epistemicClass": "empirical",
+      "role": "cross-link",
+      "description": "Symbolic representation also enables language; this is a cross-link because the primary projection keeps the human lineage branch visible.",
+      "sourceRefs": [
+        "genesis.information"
+      ]
+    },
+    {
+      "id": "e-language-shared-memory",
+      "from": "human-language",
+      "to": "shared-memory",
+      "relation": "enables",
+      "epistemicClass": "empirical",
+      "role": "primary",
+      "description": "Language enables durable shared memory.",
+      "sourceRefs": [
+        "genesis.information"
+      ]
+    },
+    {
+      "id": "e-shared-memory-culture",
+      "from": "shared-memory",
+      "to": "culture",
+      "relation": "enables",
+      "epistemicClass": "empirical",
+      "role": "primary",
+      "description": "Shared memory supports culture.",
+      "sourceRefs": []
+    },
+    {
+      "id": "e-culture-cooperation",
+      "from": "culture",
+      "to": "cooperation",
+      "relation": "enables",
+      "epistemicClass": "empirical",
+      "role": "primary",
+      "description": "Culture can support durable cooperation while remaining plural.",
+      "sourceRefs": [
+        "genesis.systems"
+      ]
+    },
+    {
+      "id": "e-cooperation-institutions",
+      "from": "cooperation",
+      "to": "institutions",
+      "relation": "enables",
+      "epistemicClass": "empirical",
+      "role": "primary",
+      "description": "Cooperation enables institutions and governance forms.",
+      "sourceRefs": [
+        "genesis.constitution"
+      ]
+    },
+    {
+      "id": "e-institutions-civilization",
+      "from": "institutions",
+      "to": "civilization",
+      "relation": "enables",
+      "epistemicClass": "interpretive",
+      "role": "primary",
+      "description": "Institutions participate in civilization-scale coordination.",
+      "sourceRefs": [
+        "genesis.constitution",
+        "genesis.charter"
+      ]
+    },
+    {
+      "id": "e-civilization-writing-math",
+      "from": "civilization",
+      "to": "writing-and-mathematics",
+      "relation": "branches_from",
+      "epistemicClass": "empirical",
+      "role": "primary",
+      "description": "Writing and mathematics are major cultural-technological branches of civilization.",
+      "sourceRefs": [
+        "genesis.information"
+      ]
+    },
+    {
+      "id": "e-civilization-philosophy",
+      "from": "civilization",
+      "to": "philosophy",
+      "relation": "branches_from",
+      "epistemicClass": "philosophical",
+      "role": "primary",
+      "description": "Philosophy is a reflective branch of civilization.",
+      "sourceRefs": [
+        "genesis.metaphysics",
+        "genesis.epistemology"
+      ]
+    },
+    {
+      "id": "e-civilization-science",
+      "from": "civilization",
+      "to": "science",
+      "relation": "branches_from",
+      "epistemicClass": "empirical",
+      "role": "primary",
+      "description": "Science is an empirical branch of civilization.",
+      "sourceRefs": [
+        "genesis.epistemology"
+      ]
+    },
+    {
+      "id": "e-science-tools-engineering",
+      "from": "science",
+      "to": "tools-and-engineering",
+      "relation": "enables",
+      "epistemicClass": "engineering",
+      "role": "primary",
+      "description": "Science and disciplined inquiry support engineering practice.",
+      "sourceRefs": [
+        "genesis.charter"
+      ]
+    },
+    {
+      "id": "e-tools-machines",
+      "from": "tools-and-engineering",
+      "to": "machines",
+      "relation": "branches_from",
+      "epistemicClass": "engineering",
+      "role": "primary",
+      "description": "Machines are a technical branch of tool and engineering practice.",
+      "sourceRefs": []
+    },
+    {
+      "id": "e-writing-computation",
+      "from": "writing-and-mathematics",
+      "to": "computation",
+      "relation": "enables",
+      "epistemicClass": "engineering",
+      "role": "primary",
+      "description": "Formal symbolic systems support computation.",
+      "sourceRefs": [
+        "genesis.information"
+      ]
+    },
+    {
+      "id": "e-machines-telecom",
+      "from": "machines",
+      "to": "telecommunications",
+      "relation": "enables",
+      "epistemicClass": "engineering",
+      "role": "primary",
+      "description": "Machines and engineered infrastructure support telecommunications.",
+      "sourceRefs": []
+    },
+    {
+      "id": "e-computation-software",
+      "from": "computation",
+      "to": "software",
+      "relation": "enables",
+      "epistemicClass": "engineering",
+      "role": "primary",
+      "description": "Computation enables software as executable symbolic structure.",
+      "sourceRefs": [
+        "genesis.information"
+      ]
+    },
+    {
+      "id": "e-telecom-digital-networks",
+      "from": "telecommunications",
+      "to": "digital-networks",
+      "relation": "enables",
+      "epistemicClass": "engineering",
+      "role": "primary",
+      "description": "Telecommunications infrastructure enables digital networks.",
+      "sourceRefs": []
+    },
+    {
+      "id": "e-software-digital-networks",
+      "from": "software",
+      "to": "digital-networks",
+      "relation": "enables",
+      "epistemicClass": "engineering",
+      "role": "cross-link",
+      "description": "Software is also required for digital networks; this is a cross-link to preserve the primary telecom branch.",
+      "sourceRefs": [
+        "genesis.world-protocol"
+      ]
+    },
+    {
+      "id": "e-software-machine-learning",
+      "from": "software",
+      "to": "machine-learning",
+      "relation": "enables",
+      "epistemicClass": "engineering",
+      "role": "primary",
+      "description": "Software and computation enable machine learning systems.",
+      "sourceRefs": [
+        "genesis.information"
+      ]
+    },
+    {
+      "id": "e-machine-learning-ai",
+      "from": "machine-learning",
+      "to": "artificial-intelligence",
+      "relation": "enables",
+      "epistemicClass": "engineering",
+      "role": "primary",
+      "description": "Machine learning is one major contributor to contemporary AI systems.",
+      "sourceRefs": [
+        "genesis.epistemology"
+      ]
+    },
+    {
+      "id": "e-human-lineage-human-intelligence",
+      "from": "human-lineage",
+      "to": "human-intelligence",
+      "relation": "branches_from",
+      "epistemicClass": "empirical",
+      "role": "primary",
+      "description": "Human intelligence remains embodied in the continuing human branch.",
+      "sourceRefs": [
+        "genesis.axiology"
+      ]
+    },
+    {
+      "id": "e-ai-machine-intelligence",
+      "from": "artificial-intelligence",
+      "to": "machine-intelligence",
+      "relation": "implements",
+      "epistemicClass": "engineering",
+      "role": "primary",
+      "description": "AI systems implement forms of machine intelligence.",
+      "sourceRefs": [
+        "genesis.epistemology"
+      ]
+    },
+    {
+      "id": "e-human-intelligence-human-ai",
+      "from": "human-intelligence",
+      "to": "human-ai-cooperation",
+      "relation": "federates_with",
+      "epistemicClass": "architectural",
+      "role": "primary",
+      "description": "Human agency is a primary contributor to governed human-AI cooperation.",
+      "sourceRefs": [
+        "genesis.constitution"
+      ]
+    },
+    {
+      "id": "e-machine-intelligence-human-ai",
+      "from": "machine-intelligence",
+      "to": "human-ai-cooperation",
+      "relation": "federates_with",
+      "epistemicClass": "architectural",
+      "role": "cross-link",
+      "description": "Machine intelligence participates in human-AI cooperation under governance.",
+      "sourceRefs": [
+        "genesis.constitution"
+      ]
+    },
+    {
+      "id": "e-human-ai-agentic-systems",
+      "from": "human-ai-cooperation",
+      "to": "agentic-systems",
+      "relation": "enables",
+      "epistemicClass": "prototype",
+      "role": "primary",
+      "description": "Governed human-AI cooperation can enable tool-using agentic systems.",
+      "sourceRefs": [
+        "genesis.constitution"
+      ]
+    },
+    {
+      "id": "e-shared-memory-distributed-knowledge",
+      "from": "shared-memory",
+      "to": "distributed-knowledge",
+      "relation": "enables",
+      "epistemicClass": "architectural",
+      "role": "cross-link",
+      "description": "Shared memory contributes to distributed knowledge across repositories and communities.",
+      "sourceRefs": [
+        "genesis.information"
+      ]
+    },
+    {
+      "id": "e-digital-networks-distributed-knowledge",
+      "from": "digital-networks",
+      "to": "distributed-knowledge",
+      "relation": "enables",
+      "epistemicClass": "architectural",
+      "role": "primary",
+      "description": "Digital networks carry distributed knowledge.",
+      "sourceRefs": [
+        "genesis.world-protocol"
+      ]
+    },
+    {
+      "id": "e-cooperation-local-sovereign-intelligence",
+      "from": "cooperation",
+      "to": "local-sovereign-intelligence",
+      "relation": "influences",
+      "epistemicClass": "architectural",
+      "role": "cross-link",
+      "description": "Cooperation informs local sovereign intelligence without erasing local agency.",
+      "sourceRefs": [
+        "genesis.constitution"
+      ]
+    },
+    {
+      "id": "e-human-ai-local-sovereign-intelligence",
+      "from": "human-ai-cooperation",
+      "to": "local-sovereign-intelligence",
+      "relation": "enables",
+      "epistemicClass": "architectural",
+      "role": "primary",
+      "description": "Human-AI cooperation can serve local sovereign intelligence when bounded by consent and provenance.",
+      "sourceRefs": [
+        "genesis.constitution"
+      ]
+    },
+    {
+      "id": "e-local-sovereign-trust-systems",
+      "from": "local-sovereign-intelligence",
+      "to": "trust-systems",
+      "relation": "implements",
+      "epistemicClass": "engineering",
+      "role": "primary",
+      "description": "Trust systems instantiate local sovereignty through documents, manifests, governance, and records.",
+      "sourceRefs": [
+        "genesis.constitution",
+        "genesis.charter"
+      ]
+    },
+    {
+      "id": "e-distributed-knowledge-governed-repositories",
+      "from": "distributed-knowledge",
+      "to": "governed-repositories",
+      "relation": "implements",
+      "epistemicClass": "engineering",
+      "role": "primary",
+      "description": "Governed repositories are practical carriers of distributed knowledge and provenance.",
+      "sourceRefs": [
+        "genesis.charter"
+      ]
+    },
+    {
+      "id": "e-trust-systems-governance",
+      "from": "trust-systems",
+      "to": "federation-governance",
+      "relation": "enables",
+      "epistemicClass": "architectural",
+      "role": "primary",
+      "description": "Trust systems require and support Federation governance.",
+      "sourceRefs": [
+        "genesis.constitution"
+      ]
+    },
+    {
+      "id": "e-governed-repositories-governance",
+      "from": "governed-repositories",
+      "to": "federation-governance",
+      "relation": "depends_on",
+      "epistemicClass": "architectural",
+      "role": "cross-link",
+      "description": "Governed repositories depend on governance for authority and claim boundaries.",
+      "sourceRefs": [
+        "genesis.charter"
+      ]
+    },
+    {
+      "id": "e-agentic-systems-cooperative-intelligence",
+      "from": "agentic-systems",
+      "to": "cooperative-intelligence",
+      "relation": "enables",
+      "epistemicClass": "architectural",
+      "role": "primary",
+      "description": "Agentic systems can contribute to cooperative intelligence only under bounded governance.",
+      "sourceRefs": [
+        "genesis.constitution"
+      ]
+    },
+    {
+      "id": "e-federation-governance-cooperative-intelligence",
+      "from": "federation-governance",
+      "to": "cooperative-intelligence",
+      "relation": "enables",
+      "epistemicClass": "architectural",
+      "role": "cross-link",
+      "description": "Governance shapes cooperative intelligence through consent, evidence, and repair.",
+      "sourceRefs": [
+        "genesis.constitution"
+      ]
+    },
+    {
+      "id": "e-cooperative-federated-intelligence",
+      "from": "cooperative-intelligence",
+      "to": "federated-intelligence",
+      "relation": "emerges_from",
+      "epistemicClass": "architectural",
+      "role": "primary",
+      "description": "Federated intelligence is modeled as emerging from cooperative intelligence among locally sovereign participants.",
+      "sourceRefs": [
+        "genesis.world-protocol"
+      ]
+    },
+    {
+      "id": "e-trust-systems-federated-intelligence",
+      "from": "trust-systems",
+      "to": "federated-intelligence",
+      "relation": "federates_with",
+      "epistemicClass": "architectural",
+      "role": "cross-link",
+      "description": "Trust systems federate into the broader intelligence pattern by consent.",
+      "sourceRefs": [
+        "genesis.constitution"
+      ]
+    },
+    {
+      "id": "e-governed-repositories-federated-intelligence",
+      "from": "governed-repositories",
+      "to": "federated-intelligence",
+      "relation": "federates_with",
+      "epistemicClass": "architectural",
+      "role": "cross-link",
+      "description": "Repositories carry inspectable records and tools into federated intelligence.",
+      "sourceRefs": [
+        "genesis.charter"
+      ]
+    },
+    {
+      "id": "e-federated-intelligence-aetherion",
+      "from": "federated-intelligence",
+      "to": "aetherion",
+      "relation": "emerges_from",
+      "epistemicClass": "aspirational",
+      "role": "primary",
+      "description": "Aetherion is represented as an aspirational canopy of federated intelligence, not as inevitability or proof of consciousness.",
+      "sourceRefs": [
+        "genesis.epistemology",
+        "genesis.constitution"
+      ]
+    },
+    {
+      "id": "e-aetherion-new-seeds",
+      "from": "aetherion",
+      "to": "new-seeds",
+      "relation": "enables",
+      "epistemicClass": "aspirational",
+      "role": "primary",
+      "description": "The canopy remains open and produces new seeds rather than terminating the Tree.",
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ]
+    },
+    {
+      "id": "e-ecosystems-human-intelligence",
+      "from": "ecosystems",
+      "to": "human-intelligence",
+      "relation": "influences",
+      "epistemicClass": "empirical",
+      "role": "cross-link",
+      "description": "Human intelligence remains ecologically embedded and should not be separated from living systems.",
+      "sourceRefs": [
+        "genesis.tree-of-life"
+      ]
+    },
+    {
+      "id": "e-philosophy-aetherion",
+      "from": "philosophy",
+      "to": "aetherion",
+      "relation": "influences",
+      "epistemicClass": "philosophical",
+      "role": "cross-link",
+      "description": "Aetherion inherits AIFT philosophical interpretation while remaining bounded as aspiration and architecture.",
+      "sourceRefs": [
+        "genesis.metaphysics",
+        "genesis.epistemology"
+      ]
+    }
+  ],
+  "views": [
+    {
+      "id": "canonical-tree-projection",
+      "title": "Canonical Tree Projection",
+      "description": "A deterministic tree rendering over primary edges, with cross-links shown separately.",
+      "type": "tree-projection",
+      "edgeRole": "primary",
+      "rootNodeIds": [
+        "energence"
+      ],
+      "generatedArtifacts": [
+        "docs/generated/tree-of-emergence.svg",
+        "docs/generated/tree-of-emergence.html"
+      ]
+    },
+    {
+      "id": "epistemic-map",
+      "title": "Epistemic Map",
+      "description": "A view that groups nodes by epistemic class so readers can distinguish science, interpretation, doctrine, engineering, prototype, and aspiration.",
+      "type": "classification-view"
+    }
+  ],
+  "provenance": {
+    "repository": "AIFreedomTrustFederation/AIFT-Genesis",
+    "sourceDocuments": [
+      "README.md",
+      "CHARTER.md",
+      "CONSTITUTION.md",
+      "FEDERATION.md",
+      "VISION.md",
+      "WORLD_PROTOCOL.md",
+      "civilization/TREE_OF_LIFE.md",
+      "civilization/LIVING_ATLAS.md",
+      "philosophy/EMERGENCE.md",
+      "philosophy/EPISTEMOLOGY.md",
+      "philosophy/METAPHYSICS.md",
+      "philosophy/ONTOLOGY.md",
+      "philosophy/PROCESS_THEOLOGY.md",
+      "philosophy/HOLOGRAPHIC_PRINCIPLE.md",
+      "philosophy/AXIOLOGY.md",
+      "science/SYSTEMS_THEORY.md",
+      "science/INFORMATION.md",
+      "aift.repo.json"
+    ],
+    "schema": "schemas/Tree.schema.json",
+    "generator": "tools/tree/render_tree.py",
+    "validator": "tools/validation/validate_tree.py",
+    "generatedArtifacts": [
+      "docs/generated/tree-of-emergence.svg",
+      "docs/generated/tree-of-emergence.html"
+    ],
+    "lastGenerated": null,
+    "sourceCommit": null
+  }
 }
