@@ -31,6 +31,8 @@ The Tree of Life belongs naturally to Genesis because it expresses differentiati
 
 Genesis now carries the broader [Tree of Emergence](civilization/TREE_OF_EMERGENCE.md) as a canonical directed graph in [manifests/tree.manifest.json](manifests/tree.manifest.json), with the legacy Tree of Life parts preserved for compatibility. The graph distinguishes empirical science, active research, doctrine, philosophy, engineering, prototypes, architecture, and aspiration so the model can be visually expressive without overstating evidence. Generated review surfaces are available at [docs/generated/tree-of-emergence.svg](docs/generated/tree-of-emergence.svg) and [docs/generated/tree-of-emergence.html](docs/generated/tree-of-emergence.html).
 
+The next implementation phase is the [AIFT Tree Explorer v1](docs/tree-explorer-v1.md): semantic zoom, node details, an Epistemic Lens, Tree-to-Atlas navigation, and guided Story Mode while preserving the manifest as source of truth.
+
 ---
 
 ## Book II — What Genesis Owns and What It Hands Forward
