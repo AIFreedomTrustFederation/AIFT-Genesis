@@ -31,7 +31,9 @@ The Tree of Life belongs naturally to Genesis because it expresses differentiati
 
 Genesis now carries the broader [Tree of Emergence](civilization/TREE_OF_EMERGENCE.md) as a canonical directed graph in [manifests/tree.manifest.json](manifests/tree.manifest.json), with the legacy Tree of Life parts preserved for compatibility. The graph distinguishes empirical science, active research, doctrine, philosophy, engineering, prototypes, architecture, and aspiration so the model can be visually expressive without overstating evidence. Generated review surfaces are available at [docs/generated/tree-of-emergence.svg](docs/generated/tree-of-emergence.svg) and [docs/generated/tree-of-emergence.html](docs/generated/tree-of-emergence.html).
 
-The next implementation phase is the [AIFT Tree Explorer v1](docs/tree-explorer-v1.md): semantic zoom, node details, an Epistemic Lens, Tree-to-Atlas navigation, and guided Story Mode while preserving the manifest as source of truth.
+Genesis also carries the public [Living Atlas](civilization/LIVING_ATLAS.md) contract in [manifests/living-atlas.manifest.json](manifests/living-atlas.manifest.json), validated against [schemas/Atlas.schema.json](schemas/Atlas.schema.json). The Atlas maps public, evidence-backed Federation entities to Tree node IDs through explicit typed mappings. It does not redefine the canonical Tree, and it does not publish private Green Zone or live Runtime state.
+
+The next implementation phase is the [AIFT Tree Explorer v1](docs/tree-explorer-v1.md): semantic zoom, node details, an Epistemic Lens, Tree-to-Atlas navigation, and guided Story Mode while preserving the manifests as source of truth.
 
 ---
 
@@ -47,7 +49,7 @@ AIFT-Genesis owns the **inheritance pattern**, not the operation of every system
 - `science/` carries topology, torus, Fibonacci, fractal, information, and systems models used as design language.
 - `civilization/` carries identity, trust, governance, Tree of Life, Tree of Emergence, Living Atlas, missions, and economy.
 - `ai/` carries AI steward architecture, memory, reasoning, safety, alignment, and local-first AI principles.
-- `manifests/`, `schemas/`, `templates/`, and `examples/` make the genome machine-readable and reusable, including the Tree of Emergence graph contract.
+- `manifests/`, `schemas/`, `templates/`, and `examples/` make the genome machine-readable and reusable, including the Tree of Emergence graph contract and the public Living Atlas mapping contract.
 - `tools/` defines the generator and validation path through which inheritance can become executable.
 
 The federation relationship is directional without being hierarchical in ownership. **AI-Freedom-Trust** supplies the broader doctrine and constitutional philosophy. **Genesis** turns that philosophy into a genome that can be instantiated. **AIFT-Forge** receives stable patterns and turns them into reusable technical structures. **AIFT-OS** discovers instantiated repositories and trust systems from evidence instead of assuming they conform. **BookSmith**, **VPS**, **Aetherion**, **TheMindofAll**, and future applications inherit only the parts of the genome that actually belong to their domain.

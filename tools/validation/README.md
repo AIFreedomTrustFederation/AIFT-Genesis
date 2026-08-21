@@ -31,3 +31,21 @@ python tools\tree\render_tree.py
 python tools\tree\render_tree.py --check
 ```
 
+## Living Atlas
+
+Validate the public Living Atlas manifest and its explicit Tree mappings:
+
+```powershell
+python tools\validation\validate_atlas.py
+```
+
+The Atlas validator checks:
+
+- unique entity, source, and mapping IDs;
+- declared Atlas entity types and mapping relations;
+- every `treeMappings[].treeNodeId` exists in `manifests/tree.manifest.json`;
+- every `treeMappings[].atlasEntityId` exists in `manifests/living-atlas.manifest.json`;
+- source references are declared;
+- provenance source documents exist;
+- the Tree manifest does not embed Atlas records.
+

@@ -1,10 +1,357 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "AtlasNode",
+  "$id": "https://aifreedomtrust.com/schemas/Atlas.schema.json",
+  "title": "AIFT Living Atlas Manifest",
+  "description": "Machine-readable contract for present-tense, evidence-backed Federation entities and explicit mappings to canonical Tree of Emergence node IDs. The Atlas records instantiation; it does not redefine Tree meaning or Runtime observation.",
   "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "kind",
+    "schemaVersion",
+    "atlasVersion",
+    "atlasId",
+    "title",
+    "status",
+    "description",
+    "boundaries",
+    "entityTypes",
+    "mappingRelations",
+    "sourceRefs",
+    "entities",
+    "treeMappings",
+    "provenance"
+  ],
   "properties": {
-    "name": { "type": "string" },
-    "visibility": { "type": "string" },
-    "nodeType": { "type": "string" }
+    "kind": {
+      "const": "living-atlas-manifest"
+    },
+    "schemaVersion": {
+      "$ref": "#/$defs/semver"
+    },
+    "atlasVersion": {
+      "$ref": "#/$defs/semver"
+    },
+    "atlasId": {
+      "$ref": "#/$defs/id"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": ["draft", "canonical-draft", "active", "deprecated"]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "boundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["canonicalMeaning", "instantiatedReality", "observedRuntime"],
+      "properties": {
+        "canonicalMeaning": {
+          "type": "string",
+          "minLength": 1
+        },
+        "instantiatedReality": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observedRuntime": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "entityTypes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/$defs/typeDefinition"
+      }
+    },
+    "mappingRelations": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/$defs/typeDefinition"
+      }
+    },
+    "sourceRefs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sourceRef"
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entity"
+      }
+    },
+    "treeMappings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/treeMapping"
+      }
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "sourceId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$"
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "token": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[-_][a-z0-9]+)*$"
+    },
+    "typeDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "definition"],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "definition": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "sourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "uri", "type"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/sourceId"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": [
+            "repository-document",
+            "portal-document",
+            "public-repository",
+            "public-artifact",
+            "external-reference"
+          ]
+        }
+      }
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "label",
+        "description",
+        "status",
+        "visibility",
+        "evidenceStatus",
+        "sourceRefs",
+        "links",
+        "tags",
+        "metadata"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/token"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "shortLabel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "active",
+            "active-foundation",
+            "active-research",
+            "active-product",
+            "active-protocol",
+            "public-preview",
+            "documented",
+            "conceptual-draft",
+            "awaiting-external-review",
+            "incubating",
+            "fork",
+            "planned"
+          ]
+        },
+        "visibility": {
+          "enum": ["public", "shared", "private", "internal"]
+        },
+        "evidenceStatus": {
+          "enum": [
+            "public-repository",
+            "public-document",
+            "public-pages",
+            "public-research-package",
+            "local-repository"
+          ]
+        },
+        "sourceRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sourceId"
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/link"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/token"
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "boolean",
+              "null",
+              "array",
+              "object"
+            ]
+          }
+        }
+      }
+    },
+    "link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "uri", "type"],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": ["repository", "documentation", "artifact", "site", "source"]
+        }
+      }
+    },
+    "treeMapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "treeNodeId",
+        "atlasEntityId",
+        "relation",
+        "status",
+        "description",
+        "sourceRefs"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "treeNodeId": {
+          "$ref": "#/$defs/id"
+        },
+        "atlasEntityId": {
+          "$ref": "#/$defs/id"
+        },
+        "relation": {
+          "$ref": "#/$defs/token"
+        },
+        "status": {
+          "enum": ["active", "candidate", "deprecated"]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sourceId"
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "schema",
+        "validator",
+        "sourceDocuments",
+        "lastUpdated",
+        "sourceCommit"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "minLength": 1
+        },
+        "schema": {
+          "type": "string",
+          "minLength": 1
+        },
+        "validator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceDocuments": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "lastUpdated": {
+          "type": ["string", "null"]
+        },
+        "sourceCommit": {
+          "type": ["string", "null"]
+        }
+      }
+    }
   }
 }

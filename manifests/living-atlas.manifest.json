@@ -1,0 +1,606 @@
+{
+  "kind": "living-atlas-manifest",
+  "schemaVersion": "0.1.0",
+  "atlasVersion": "0.1.0",
+  "atlasId": "aift-living-atlas",
+  "title": "AIFT Living Atlas",
+  "status": "canonical-draft",
+  "description": "Evidence-backed present-tense map of public Federation entities and their explicit typed mappings to canonical Tree of Emergence node IDs.",
+  "boundaries": {
+    "canonicalMeaning": "The Tree of Emergence defines canonical lineage and meaning in manifests/tree.manifest.json.",
+    "instantiatedReality": "The Living Atlas records public entities, documents, services, and repositories that currently instantiate or express Tree concepts.",
+    "observedRuntime": "Runtime overlays may later report live observed state, but they must not redefine either Tree meaning or Atlas entity identity."
+  },
+  "entityTypes": {
+    "people-community": {
+      "label": "People / Community",
+      "definition": "A person, group, community, or stewarded social body visible by consent."
+    },
+    "repository": {
+      "label": "Repository",
+      "definition": "A public or governed source repository with inspectable files, history, role, and evidence."
+    },
+    "project": {
+      "label": "Project",
+      "definition": "A bounded initiative, product lane, or workstream that may span repositories and documents."
+    },
+    "trust": {
+      "label": "Trust",
+      "definition": "A sovereign trust, trust seed, or governed stewardship body."
+    },
+    "publication": {
+      "label": "Publication",
+      "definition": "A paper, review packet, source summary, public PDF, or other authored knowledge artifact."
+    },
+    "agent": {
+      "label": "Agent",
+      "definition": "A bounded role, assistant, workflow actor, or repo-agent pattern with explicit authority limits."
+    },
+    "service": {
+      "label": "Service",
+      "definition": "A public or internal software surface that users can operate or inspect."
+    },
+    "infrastructure": {
+      "label": "Infrastructure",
+      "definition": "Hosting, routing, deployment, compute, naming, or provider-node substrate."
+    },
+    "governance": {
+      "label": "Governance",
+      "definition": "Decision, consent, authority, policy, or review structure."
+    },
+    "economic-system": {
+      "label": "Economic System",
+      "definition": "Value, wallet, currency, stewardship, market, or regenerative economy architecture."
+    },
+    "place": {
+      "label": "Place",
+      "definition": "A public, shared, or private location record governed by Atlas visibility and consent rules."
+    },
+    "research-package": {
+      "label": "Research Package",
+      "definition": "A reproducible or reviewable research bundle with scripts, data policy, outputs, and limitations."
+    }
+  },
+  "mappingRelations": {
+    "expresses": {
+      "label": "Expresses",
+      "definition": "The Atlas entity expresses a Tree concept as doctrine, design language, or public explanation."
+    },
+    "implements": {
+      "label": "Implements",
+      "definition": "The Atlas entity implements a Tree concept through code, schema, manifest, workflow, or service behavior."
+    },
+    "documents": {
+      "label": "Documents",
+      "definition": "The Atlas entity documents, researches, or explains a Tree concept without necessarily implementing it."
+    },
+    "presents": {
+      "label": "Presents",
+      "definition": "The Atlas entity presents a Tree concept to public users through an interface or publication surface."
+    },
+    "supports": {
+      "label": "Supports",
+      "definition": "The Atlas entity provides enabling infrastructure, tooling, or context for a Tree concept."
+    },
+    "governs": {
+      "label": "Governs",
+      "definition": "The Atlas entity supplies policy, consent, evidence, or authority boundaries for a Tree concept."
+    },
+    "researches": {
+      "label": "Researches",
+      "definition": "The Atlas entity investigates a Tree concept through bounded research or exploratory analysis."
+    },
+    "instantiates": {
+      "label": "Instantiates",
+      "definition": "The Atlas entity is a current public manifestation of a Tree concept without becoming its definition."
+    }
+  },
+  "sourceRefs": [
+    {
+      "id": "genesis.readme",
+      "label": "AIFT Genesis README",
+      "uri": "README.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "genesis.living-atlas",
+      "label": "Genesis Living Atlas Doctrine",
+      "uri": "civilization/LIVING_ATLAS.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "genesis.tree",
+      "label": "Genesis Tree Manifest",
+      "uri": "manifests/tree.manifest.json",
+      "type": "repository-document"
+    },
+    {
+      "id": "portal.public-repo-inventory",
+      "label": "Public Repository Inventory",
+      "uri": "https://github.com/AIFreedomTrustFederation/www.aifreedomtrust.com/blob/main/docs/public-repo-inventory.md",
+      "type": "portal-document"
+    },
+    {
+      "id": "portal.status",
+      "label": "Public Portal Status",
+      "uri": "https://github.com/AIFreedomTrustFederation/www.aifreedomtrust.com/blob/main/docs/status.md",
+      "type": "portal-document"
+    },
+    {
+      "id": "portal.readme",
+      "label": "Public Portal README",
+      "uri": "https://github.com/AIFreedomTrustFederation/www.aifreedomtrust.com/blob/main/README.md",
+      "type": "portal-document"
+    },
+    {
+      "id": "forge.readme",
+      "label": "AIFT Forge README",
+      "uri": "https://github.com/AIFreedomTrustFederation/AIFT-Forge/blob/main/README.md",
+      "type": "public-repository"
+    },
+    {
+      "id": "ai-freedom-trust.readme",
+      "label": "AI-Freedom-Trust README",
+      "uri": "https://github.com/AIFreedomTrustFederation/AI-Freedom-Trust/blob/main/README.md",
+      "type": "public-repository"
+    },
+    {
+      "id": "ai-freedom-trust.status",
+      "label": "AI-Freedom-Trust Status",
+      "uri": "https://github.com/AIFreedomTrustFederation/AI-Freedom-Trust/blob/main/docs/status.md",
+      "type": "repository-document"
+    },
+    {
+      "id": "ai-freedom-trust.flight-paper",
+      "label": "Aetherion Flight Paper",
+      "uri": "https://github.com/AIFreedomTrustFederation/AI-Freedom-Trust/blob/main/docs/pdf/aetherion-flight-paper-post-quantum-sovereign-network.pdf",
+      "type": "public-artifact"
+    },
+    {
+      "id": "ai-freedom-trust.empirical-paper",
+      "label": "AetherCore Empirical Paper",
+      "uri": "https://github.com/AIFreedomTrustFederation/AI-Freedom-Trust/blob/main/docs/pdf/aethercore-empirical-trust-density-covid.pdf",
+      "type": "public-artifact"
+    },
+    {
+      "id": "aether-coin.repo",
+      "label": "Aether Coin Biozonecurrency Repository",
+      "uri": "https://github.com/AIFreedomTrustFederation/Aether_Coin_biozonecurrency",
+      "type": "public-repository"
+    },
+    {
+      "id": "vps.repo",
+      "label": "VPS Repository",
+      "uri": "https://github.com/AIFreedomTrustFederation/VPS",
+      "type": "public-repository"
+    },
+    {
+      "id": "capital-city-provisions.repo",
+      "label": "Capital City Provisions Repository",
+      "uri": "https://github.com/AIFreedomTrustFederation/capital-city-provisions",
+      "type": "public-repository"
+    }
+  ],
+  "entities": [
+    {
+      "id": "repo-aift-genesis",
+      "type": "repository",
+      "label": "AIFT-Genesis",
+      "shortLabel": "Genesis",
+      "description": "Canonical civilization genome repository for schemas, manifests, templates, Tree of Life, Living Atlas doctrine, and the Tree of Emergence graph.",
+      "status": "active-foundation",
+      "visibility": "public",
+      "evidenceStatus": "public-repository",
+      "sourceRefs": ["genesis.readme", "genesis.living-atlas", "genesis.tree"],
+      "links": [
+        {
+          "label": "Repository",
+          "uri": "https://github.com/AIFreedomTrustFederation/AIFT-Genesis",
+          "type": "repository"
+        }
+      ],
+      "tags": ["genesis", "schemas", "manifests", "tree", "atlas"],
+      "metadata": {
+        "claimBoundary": "Defines canonical contracts and doctrine; does not operate every downstream system."
+      }
+    },
+    {
+      "id": "repo-aift-forge",
+      "type": "repository",
+      "label": "AIFT-Forge",
+      "shortLabel": "Forge",
+      "description": "Federation core repository for reusable Explorer engine behavior, agentic infrastructure language, repository/build/package patterns, and shared operating doctrine.",
+      "status": "active-foundation",
+      "visibility": "public",
+      "evidenceStatus": "public-repository",
+      "sourceRefs": ["forge.readme", "portal.public-repo-inventory"],
+      "links": [
+        {
+          "label": "Repository",
+          "uri": "https://github.com/AIFreedomTrustFederation/AIFT-Forge",
+          "type": "repository"
+        }
+      ],
+      "tags": ["forge", "engine", "agents", "software", "infrastructure"],
+      "metadata": {
+        "claimBoundary": "Foundation and reusable engine work; no stable release or audited security status is claimed here."
+      }
+    },
+    {
+      "id": "repo-www-aifreedomtrust-com",
+      "type": "repository",
+      "label": "www.aifreedomtrust.com",
+      "shortLabel": "Portal",
+      "description": "Public static portal and mission-facing doorway for the AI Freedom Trust Federation.",
+      "status": "active",
+      "visibility": "public",
+      "evidenceStatus": "public-pages",
+      "sourceRefs": ["portal.readme", "portal.status", "portal.public-repo-inventory"],
+      "links": [
+        {
+          "label": "Repository",
+          "uri": "https://github.com/AIFreedomTrustFederation/www.aifreedomtrust.com",
+          "type": "repository"
+        },
+        {
+          "label": "Public Site",
+          "uri": "https://aifreedomtrustfederation.github.io/www.aifreedomtrust.com/",
+          "type": "site"
+        }
+      ],
+      "tags": ["portal", "public", "documentation", "tree-explorer"],
+      "metadata": {
+        "claimBoundary": "Public orientation surface; the portal returns readers to the repositories that own deeper authority."
+      }
+    },
+    {
+      "id": "repo-ai-freedom-trust",
+      "type": "repository",
+      "label": "AI-Freedom-Trust",
+      "shortLabel": "Doctrine",
+      "description": "Public doctrine, research, PDFs, AetherCore empirical package, review packet, and Aetherion reading editions.",
+      "status": "active-research",
+      "visibility": "public",
+      "evidenceStatus": "public-research-package",
+      "sourceRefs": ["ai-freedom-trust.readme", "ai-freedom-trust.status"],
+      "links": [
+        {
+          "label": "Repository",
+          "uri": "https://github.com/AIFreedomTrustFederation/AI-Freedom-Trust",
+          "type": "repository"
+        }
+      ],
+      "tags": ["doctrine", "research", "aethercore", "aetherion", "publications"],
+      "metadata": {
+        "claimBoundary": "Exploratory research and doctrine are public but do not prove all Federation claims."
+      }
+    },
+    {
+      "id": "repo-vps",
+      "type": "infrastructure",
+      "label": "VPS",
+      "shortLabel": "VPS",
+      "description": "Public infrastructure repository for AIFT Cloud App Foundry, decentralized VPS, app builder, provider network, naming, and registry foundations.",
+      "status": "active",
+      "visibility": "public",
+      "evidenceStatus": "public-repository",
+      "sourceRefs": ["portal.public-repo-inventory", "vps.repo"],
+      "links": [
+        {
+          "label": "Repository",
+          "uri": "https://github.com/AIFreedomTrustFederation/VPS",
+          "type": "repository"
+        }
+      ],
+      "tags": ["infrastructure", "hosting", "provider-node", "deployment"],
+      "metadata": {
+        "claimBoundary": "Infrastructure foundation; live runtime state belongs in a future Runtime overlay."
+      }
+    },
+    {
+      "id": "repo-aether-coin-biozonecurrency",
+      "type": "economic-system",
+      "label": "Aether Coin Biozonecurrency",
+      "shortLabel": "Aether Coin",
+      "description": "Public stewardship repository for Aetherion wallet, regenerative value protocol, AI-guided digital stewardship, and cryptographic trust interface research.",
+      "status": "active-protocol",
+      "visibility": "public",
+      "evidenceStatus": "public-repository",
+      "sourceRefs": ["portal.public-repo-inventory", "aether-coin.repo"],
+      "links": [
+        {
+          "label": "Repository",
+          "uri": "https://github.com/AIFreedomTrustFederation/Aether_Coin_biozonecurrency",
+          "type": "repository"
+        }
+      ],
+      "tags": ["aetherion", "wallet", "value", "stewardship", "ai"],
+      "metadata": {
+        "claimBoundary": "Protocol and wallet research; no custody, financial, legal, or audited security claim is implied."
+      }
+    },
+    {
+      "id": "repo-capital-city-provisions",
+      "type": "project",
+      "label": "Capital City Provisions",
+      "shortLabel": "CCP",
+      "description": "Applied business repository for practical customer operations, quote capture, delivery review, and concierge support proof-of-work.",
+      "status": "active-product",
+      "visibility": "public",
+      "evidenceStatus": "public-repository",
+      "sourceRefs": ["portal.public-repo-inventory", "capital-city-provisions.repo"],
+      "links": [
+        {
+          "label": "Repository",
+          "uri": "https://github.com/AIFreedomTrustFederation/capital-city-provisions",
+          "type": "repository"
+        }
+      ],
+      "tags": ["applied-systems", "business", "operations", "customer-trust"],
+      "metadata": {
+        "claimBoundary": "Applied software and operations surface; public records do not verify live revenue or order volume."
+      }
+    },
+    {
+      "id": "publication-aetherion-flight-paper",
+      "type": "publication",
+      "label": "Aetherion Flight Paper",
+      "shortLabel": "Flight Paper",
+      "description": "Public Aetherion flight paper integrating post-quantum architecture, anti-centralization doctrine, Circleunchain, AI concerns, and biozoe coin economics.",
+      "status": "conceptual-draft",
+      "visibility": "public",
+      "evidenceStatus": "public-document",
+      "sourceRefs": ["ai-freedom-trust.readme", "ai-freedom-trust.flight-paper"],
+      "links": [
+        {
+          "label": "PDF",
+          "uri": "https://github.com/AIFreedomTrustFederation/AI-Freedom-Trust/blob/main/docs/pdf/aetherion-flight-paper-post-quantum-sovereign-network.pdf",
+          "type": "artifact"
+        }
+      ],
+      "tags": ["aetherion", "publication", "post-quantum", "ai", "doctrine"],
+      "metadata": {
+        "claimBoundary": "Conceptual, philosophical, technical, governance, and ecosystem architecture draft."
+      }
+    },
+    {
+      "id": "publication-aethercore-empirical-paper",
+      "type": "research-package",
+      "label": "AetherCore Empirical Trust Paper",
+      "shortLabel": "AetherCore Paper",
+      "description": "Public empirical paper and reproducible research package for trust-density exploratory analysis.",
+      "status": "awaiting-external-review",
+      "visibility": "public",
+      "evidenceStatus": "public-research-package",
+      "sourceRefs": [
+        "ai-freedom-trust.readme",
+        "ai-freedom-trust.status",
+        "ai-freedom-trust.empirical-paper"
+      ],
+      "links": [
+        {
+          "label": "PDF",
+          "uri": "https://github.com/AIFreedomTrustFederation/AI-Freedom-Trust/blob/main/docs/pdf/aethercore-empirical-trust-density-covid.pdf",
+          "type": "artifact"
+        },
+        {
+          "label": "Repository",
+          "uri": "https://github.com/AIFreedomTrustFederation/AI-Freedom-Trust/tree/main/research/aethercore-test-001",
+          "type": "source"
+        }
+      ],
+      "tags": ["research", "empirical", "trust", "review"],
+      "metadata": {
+        "claimBoundary": "Exploratory and awaiting external review; no formal peer review or causal proof is claimed."
+      }
+    },
+    {
+      "id": "experience-tree-explorer-v1",
+      "type": "service",
+      "label": "Tree Explorer v1",
+      "shortLabel": "Tree Explorer",
+      "description": "Public browser Explorer that consumes the Genesis Tree manifest through the reusable Forge engine.",
+      "status": "public-preview",
+      "visibility": "public",
+      "evidenceStatus": "public-pages",
+      "sourceRefs": ["portal.readme", "portal.status", "genesis.tree", "forge.readme"],
+      "links": [
+        {
+          "label": "Public Explorer",
+          "uri": "https://aifreedomtrustfederation.github.io/www.aifreedomtrust.com/#tree-explorer",
+          "type": "site"
+        }
+      ],
+      "tags": ["tree-explorer", "public-preview", "forge-engine", "genesis-manifest"],
+      "metadata": {
+        "claimBoundary": "Public preview over canonical Genesis data; it is not itself a canonical graph source."
+      }
+    }
+  ],
+  "treeMappings": [
+    {
+      "id": "map-genesis-trust-systems",
+      "treeNodeId": "trust-systems",
+      "atlasEntityId": "repo-aift-genesis",
+      "relation": "governs",
+      "status": "active",
+      "description": "Genesis defines trust seed schemas, templates, governance doctrine, and inheritance rules that support trust-system instantiation.",
+      "sourceRefs": ["genesis.readme"]
+    },
+    {
+      "id": "map-genesis-governed-repositories",
+      "treeNodeId": "governed-repositories",
+      "atlasEntityId": "repo-aift-genesis",
+      "relation": "implements",
+      "status": "active",
+      "description": "Genesis carries machine-readable manifests, schemas, and provenance conventions for governed repository inheritance.",
+      "sourceRefs": ["genesis.readme", "genesis.tree"]
+    },
+    {
+      "id": "map-genesis-artificial-intelligence",
+      "treeNodeId": "artificial-intelligence",
+      "atlasEntityId": "repo-aift-genesis",
+      "relation": "governs",
+      "status": "active",
+      "description": "Genesis contains AI stewardship doctrine and local-first boundaries for how AI participation is inherited by trust seeds.",
+      "sourceRefs": ["genesis.readme"]
+    },
+    {
+      "id": "map-forge-software",
+      "treeNodeId": "software",
+      "atlasEntityId": "repo-aift-forge",
+      "relation": "implements",
+      "status": "active",
+      "description": "Forge provides reusable software foundations, package boundaries, and Explorer engine behavior.",
+      "sourceRefs": ["forge.readme"]
+    },
+    {
+      "id": "map-forge-governed-repositories",
+      "treeNodeId": "governed-repositories",
+      "atlasEntityId": "repo-aift-forge",
+      "relation": "supports",
+      "status": "active",
+      "description": "Forge documents repository, build, release, package, and agentic infrastructure patterns for Federation repositories.",
+      "sourceRefs": ["forge.readme", "portal.public-repo-inventory"]
+    },
+    {
+      "id": "map-forge-artificial-intelligence",
+      "treeNodeId": "artificial-intelligence",
+      "atlasEntityId": "repo-aift-forge",
+      "relation": "supports",
+      "status": "active",
+      "description": "Forge records agentic infrastructure language and AI governance boundaries for reusable software workflows.",
+      "sourceRefs": ["forge.readme"]
+    },
+    {
+      "id": "map-portal-digital-networks",
+      "treeNodeId": "digital-networks",
+      "atlasEntityId": "repo-www-aifreedomtrust-com",
+      "relation": "presents",
+      "status": "active",
+      "description": "The public portal presents Federation documentation and the Tree Explorer through GitHub Pages.",
+      "sourceRefs": ["portal.readme", "portal.status"]
+    },
+    {
+      "id": "map-portal-distributed-knowledge",
+      "treeNodeId": "distributed-knowledge",
+      "atlasEntityId": "repo-www-aifreedomtrust-com",
+      "relation": "presents",
+      "status": "active",
+      "description": "The public portal orients visitors across distinct Federation repositories without becoming their source of truth.",
+      "sourceRefs": ["portal.readme"]
+    },
+    {
+      "id": "map-ai-trust-distributed-knowledge",
+      "treeNodeId": "distributed-knowledge",
+      "atlasEntityId": "repo-ai-freedom-trust",
+      "relation": "documents",
+      "status": "active",
+      "description": "AI-Freedom-Trust publishes doctrine, research, PDFs, review packets, and source summaries as public knowledge artifacts.",
+      "sourceRefs": ["ai-freedom-trust.readme", "ai-freedom-trust.status"]
+    },
+    {
+      "id": "map-ai-trust-artificial-intelligence",
+      "treeNodeId": "artificial-intelligence",
+      "atlasEntityId": "repo-ai-freedom-trust",
+      "relation": "documents",
+      "status": "active",
+      "description": "AI-Freedom-Trust publishes AI Freedom Trust doctrine, research framing, and Aetherion materials involving AI systems and governance.",
+      "sourceRefs": ["ai-freedom-trust.readme"]
+    },
+    {
+      "id": "map-vps-digital-networks",
+      "treeNodeId": "digital-networks",
+      "atlasEntityId": "repo-vps",
+      "relation": "supports",
+      "status": "active",
+      "description": "VPS is the public infrastructure lane for app foundry, provider network, naming, routing, and deployment foundations.",
+      "sourceRefs": ["portal.public-repo-inventory", "vps.repo"]
+    },
+    {
+      "id": "map-aether-coin-aetherion",
+      "treeNodeId": "aetherion",
+      "atlasEntityId": "repo-aether-coin-biozonecurrency",
+      "relation": "instantiates",
+      "status": "active",
+      "description": "Aether_Coin_biozonecurrency is a public stewardship repository for Aetherion wallet and regenerative value protocol research.",
+      "sourceRefs": ["portal.public-repo-inventory", "aether-coin.repo"]
+    },
+    {
+      "id": "map-aether-coin-artificial-intelligence",
+      "treeNodeId": "artificial-intelligence",
+      "atlasEntityId": "repo-aether-coin-biozonecurrency",
+      "relation": "expresses",
+      "status": "active",
+      "description": "The repository is described publicly as AI-guided digital stewardship and wallet intelligence research, without implying autonomous custody.",
+      "sourceRefs": ["portal.public-repo-inventory", "aether-coin.repo"]
+    },
+    {
+      "id": "map-capital-city-trust-systems",
+      "treeNodeId": "trust-systems",
+      "atlasEntityId": "repo-capital-city-provisions",
+      "relation": "instantiates",
+      "status": "active",
+      "description": "Capital City Provisions is an applied business lane for customer operations and accountable workflow proof-of-work.",
+      "sourceRefs": ["portal.public-repo-inventory", "capital-city-provisions.repo"]
+    },
+    {
+      "id": "map-flight-paper-aetherion",
+      "treeNodeId": "aetherion",
+      "atlasEntityId": "publication-aetherion-flight-paper",
+      "relation": "documents",
+      "status": "active",
+      "description": "The Aetherion Flight Paper is a public conceptual and architectural draft for the Aetherion vision.",
+      "sourceRefs": ["ai-freedom-trust.flight-paper", "ai-freedom-trust.readme"]
+    },
+    {
+      "id": "map-flight-paper-artificial-intelligence",
+      "treeNodeId": "artificial-intelligence",
+      "atlasEntityId": "publication-aetherion-flight-paper",
+      "relation": "documents",
+      "status": "active",
+      "description": "The Aetherion Flight Paper discusses AI modules and governance concerns as conceptual architecture, not as deployed AI infrastructure.",
+      "sourceRefs": ["ai-freedom-trust.flight-paper"]
+    },
+    {
+      "id": "map-empirical-paper-trust-systems",
+      "treeNodeId": "trust-systems",
+      "atlasEntityId": "publication-aethercore-empirical-paper",
+      "relation": "researches",
+      "status": "active",
+      "description": "The AetherCore empirical paper researches trust-density patterns with explicit exploratory and review limitations.",
+      "sourceRefs": ["ai-freedom-trust.empirical-paper", "ai-freedom-trust.status"]
+    },
+    {
+      "id": "map-tree-explorer-distributed-knowledge",
+      "treeNodeId": "distributed-knowledge",
+      "atlasEntityId": "experience-tree-explorer-v1",
+      "relation": "presents",
+      "status": "active",
+      "description": "Tree Explorer v1 publicly presents canonical Genesis graph knowledge through a reusable Forge engine.",
+      "sourceRefs": ["portal.readme", "genesis.tree", "forge.readme"]
+    },
+    {
+      "id": "map-tree-explorer-governed-repositories",
+      "treeNodeId": "governed-repositories",
+      "atlasEntityId": "experience-tree-explorer-v1",
+      "relation": "presents",
+      "status": "active",
+      "description": "Tree Explorer v1 demonstrates the separation between canonical Genesis data, Forge engine behavior, and portal composition.",
+      "sourceRefs": ["portal.readme", "genesis.tree", "forge.readme"]
+    }
+  ],
+  "provenance": {
+    "repository": "AIFreedomTrustFederation/AIFT-Genesis",
+    "schema": "schemas/Atlas.schema.json",
+    "validator": "tools/validation/validate_atlas.py",
+    "sourceDocuments": [
+      "civilization/LIVING_ATLAS.md",
+      "README.md",
+      "manifests/tree.manifest.json",
+      "https://github.com/AIFreedomTrustFederation/www.aifreedomtrust.com/blob/main/docs/public-repo-inventory.md"
+    ],
+    "lastUpdated": null,
+    "sourceCommit": null
+  }
+}
