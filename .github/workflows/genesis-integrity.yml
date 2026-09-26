@@ -9,6 +9,9 @@
   "permissions": {
     "contents": "read"
   },
+  "env": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
   "concurrency": {
     "group": "genesis-integrity-${{ github.workflow }}-${{ github.ref }}",
     "cancel-in-progress": true
@@ -43,6 +46,10 @@
         {
           "name": "Check deterministic Tree artifacts",
           "run": "python tools/tree/render_tree.py --check"
+        },
+        {
+          "name": "Verify clean checkout",
+          "run": "test -z \"$(git status --porcelain)\""
         }
       ]
     }
