@@ -44,7 +44,20 @@ Stop and ask before:
 
 ## Validation
 
-Documentation-only changes should preserve links and readable Markdown.
+Run the canonical integrity gate before committing:
+
+```bash
+export PYTHONDONTWRITEBYTECODE=1
+python -m unittest discover -s tests -v
+python tools/validation/validate_tree.py
+python tools/validation/validate_atlas.py
+python tools/tree/render_tree.py --check
+test -z "$(git status --porcelain)"
+```
+
+When verifying an intended edit, the final clean-check applies after that edit is committed or in a fresh checkout. Before committing, inspect `git status --short` and confirm that it lists only the intended files.
+
+Documentation-only changes should also preserve links and readable Markdown.
 
 Schema or manifest changes should remain valid JSON and should update related examples or templates where practical.
 
