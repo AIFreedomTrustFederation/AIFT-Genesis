@@ -18,7 +18,7 @@ class ShellIntegrityTests(unittest.TestCase):
         )
         tracked_paths = [
             Path(raw_path.decode("utf-8"))
-            for raw_path in completed.stdout.split(b"\\0")
+            for raw_path in completed.stdout.split(b"\0")
             if raw_path
         ]
         relative_paths = []
