@@ -1,3 +1,4 @@
+import copy
 import sys
 import unittest
 from pathlib import Path
@@ -7,7 +8,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "tools" / "validation"))
 sys.path.insert(0, str(REPO_ROOT / "tools" / "tree"))
 
-from validate_tree import validate_manifest  # noqa: E402
+from validate_tree import validate_manifest, validate_provenance  # noqa: E402
 from render_tree import load_manifest, render_html, render_svg  # noqa: E402
 
 
@@ -46,6 +47,18 @@ class TreeManifestTests(unittest.TestCase):
     def test_renderer_is_deterministic(self):
         self.assertEqual(render_svg(self.manifest), render_svg(self.manifest))
         self.assertEqual(render_html(self.manifest), render_html(self.manifest))
+
+    def test_provenance_paths_must_exist(self):
+        manifest = copy.deepcopy(self.manifest)
+        manifest["provenance"]["generator"] = "tools/tree/missing-renderer.py"
+        errors = []
+
+        validate_provenance(manifest, self.manifest_path, errors)
+
+        self.assertIn(
+            "provenance generator does not exist: tools/tree/missing-renderer.py",
+            errors,
+        )
 
 
 if __name__ == "__main__":

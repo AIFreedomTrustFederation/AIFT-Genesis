@@ -309,6 +309,13 @@ def validate_provenance(data: dict[str, Any], manifest_path: Path, errors: list[
     for source in provenance.get("sourceDocuments", []):
         if not (repo_root / source).exists():
             fail(errors, f"provenance sourceDocument does not exist: {source}")
+    for field in ("schema", "generator", "validator"):
+        relative_path = provenance.get(field)
+        if isinstance(relative_path, str) and not (repo_root / relative_path).is_file():
+            fail(errors, f"provenance {field} does not exist: {relative_path}")
+    for artifact in provenance.get("generatedArtifacts", []):
+        if not (repo_root / artifact).is_file():
+            fail(errors, f"provenance generatedArtifact does not exist: {artifact}")
 
 
 def validate_manifest(path: Path) -> list[str]:
