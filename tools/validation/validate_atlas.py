@@ -252,6 +252,10 @@ def validate_provenance(data: dict[str, Any], atlas_path: Path, errors: list[str
     required = {"repository", "schema", "validator", "sourceDocuments", "lastUpdated", "sourceCommit"}
     require_fields(provenance, required, "provenance", errors)
     repo_root = atlas_path.resolve().parents[1]
+    for field in ("schema", "validator"):
+        relative_path = provenance.get(field)
+        if isinstance(relative_path, str) and not (repo_root / relative_path).is_file():
+            fail(errors, f"provenance {field} does not exist: {relative_path}")
     for source in provenance.get("sourceDocuments", []):
         if not isinstance(source, str) or not source:
             fail(errors, "provenance sourceDocuments must contain non-empty strings")

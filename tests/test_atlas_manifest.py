@@ -1,3 +1,4 @@
+import copy
 import json
 import sys
 import unittest
@@ -7,7 +8,11 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "tools" / "validation"))
 
-from validate_atlas import PROHIBITED_TREE_KEYS, validate_manifest  # noqa: E402
+from validate_atlas import (  # noqa: E402
+    PROHIBITED_TREE_KEYS,
+    validate_manifest,
+    validate_provenance,
+)
 
 
 class LivingAtlasManifestTests(unittest.TestCase):
@@ -49,6 +54,18 @@ class LivingAtlasManifestTests(unittest.TestCase):
             self.assertIn(mapping["atlasEntityId"], entity_ids)
             self.assertEqual(mapping["atlasEntityId"], mapping["atlasEntityId"].lower())
             self.assertNotIn(" ", mapping["atlasEntityId"])
+
+    def test_provenance_paths_must_exist(self):
+        atlas = copy.deepcopy(self.atlas)
+        atlas["provenance"]["schema"] = "schemas/MissingAtlas.schema.json"
+        errors = []
+
+        validate_provenance(atlas, self.atlas_path, errors)
+
+        self.assertIn(
+            "provenance schema does not exist: schemas/MissingAtlas.schema.json",
+            errors,
+        )
 
 
 if __name__ == "__main__":
