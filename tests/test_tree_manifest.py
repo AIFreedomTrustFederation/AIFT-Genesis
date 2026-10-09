@@ -1,5 +1,6 @@
 import copy
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -59,6 +60,26 @@ class TreeManifestTests(unittest.TestCase):
             "provenance generator does not exist: tools/tree/missing-renderer.py",
             errors,
         )
+
+    def test_provenance_paths_cannot_escape_repository(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            repo_root = root / "repo"
+            manifest_path = repo_root / "manifests" / "tree.manifest.json"
+            manifest_path.parent.mkdir(parents=True)
+            outside = root / "outside.py"
+            outside.write_text("# outside repository\n", encoding="utf-8")
+
+            manifest = copy.deepcopy(self.manifest)
+            manifest["provenance"]["generator"] = "../outside.py"
+            errors = []
+
+            validate_provenance(manifest, manifest_path, errors)
+
+            self.assertIn(
+                "provenance generator escapes repository: ../outside.py",
+                errors,
+            )
 
 
 if __name__ == "__main__":

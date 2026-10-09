@@ -306,15 +306,31 @@ def validate_provenance(data: dict[str, Any], manifest_path: Path, errors: list[
         if key not in provenance:
             fail(errors, f"provenance missing required field: {key}")
     repo_root = manifest_path.resolve().parents[1]
+
+    def repository_path(relative_path: Any, context: str) -> Path | None:
+        if not isinstance(relative_path, str) or not relative_path:
+            fail(errors, f"provenance {context} must be a non-empty repository-relative path")
+            return None
+        candidate = (repo_root / relative_path).resolve()
+        try:
+            candidate.relative_to(repo_root)
+        except ValueError:
+            fail(errors, f"provenance {context} escapes repository: {relative_path}")
+            return None
+        return candidate
+
     for source in provenance.get("sourceDocuments", []):
-        if not (repo_root / source).exists():
+        source_path = repository_path(source, "sourceDocument")
+        if source_path is not None and not source_path.exists():
             fail(errors, f"provenance sourceDocument does not exist: {source}")
     for field in ("schema", "generator", "validator"):
         relative_path = provenance.get(field)
-        if isinstance(relative_path, str) and not (repo_root / relative_path).is_file():
+        resolved_path = repository_path(relative_path, field)
+        if resolved_path is not None and not resolved_path.is_file():
             fail(errors, f"provenance {field} does not exist: {relative_path}")
     for artifact in provenance.get("generatedArtifacts", []):
-        if not (repo_root / artifact).is_file():
+        artifact_path = repository_path(artifact, "generatedArtifact")
+        if artifact_path is not None and not artifact_path.is_file():
             fail(errors, f"provenance generatedArtifact does not exist: {artifact}")
 
 
