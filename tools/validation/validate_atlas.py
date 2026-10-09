@@ -252,9 +252,23 @@ def validate_provenance(data: dict[str, Any], atlas_path: Path, errors: list[str
     required = {"repository", "schema", "validator", "sourceDocuments", "lastUpdated", "sourceCommit"}
     require_fields(provenance, required, "provenance", errors)
     repo_root = atlas_path.resolve().parents[1]
+
+    def repository_path(relative_path: Any, context: str) -> Path | None:
+        if not isinstance(relative_path, str) or not relative_path:
+            fail(errors, f"provenance {context} must be a non-empty repository-relative path")
+            return None
+        candidate = (repo_root / relative_path).resolve()
+        try:
+            candidate.relative_to(repo_root)
+        except ValueError:
+            fail(errors, f"provenance {context} escapes repository: {relative_path}")
+            return None
+        return candidate
+
     for field in ("schema", "validator"):
         relative_path = provenance.get(field)
-        if isinstance(relative_path, str) and not (repo_root / relative_path).is_file():
+        resolved_path = repository_path(relative_path, field)
+        if resolved_path is not None and not resolved_path.is_file():
             fail(errors, f"provenance {field} does not exist: {relative_path}")
     for source in provenance.get("sourceDocuments", []):
         if not isinstance(source, str) or not source:
@@ -262,7 +276,8 @@ def validate_provenance(data: dict[str, Any], atlas_path: Path, errors: list[str
             continue
         if source.startswith("http://") or source.startswith("https://"):
             continue
-        if not (repo_root / source).exists():
+        source_path = repository_path(source, "sourceDocument")
+        if source_path is not None and not source_path.exists():
             fail(errors, f"provenance sourceDocument does not exist: {source}")
 
 

@@ -1,6 +1,7 @@
 import copy
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -66,6 +67,26 @@ class LivingAtlasManifestTests(unittest.TestCase):
             "provenance schema does not exist: schemas/MissingAtlas.schema.json",
             errors,
         )
+
+    def test_provenance_paths_cannot_escape_repository(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            repo_root = root / "repo"
+            atlas_path = repo_root / "manifests" / "living-atlas.manifest.json"
+            atlas_path.parent.mkdir(parents=True)
+            outside = root / "outside.schema.json"
+            outside.write_text("{}\n", encoding="utf-8")
+
+            atlas = copy.deepcopy(self.atlas)
+            atlas["provenance"]["schema"] = "../outside.schema.json"
+            errors = []
+
+            validate_provenance(atlas, atlas_path, errors)
+
+            self.assertIn(
+                "provenance schema escapes repository: ../outside.schema.json",
+                errors,
+            )
 
 
 if __name__ == "__main__":
