@@ -261,10 +261,16 @@ def validate_primary_projection(
     errors: list[str],
 ) -> None:
     node_ids = set(nodes_by_id.keys())
-    roots = data.get("rootNodeIds", [])
-    if not isinstance(roots, list) or not roots:
+    root_values = data.get("rootNodeIds", [])
+    if not isinstance(root_values, list) or not root_values:
         fail(errors, "rootNodeIds must be a non-empty array")
         return
+    roots: list[str] = []
+    for root in root_values:
+        if not isinstance(root, str):
+            fail(errors, "rootNodeIds must contain strings")
+        else:
+            roots.append(root)
     for root in roots:
         if root not in node_ids:
             fail(errors, f"rootNodeIds references missing node: {root}")
