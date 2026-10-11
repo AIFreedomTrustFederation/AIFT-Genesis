@@ -108,6 +108,8 @@ def require_top_level(data: dict[str, Any], errors: list[str]) -> None:
         value = data.get(key)
         if not isinstance(value, str) or value.count(".") != 2:
             fail(errors, f"{key} must be a semantic version string")
+    if not isinstance(data.get("epistemicClasses"), dict) or not data.get("epistemicClasses"):
+        fail(errors, "epistemicClasses must be a non-empty object")
 
 
 def find_duplicate_ids(items: list[Any], label: str, errors: list[str]) -> None:
@@ -148,7 +150,8 @@ def contains_visual_coordinates(value: Any, path: str, errors: list[str]) -> Non
 
 def validate_nodes(data: dict[str, Any], errors: list[str]) -> dict[str, dict[str, Any]]:
     nodes = data.get("nodes", [])
-    classes = set(data.get("epistemicClasses", {}).keys())
+    epistemic_classes = data.get("epistemicClasses", {})
+    classes = set(epistemic_classes.keys()) if isinstance(epistemic_classes, dict) else set()
     domains = set(data.get("domains", []))
     source_refs = data.get("sourceRefs", [])
     known_refs = (
@@ -202,7 +205,8 @@ def validate_edges(
     errors: list[str],
 ) -> list[dict[str, Any]]:
     edges = data.get("edges", [])
-    classes = set(data.get("epistemicClasses", {}).keys())
+    epistemic_classes = data.get("epistemicClasses", {})
+    classes = set(epistemic_classes.keys()) if isinstance(epistemic_classes, dict) else set()
     relations = set(data.get("edgeRelations", []))
     source_refs = data.get("sourceRefs", [])
     known_refs = (
