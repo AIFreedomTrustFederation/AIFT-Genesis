@@ -13,6 +13,7 @@ from validate_atlas import (  # noqa: E402
     PROHIBITED_TREE_KEYS,
     validate_manifest,
     validate_provenance,
+    validate_source_refs,
 )
 
 
@@ -85,6 +86,26 @@ class LivingAtlasManifestTests(unittest.TestCase):
 
             self.assertIn(
                 "provenance schema escapes repository: ../outside.schema.json",
+                errors,
+            )
+
+    def test_local_source_ref_uris_cannot_escape_repository(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            repo_root = root / "repo"
+            atlas_path = repo_root / "manifests" / "living-atlas.manifest.json"
+            atlas_path.parent.mkdir(parents=True)
+            outside = root / "outside.md"
+            outside.write_text("outside repository\n", encoding="utf-8")
+
+            atlas = copy.deepcopy(self.atlas)
+            atlas["sourceRefs"][0]["uri"] = "../outside.md"
+            errors = []
+
+            validate_source_refs(atlas, atlas_path, errors)
+
+            self.assertIn(
+                "sourceRef genesis.readme uri escapes repository: ../outside.md",
                 errors,
             )
 

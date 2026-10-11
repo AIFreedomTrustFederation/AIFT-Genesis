@@ -97,13 +97,18 @@ def validate_type_definitions(
     return ids
 
 
-def validate_source_refs(data: dict[str, Any], errors: list[str]) -> set[str]:
+def validate_source_refs(
+    data: dict[str, Any],
+    atlas_path: Path,
+    errors: list[str],
+) -> set[str]:
     source_refs = data.get("sourceRefs", [])
     if not isinstance(source_refs, list):
         fail(errors, "sourceRefs must be an array")
         return set()
     duplicate_ids(source_refs, "sourceRef", errors)
     known: set[str] = set()
+    repo_root = atlas_path.resolve().parents[1]
     for ref in source_refs:
         if not isinstance(ref, dict):
             continue
@@ -114,6 +119,17 @@ def validate_source_refs(data: dict[str, Any], errors: list[str]) -> set[str]:
         for field in ("label", "uri", "type"):
             if not isinstance(ref.get(field), str) or not ref.get(field):
                 fail(errors, f"sourceRef {ref_id} {field} must be a non-empty string")
+        uri = ref.get("uri")
+        if not isinstance(uri, str) or not uri or uri.startswith(("http://", "https://")):
+            continue
+        source_path = (repo_root / uri).resolve()
+        try:
+            source_path.relative_to(repo_root)
+        except ValueError:
+            fail(errors, f"sourceRef {ref_id} uri escapes repository: {uri}")
+            continue
+        if not source_path.is_file():
+            fail(errors, f"sourceRef {ref_id} uri does not exist: {uri}")
     return known
 
 
@@ -317,7 +333,7 @@ def validate_manifest(atlas_path: Path = DEFAULT_ATLAS, tree_path: Path = DEFAUL
         "mappingRelations",
         errors,
     )
-    known_refs = validate_source_refs(atlas, errors)
+    known_refs = validate_source_refs(atlas, atlas_path, errors)
     entities_by_id = validate_entities(atlas, entity_types, known_refs, errors)
     tree_node_ids = validate_tree_boundary(tree, errors)
     validate_tree_mappings(
