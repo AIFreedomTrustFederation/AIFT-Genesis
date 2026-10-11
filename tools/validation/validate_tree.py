@@ -110,9 +110,11 @@ def require_top_level(data: dict[str, Any], errors: list[str]) -> None:
             fail(errors, f"{key} must be a semantic version string")
 
 
-def find_duplicate_ids(items: list[dict[str, Any]], label: str, errors: list[str]) -> None:
+def find_duplicate_ids(items: list[Any], label: str, errors: list[str]) -> None:
     seen: set[str] = set()
     for item in items:
+        if not isinstance(item, dict):
+            continue
         item_id = item.get("id")
         if item_id in seen:
             fail(errors, f"duplicate {label} id: {item_id}")
@@ -227,7 +229,7 @@ def validate_edges(
             fail(errors, f"edge {edge_id} sourceRefs must be an array")
         else:
             validate_refs(edge.get("sourceRefs", []), known_refs, f"edge {edge_id}", errors)
-    return edges
+    return [edge for edge in edges if isinstance(edge, dict)]
 
 
 def validate_primary_projection(
