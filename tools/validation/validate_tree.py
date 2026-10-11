@@ -110,6 +110,8 @@ def require_top_level(data: dict[str, Any], errors: list[str]) -> None:
             fail(errors, f"{key} must be a semantic version string")
     if not isinstance(data.get("epistemicClasses"), dict) or not data.get("epistemicClasses"):
         fail(errors, "epistemicClasses must be a non-empty object")
+    if not isinstance(data.get("domains"), list) or not data.get("domains"):
+        fail(errors, "domains must be a non-empty array")
 
 
 def find_duplicate_ids(items: list[Any], label: str, errors: list[str]) -> None:
@@ -152,7 +154,8 @@ def validate_nodes(data: dict[str, Any], errors: list[str]) -> dict[str, dict[st
     nodes = data.get("nodes", [])
     epistemic_classes = data.get("epistemicClasses", {})
     classes = set(epistemic_classes.keys()) if isinstance(epistemic_classes, dict) else set()
-    domains = set(data.get("domains", []))
+    domain_values = data.get("domains", [])
+    domains = set(domain_values) if isinstance(domain_values, list) else set()
     source_refs = data.get("sourceRefs", [])
     known_refs = (
         {ref.get("id") for ref in source_refs if isinstance(ref, dict)}
