@@ -150,7 +150,12 @@ def validate_nodes(data: dict[str, Any], errors: list[str]) -> dict[str, dict[st
     nodes = data.get("nodes", [])
     classes = set(data.get("epistemicClasses", {}).keys())
     domains = set(data.get("domains", []))
-    known_refs = {ref.get("id") for ref in data.get("sourceRefs", []) if isinstance(ref, dict)}
+    source_refs = data.get("sourceRefs", [])
+    known_refs = (
+        {ref.get("id") for ref in source_refs if isinstance(ref, dict)}
+        if isinstance(source_refs, list)
+        else set()
+    )
 
     if not isinstance(nodes, list) or not nodes:
         fail(errors, "nodes must be a non-empty array")
@@ -199,7 +204,12 @@ def validate_edges(
     edges = data.get("edges", [])
     classes = set(data.get("epistemicClasses", {}).keys())
     relations = set(data.get("edgeRelations", []))
-    known_refs = {ref.get("id") for ref in data.get("sourceRefs", []) if isinstance(ref, dict)}
+    source_refs = data.get("sourceRefs", [])
+    known_refs = (
+        {ref.get("id") for ref in source_refs if isinstance(ref, dict)}
+        if isinstance(source_refs, list)
+        else set()
+    )
     node_ids = set(nodes_by_id.keys())
 
     if not isinstance(edges, list):
