@@ -192,6 +192,17 @@ class TreeManifestTests(unittest.TestCase):
 
             self.assertIn("node id must be a string", errors)
 
+    def test_non_string_source_ref_id_reports_validation_error(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            manifest_path = Path(temp_dir) / "tree.manifest.json"
+            manifest = copy.deepcopy(self.manifest)
+            manifest["sourceRefs"][0]["id"] = {}
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+            errors = validate_manifest(manifest_path)
+
+            self.assertIn("sourceRef id must be a string", errors)
+
     def test_non_object_graph_items_report_validation_errors(self):
         for collection, invalid_value, expected_error in (
             ("nodes", "not-a-node", "each node must be an object"),

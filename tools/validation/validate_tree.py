@@ -163,7 +163,11 @@ def validate_nodes(data: dict[str, Any], errors: list[str]) -> dict[str, dict[st
     domains = set(domain_values) if isinstance(domain_values, list) else set()
     source_refs = data.get("sourceRefs", [])
     known_refs = (
-        {ref.get("id") for ref in source_refs if isinstance(ref, dict)}
+        {
+            ref["id"]
+            for ref in source_refs
+            if isinstance(ref, dict) and isinstance(ref.get("id"), str)
+        }
         if isinstance(source_refs, list)
         else set()
     )
@@ -221,7 +225,11 @@ def validate_edges(
     relations = set(relation_values) if isinstance(relation_values, list) else set()
     source_refs = data.get("sourceRefs", [])
     known_refs = (
-        {ref.get("id") for ref in source_refs if isinstance(ref, dict)}
+        {
+            ref["id"]
+            for ref in source_refs
+            if isinstance(ref, dict) and isinstance(ref.get("id"), str)
+        }
         if isinstance(source_refs, list)
         else set()
     )
