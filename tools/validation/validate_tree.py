@@ -321,10 +321,14 @@ def validate_provenance(data: dict[str, Any], manifest_path: Path, errors: list[
             return None
         return candidate
 
-    for source in provenance.get("sourceDocuments", []):
-        source_path = repository_path(source, "sourceDocument")
-        if source_path is not None and not source_path.exists():
-            fail(errors, f"provenance sourceDocument does not exist: {source}")
+    source_documents = provenance.get("sourceDocuments", [])
+    if not isinstance(source_documents, list):
+        fail(errors, "provenance sourceDocuments must be an array")
+    else:
+        for source in source_documents:
+            source_path = repository_path(source, "sourceDocument")
+            if source_path is not None and not source_path.exists():
+                fail(errors, f"provenance sourceDocument does not exist: {source}")
     for field in ("schema", "generator", "validator"):
         relative_path = provenance.get(field)
         resolved_path = repository_path(relative_path, field)

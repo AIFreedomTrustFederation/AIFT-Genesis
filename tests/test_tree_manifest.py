@@ -82,6 +82,15 @@ class TreeManifestTests(unittest.TestCase):
                 errors,
             )
 
+    def test_non_array_provenance_source_documents_report_validation_error(self):
+        manifest = copy.deepcopy(self.manifest)
+        manifest["provenance"]["sourceDocuments"] = None
+        errors = []
+
+        validate_provenance(manifest, self.manifest_path, errors)
+
+        self.assertIn("provenance sourceDocuments must be an array", errors)
+
     def test_non_object_graph_items_report_validation_errors(self):
         for collection, invalid_value, expected_error in (
             ("nodes", "not-a-node", "each node must be an object"),
