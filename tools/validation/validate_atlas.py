@@ -120,7 +120,12 @@ def validate_source_refs(
             if not isinstance(ref.get(field), str) or not ref.get(field):
                 fail(errors, f"sourceRef {ref_id} {field} must be a non-empty string")
         uri = ref.get("uri")
-        if not isinstance(uri, str) or not uri or uri.startswith(("http://", "https://")):
+        if not isinstance(uri, str) or not uri:
+            continue
+        if uri.startswith("https://"):
+            continue
+        if uri.startswith("http://"):
+            fail(errors, f"sourceRef {ref_id} uri must use HTTPS: {uri}")
             continue
         source_path = (repo_root / uri).resolve()
         try:

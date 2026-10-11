@@ -109,6 +109,19 @@ class LivingAtlasManifestTests(unittest.TestCase):
                 errors,
             )
 
+    def test_remote_source_ref_uris_must_use_https(self):
+        atlas = copy.deepcopy(self.atlas)
+        atlas["sourceRefs"][0]["uri"] = "http://example.com/source.md"
+        errors = []
+
+        validate_source_refs(atlas, self.atlas_path, errors)
+
+        self.assertIn(
+            "sourceRef genesis.readme uri must use HTTPS: "
+            "http://example.com/source.md",
+            errors,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
