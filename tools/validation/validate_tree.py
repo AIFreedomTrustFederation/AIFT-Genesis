@@ -203,8 +203,11 @@ def validate_nodes(data: dict[str, Any], errors: list[str]) -> dict[str, dict[st
             fail(errors, f"node {node_id} epistemicClass must be a string")
         elif epistemic_class not in classes:
             fail(errors, f"node {node_id} has invalid epistemicClass: {epistemic_class}")
-        if node.get("domain") not in domains:
-            fail(errors, f"node {node_id} has invalid domain: {node.get('domain')}")
+        domain = node.get("domain")
+        if not isinstance(domain, str):
+            fail(errors, f"node {node_id} domain must be a string")
+        elif domain not in domains:
+            fail(errors, f"node {node_id} has invalid domain: {domain}")
         tags = node.get("tags", [])
         if not isinstance(tags, list):
             fail(errors, f"node {node_id} tags must be an array")
