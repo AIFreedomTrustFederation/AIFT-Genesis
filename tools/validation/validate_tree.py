@@ -110,8 +110,11 @@ def require_top_level(data: dict[str, Any], errors: list[str]) -> None:
             fail(errors, f"{key} must be a semantic version string")
     if not isinstance(data.get("epistemicClasses"), dict) or not data.get("epistemicClasses"):
         fail(errors, "epistemicClasses must be a non-empty object")
-    if not isinstance(data.get("domains"), list) or not data.get("domains"):
+    domains = data.get("domains")
+    if not isinstance(domains, list) or not domains:
         fail(errors, "domains must be a non-empty array")
+    elif not all(isinstance(domain, str) for domain in domains):
+        fail(errors, "domains must contain strings")
     if not isinstance(data.get("edgeRelations"), list) or not data.get("edgeRelations"):
         fail(errors, "edgeRelations must be a non-empty array")
 
@@ -160,7 +163,11 @@ def validate_nodes(data: dict[str, Any], errors: list[str]) -> dict[str, dict[st
     epistemic_classes = data.get("epistemicClasses", {})
     classes = set(epistemic_classes.keys()) if isinstance(epistemic_classes, dict) else set()
     domain_values = data.get("domains", [])
-    domains = set(domain_values) if isinstance(domain_values, list) else set()
+    domains = (
+        {domain for domain in domain_values if isinstance(domain, str)}
+        if isinstance(domain_values, list)
+        else set()
+    )
     source_refs = data.get("sourceRefs", [])
     known_refs = (
         {
