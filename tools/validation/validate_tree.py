@@ -115,8 +115,11 @@ def require_top_level(data: dict[str, Any], errors: list[str]) -> None:
         fail(errors, "domains must be a non-empty array")
     elif not all(isinstance(domain, str) for domain in domains):
         fail(errors, "domains must contain strings")
-    if not isinstance(data.get("edgeRelations"), list) or not data.get("edgeRelations"):
+    edge_relations = data.get("edgeRelations")
+    if not isinstance(edge_relations, list) or not edge_relations:
         fail(errors, "edgeRelations must be a non-empty array")
+    elif not all(isinstance(relation, str) for relation in edge_relations):
+        fail(errors, "edgeRelations must contain strings")
 
 
 def find_duplicate_ids(items: list[Any], label: str, errors: list[str]) -> None:
@@ -229,7 +232,11 @@ def validate_edges(
     epistemic_classes = data.get("epistemicClasses", {})
     classes = set(epistemic_classes.keys()) if isinstance(epistemic_classes, dict) else set()
     relation_values = data.get("edgeRelations", [])
-    relations = set(relation_values) if isinstance(relation_values, list) else set()
+    relations = (
+        {relation for relation in relation_values if isinstance(relation, str)}
+        if isinstance(relation_values, list)
+        else set()
+    )
     source_refs = data.get("sourceRefs", [])
     known_refs = (
         {
