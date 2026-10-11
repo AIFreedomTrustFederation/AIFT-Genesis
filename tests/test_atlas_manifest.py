@@ -89,6 +89,21 @@ class LivingAtlasManifestTests(unittest.TestCase):
                 errors,
             )
 
+    def test_remote_provenance_source_documents_must_use_https(self):
+        atlas = copy.deepcopy(self.atlas)
+        atlas["provenance"]["sourceDocuments"] = [
+            "http://example.com/source.md",
+        ]
+        errors = []
+
+        validate_provenance(atlas, self.atlas_path, errors)
+
+        self.assertIn(
+            "provenance sourceDocument must use HTTPS: "
+            "http://example.com/source.md",
+            errors,
+        )
+
     def test_local_source_ref_uris_cannot_escape_repository(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
