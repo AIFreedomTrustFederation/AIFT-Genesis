@@ -198,8 +198,11 @@ def validate_nodes(data: dict[str, Any], errors: list[str]) -> dict[str, dict[st
         missing = NODE_REQUIRED - set(node.keys())
         for key in sorted(missing):
             fail(errors, f"node {node_id} missing required field: {key}")
-        if node.get("epistemicClass") not in classes:
-            fail(errors, f"node {node_id} has invalid epistemicClass: {node.get('epistemicClass')}")
+        epistemic_class = node.get("epistemicClass")
+        if not isinstance(epistemic_class, str):
+            fail(errors, f"node {node_id} epistemicClass must be a string")
+        elif epistemic_class not in classes:
+            fail(errors, f"node {node_id} has invalid epistemicClass: {epistemic_class}")
         if node.get("domain") not in domains:
             fail(errors, f"node {node_id} has invalid domain: {node.get('domain')}")
         tags = node.get("tags", [])
