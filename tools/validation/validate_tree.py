@@ -334,10 +334,14 @@ def validate_provenance(data: dict[str, Any], manifest_path: Path, errors: list[
         resolved_path = repository_path(relative_path, field)
         if resolved_path is not None and not resolved_path.is_file():
             fail(errors, f"provenance {field} does not exist: {relative_path}")
-    for artifact in provenance.get("generatedArtifacts", []):
-        artifact_path = repository_path(artifact, "generatedArtifact")
-        if artifact_path is not None and not artifact_path.is_file():
-            fail(errors, f"provenance generatedArtifact does not exist: {artifact}")
+    generated_artifacts = provenance.get("generatedArtifacts", [])
+    if not isinstance(generated_artifacts, list):
+        fail(errors, "provenance generatedArtifacts must be an array")
+    else:
+        for artifact in generated_artifacts:
+            artifact_path = repository_path(artifact, "generatedArtifact")
+            if artifact_path is not None and not artifact_path.is_file():
+                fail(errors, f"provenance generatedArtifact does not exist: {artifact}")
 
 
 def validate_manifest(path: Path) -> list[str]:
