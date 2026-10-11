@@ -185,18 +185,20 @@ def validate_nodes(data: dict[str, Any], errors: list[str]) -> dict[str, dict[st
             fail(errors, f"node {node_id} has invalid epistemicClass: {node.get('epistemicClass')}")
         if node.get("domain") not in domains:
             fail(errors, f"node {node_id} has invalid domain: {node.get('domain')}")
-        if not isinstance(node.get("tags", []), list):
+        tags = node.get("tags", [])
+        if not isinstance(tags, list):
             fail(errors, f"node {node_id} tags must be an array")
+            tags = []
         if not isinstance(node.get("sourceRefs", []), list):
             fail(errors, f"node {node_id} sourceRefs must be an array")
         else:
             validate_refs(node.get("sourceRefs", []), known_refs, f"node {node_id}", errors)
         if node.get("epistemicClass") == "aspirational":
-            marker_values = {node.get("status"), *node.get("tags", [])}
+            marker_values = {node.get("status"), *tags}
             if not ({"aspirational", "open", "future"} & marker_values):
                 fail(errors, f"aspirational node {node_id} must be visibly aspirational/open/future")
         if node.get("epistemicClass") == "doctrinal":
-            marker_values = {node.get("status"), *node.get("tags", [])}
+            marker_values = {node.get("status"), *tags}
             if "doctrine" not in marker_values and "doctrinal" not in marker_values:
                 fail(errors, f"doctrinal node {node_id} must be visibly doctrinal")
         contains_visual_coordinates(node.get("metadata", {}), f"node {node_id}.metadata", errors)
