@@ -112,6 +112,8 @@ def require_top_level(data: dict[str, Any], errors: list[str]) -> None:
         fail(errors, "epistemicClasses must be a non-empty object")
     if not isinstance(data.get("domains"), list) or not data.get("domains"):
         fail(errors, "domains must be a non-empty array")
+    if not isinstance(data.get("edgeRelations"), list) or not data.get("edgeRelations"):
+        fail(errors, "edgeRelations must be a non-empty array")
 
 
 def find_duplicate_ids(items: list[Any], label: str, errors: list[str]) -> None:
@@ -210,7 +212,8 @@ def validate_edges(
     edges = data.get("edges", [])
     epistemic_classes = data.get("epistemicClasses", {})
     classes = set(epistemic_classes.keys()) if isinstance(epistemic_classes, dict) else set()
-    relations = set(data.get("edgeRelations", []))
+    relation_values = data.get("edgeRelations", [])
+    relations = set(relation_values) if isinstance(relation_values, list) else set()
     source_refs = data.get("sourceRefs", [])
     known_refs = (
         {ref.get("id") for ref in source_refs if isinstance(ref, dict)}
