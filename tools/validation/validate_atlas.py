@@ -291,18 +291,22 @@ def validate_provenance(data: dict[str, Any], atlas_path: Path, errors: list[str
         resolved_path = repository_path(relative_path, field)
         if resolved_path is not None and not resolved_path.is_file():
             fail(errors, f"provenance {field} does not exist: {relative_path}")
-    for source in provenance.get("sourceDocuments", []):
-        if not isinstance(source, str) or not source:
-            fail(errors, "provenance sourceDocuments must contain non-empty strings")
-            continue
-        if source.startswith("https://"):
-            continue
-        if source.startswith("http://"):
-            fail(errors, f"provenance sourceDocument must use HTTPS: {source}")
-            continue
-        source_path = repository_path(source, "sourceDocument")
-        if source_path is not None and not source_path.exists():
-            fail(errors, f"provenance sourceDocument does not exist: {source}")
+    source_documents = provenance.get("sourceDocuments", [])
+    if not isinstance(source_documents, list):
+        fail(errors, "provenance sourceDocuments must be an array")
+    else:
+        for source in source_documents:
+            if not isinstance(source, str) or not source:
+                fail(errors, "provenance sourceDocuments must contain non-empty strings")
+                continue
+            if source.startswith("https://"):
+                continue
+            if source.startswith("http://"):
+                fail(errors, f"provenance sourceDocument must use HTTPS: {source}")
+                continue
+            source_path = repository_path(source, "sourceDocument")
+            if source_path is not None and not source_path.exists():
+                fail(errors, f"provenance sourceDocument does not exist: {source}")
 
 
 def validate_manifest(atlas_path: Path = DEFAULT_ATLAS, tree_path: Path = DEFAULT_TREE) -> list[str]:

@@ -104,6 +104,15 @@ class LivingAtlasManifestTests(unittest.TestCase):
             errors,
         )
 
+    def test_non_array_provenance_source_documents_report_validation_error(self):
+        atlas = copy.deepcopy(self.atlas)
+        atlas["provenance"]["sourceDocuments"] = None
+        errors = []
+
+        validate_provenance(atlas, self.atlas_path, errors)
+
+        self.assertIn("provenance sourceDocuments must be an array", errors)
+
     def test_local_source_ref_uris_cannot_escape_repository(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
