@@ -237,10 +237,16 @@ def validate_edges(
         missing = EDGE_REQUIRED - set(edge.keys())
         for key in sorted(missing):
             fail(errors, f"edge {edge_id} missing required field: {key}")
-        if edge.get("from") not in node_ids:
-            fail(errors, f"edge {edge_id} references missing from node: {edge.get('from')}")
-        if edge.get("to") not in node_ids:
-            fail(errors, f"edge {edge_id} references missing to node: {edge.get('to')}")
+        source = edge.get("from")
+        target = edge.get("to")
+        if not isinstance(source, str):
+            fail(errors, f"edge {edge_id} from must be a string")
+        elif source not in node_ids:
+            fail(errors, f"edge {edge_id} references missing from node: {source}")
+        if not isinstance(target, str):
+            fail(errors, f"edge {edge_id} to must be a string")
+        elif target not in node_ids:
+            fail(errors, f"edge {edge_id} references missing to node: {target}")
         if edge.get("relation") not in relations:
             fail(errors, f"edge {edge_id} has invalid relation: {edge.get('relation')}")
         if edge.get("epistemicClass") not in classes:
@@ -281,7 +287,12 @@ def validate_primary_projection(
     for edge in primary_edges:
         source = edge.get("from")
         target = edge.get("to")
-        if source in node_ids and target in node_ids:
+        if (
+            isinstance(source, str)
+            and isinstance(target, str)
+            and source in node_ids
+            and target in node_ids
+        ):
             outgoing[source].append(target)
             incoming[target].append(source)
 
