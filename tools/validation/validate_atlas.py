@@ -122,6 +122,12 @@ def validate_source_refs(
         for field in ("label", "uri", "type"):
             if not isinstance(ref.get(field), str) or not ref.get(field):
                 fail(errors, f"sourceRef {ref_id} {field} must be a non-empty string")
+        ref_type = ref.get("type")
+        if isinstance(ref_type, str) and ref_type not in {
+            "repository-document", "portal-document", "public-repository",
+            "public-artifact", "external-reference",
+        }:
+            fail(errors, f"sourceRef {ref_id} has unknown type: {ref_type}")
         uri = ref.get("uri")
         if not isinstance(uri, str) or not uri:
             continue
