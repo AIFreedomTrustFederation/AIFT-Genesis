@@ -189,8 +189,11 @@ def validate_entities(
         validate_id(entity_id, f"entity {entity_id} id", errors)
         by_id[str(entity_id)] = entity
         require_fields(entity, required, f"entity {entity_id}", errors)
-        if entity.get("type") not in entity_types:
-            fail(errors, f"entity {entity_id} has unknown type: {entity.get('type')}")
+        entity_type = entity.get("type")
+        if not isinstance(entity_type, str):
+            fail(errors, f"entity {entity_id} type must be a string")
+        elif entity_type not in entity_types:
+            fail(errors, f"entity {entity_id} has unknown type: {entity_type}")
         if entity.get("visibility") != "public":
             fail(errors, f"canonical Atlas entity {entity_id} must be public or omitted from this manifest")
         for field in ("label", "description", "status", "visibility", "evidenceStatus"):
