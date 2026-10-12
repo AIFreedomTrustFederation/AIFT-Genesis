@@ -199,6 +199,12 @@ def validate_entities(
         for field in ("label", "description", "status", "visibility", "evidenceStatus"):
             if not isinstance(entity.get(field), str) or not entity.get(field):
                 fail(errors, f"entity {entity_id} {field} must be a non-empty string")
+        evidence_status = entity.get("evidenceStatus")
+        if isinstance(evidence_status, str) and evidence_status not in {
+            "public-repository", "public-document", "public-pages",
+            "public-research-package", "local-repository",
+        }:
+            fail(errors, f"entity {entity_id} has unknown evidenceStatus: {evidence_status}")
         validate_ref_list(entity.get("sourceRefs"), known_refs, f"entity {entity_id}", errors)
         if not isinstance(entity.get("links"), list):
             fail(errors, f"entity {entity_id} links must be an array")
