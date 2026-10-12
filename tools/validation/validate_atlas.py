@@ -184,6 +184,17 @@ def validate_links(links: Any, context: str, errors: list[str]) -> None:
             fail(errors, f"{link_context} has unknown type: {link_type}")
 
 
+def validate_boundaries(boundaries: Any, errors: list[str]) -> None:
+    if not isinstance(boundaries, dict):
+        fail(errors, "boundaries must be an object")
+        return
+    fields = {"canonicalMeaning", "instantiatedReality", "observedRuntime"}
+    require_fields(boundaries, fields, "boundaries", errors)
+    for field in sorted(fields):
+        if not isinstance(boundaries.get(field), str) or not boundaries.get(field):
+            fail(errors, f"boundaries {field} must be a non-empty string")
+
+
 def validate_entities(
     data: dict[str, Any],
     entity_types: set[str],
@@ -402,6 +413,7 @@ def validate_manifest(atlas_path: Path = DEFAULT_ATLAS, tree_path: Path = DEFAUL
         "draft", "canonical-draft", "active", "deprecated",
     }:
         fail(errors, "status must be draft, canonical-draft, active, or deprecated")
+    validate_boundaries(atlas.get("boundaries"), errors)
 
     entity_types = validate_type_definitions(atlas.get("entityTypes"), "entityTypes", errors)
     mapping_relations = validate_type_definitions(

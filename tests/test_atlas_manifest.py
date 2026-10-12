@@ -312,6 +312,21 @@ class LivingAtlasManifestTests(unittest.TestCase):
                     errors,
                 )
 
+    def test_invalid_manifest_boundaries_report_validation_error(self):
+        for value in ("", {}, None):
+            with self.subTest(value=value), tempfile.TemporaryDirectory() as temp_dir:
+                atlas_path = Path(temp_dir) / "living-atlas.manifest.json"
+                atlas = copy.deepcopy(self.atlas)
+                atlas["boundaries"]["observedRuntime"] = value
+                atlas_path.write_text(json.dumps(atlas), encoding="utf-8")
+
+                errors = validate_manifest(atlas_path, self.tree_path)
+
+                self.assertIn(
+                    "boundaries observedRuntime must be a non-empty string",
+                    errors,
+                )
+
 
 if __name__ == "__main__":
     unittest.main()
