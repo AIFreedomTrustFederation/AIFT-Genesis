@@ -366,6 +366,11 @@ def validate_manifest(atlas_path: Path = DEFAULT_ATLAS, tree_path: Path = DEFAUL
         if not isinstance(value, str) or not SEMVER_RE.match(value):
             fail(errors, f"{field} must be a semantic version string")
     validate_id(atlas.get("atlasId"), "atlasId", errors)
+    status = atlas.get("status")
+    if not isinstance(status, str) or status not in {
+        "draft", "canonical-draft", "active", "deprecated",
+    }:
+        fail(errors, "status must be draft, canonical-draft, active, or deprecated")
 
     entity_types = validate_type_definitions(atlas.get("entityTypes"), "entityTypes", errors)
     mapping_relations = validate_type_definitions(

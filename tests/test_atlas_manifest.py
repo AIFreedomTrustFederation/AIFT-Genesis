@@ -253,6 +253,21 @@ class LivingAtlasManifestTests(unittest.TestCase):
                 errors,
             )
 
+    def test_invalid_manifest_status_reports_validation_error(self):
+        for status in ("production-ready", {}, None):
+            with self.subTest(status=status), tempfile.TemporaryDirectory() as temp_dir:
+                atlas_path = Path(temp_dir) / "living-atlas.manifest.json"
+                atlas = copy.deepcopy(self.atlas)
+                atlas["status"] = status
+                atlas_path.write_text(json.dumps(atlas), encoding="utf-8")
+
+                errors = validate_manifest(atlas_path, self.tree_path)
+
+                self.assertIn(
+                    "status must be draft, canonical-draft, active, or deprecated",
+                    errors,
+                )
+
 
 if __name__ == "__main__":
     unittest.main()
