@@ -87,17 +87,24 @@ replace_tokens_in_file() {
 
   python3 - "$file" "$trust_name" "$trust_slug" "$trust_purpose" <<'PY'
 from pathlib import Path
+import json
+import re
 import sys
 
 path = Path(sys.argv[1])
-trust_name = sys.argv[2]
-trust_slug = sys.argv[3]
-trust_purpose = sys.argv[4]
+values = {
+    "TRUST_NAME": sys.argv[2],
+    "TRUST_SLUG": sys.argv[3],
+    "TRUST_PURPOSE": sys.argv[4],
+}
 
 text = path.read_text(encoding="utf-8")
-text = text.replace("{{TRUST_NAME}}", trust_name)
-text = text.replace("{{TRUST_SLUG}}", trust_slug)
-text = text.replace("{{TRUST_PURPOSE}}", trust_purpose)
+
+def substitute(match):
+    value = values[match.group(1)]
+    return json.dumps(value, ensure_ascii=False)[1:-1] if path.suffix == ".json" else value
+
+text = re.sub(r"\{\{(TRUST_NAME|TRUST_SLUG|TRUST_PURPOSE)\}\}", substitute, text)
 path.write_text(text, encoding="utf-8")
 PY
 }
