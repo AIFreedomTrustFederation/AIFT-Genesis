@@ -206,5 +206,22 @@ class LivingAtlasManifestTests(unittest.TestCase):
             self.assertIn(f"treeMapping {mapping['id']} relation must be a string", errors)
 
 
+    def test_invalid_tree_mapping_status_reports_validation_error(self):
+        for status in ("production-ready", {}, None):
+            with self.subTest(status=status), tempfile.TemporaryDirectory() as temp_dir:
+                atlas_path = Path(temp_dir) / "living-atlas.manifest.json"
+                atlas = copy.deepcopy(self.atlas)
+                mapping = atlas["treeMappings"][0]
+                mapping["status"] = status
+                atlas_path.write_text(json.dumps(atlas), encoding="utf-8")
+
+                errors = validate_manifest(atlas_path, self.tree_path)
+
+                self.assertIn(
+                    f"treeMapping {mapping['id']} status must be active, candidate, or deprecated",
+                    errors,
+                )
+
+
 if __name__ == "__main__":
     unittest.main()

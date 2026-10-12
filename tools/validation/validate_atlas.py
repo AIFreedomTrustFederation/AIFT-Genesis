@@ -272,6 +272,9 @@ def validate_tree_mappings(
                 f"duplicate tree mapping pair: {tree_node_id} / {atlas_entity_id} / {relation}",
             )
         seen_pairs.add(pair)
+        status = mapping.get("status")
+        if not isinstance(status, str) or status not in {"active", "candidate", "deprecated"}:
+            fail(errors, f"treeMapping {mapping_id} status must be active, candidate, or deprecated")
         if not isinstance(mapping.get("description"), str) or not mapping.get("description"):
             fail(errors, f"treeMapping {mapping_id} description must be a non-empty string")
         validate_ref_list(mapping.get("sourceRefs"), known_refs, f"treeMapping {mapping_id}", errors)
