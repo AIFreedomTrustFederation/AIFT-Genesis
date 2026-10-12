@@ -193,6 +193,8 @@ def validate_boundaries(boundaries: Any, errors: list[str]) -> None:
         return
     fields = {"canonicalMeaning", "instantiatedReality", "observedRuntime"}
     require_fields(boundaries, fields, "boundaries", errors)
+    for field in sorted(set(boundaries) - fields):
+        fail(errors, f"boundaries has unexpected field: {field}")
     for field in sorted(fields):
         if not isinstance(boundaries.get(field), str) or not boundaries.get(field):
             fail(errors, f"boundaries {field} must be a non-empty string")

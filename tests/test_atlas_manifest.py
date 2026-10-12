@@ -404,6 +404,20 @@ class LivingAtlasManifestTests(unittest.TestCase):
                     errors,
                 )
 
+    def test_unexpected_manifest_boundary_reports_validation_error(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            atlas_path = Path(temp_dir) / "living-atlas.manifest.json"
+            atlas = copy.deepcopy(self.atlas)
+            atlas["boundaries"]["runtimeClaim"] = "unsupported boundary"
+            atlas_path.write_text(json.dumps(atlas), encoding="utf-8")
+
+            errors = validate_manifest(atlas_path, self.tree_path)
+
+            self.assertIn(
+                "boundaries has unexpected field: runtimeClaim",
+                errors,
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
