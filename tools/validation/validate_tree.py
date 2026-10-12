@@ -212,6 +212,9 @@ def validate_nodes(data: dict[str, Any], errors: list[str]) -> dict[str, dict[st
         if not isinstance(tags, list):
             fail(errors, f"node {node_id} tags must be an array")
             tags = []
+        elif not all(isinstance(tag, str) for tag in tags):
+            fail(errors, f"node {node_id} tags must contain strings")
+            tags = [tag for tag in tags if isinstance(tag, str)]
         if not isinstance(node.get("sourceRefs", []), list):
             fail(errors, f"node {node_id} sourceRefs must be an array")
         else:

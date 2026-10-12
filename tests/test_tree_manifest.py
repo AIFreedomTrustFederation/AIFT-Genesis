@@ -180,6 +180,20 @@ class TreeManifestTests(unittest.TestCase):
 
             self.assertIn(f"node {node['id']} tags must be an array", errors)
 
+    def test_non_string_node_tags_report_validation_error(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            manifest_path = Path(temp_dir) / "tree.manifest.json"
+            manifest = copy.deepcopy(self.manifest)
+            node = next(
+                item for item in manifest["nodes"] if item["epistemicClass"] == "aspirational"
+            )
+            node["tags"].append({})
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+            errors = validate_manifest(manifest_path)
+
+            self.assertIn(f"node {node['id']} tags must contain strings", errors)
+
     def test_non_string_root_node_ids_report_validation_error(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             manifest_path = Path(temp_dir) / "tree.manifest.json"
