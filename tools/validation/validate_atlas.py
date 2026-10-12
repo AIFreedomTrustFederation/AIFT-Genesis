@@ -199,6 +199,13 @@ def validate_entities(
         for field in ("label", "description", "status", "visibility", "evidenceStatus"):
             if not isinstance(entity.get(field), str) or not entity.get(field):
                 fail(errors, f"entity {entity_id} {field} must be a non-empty string")
+        status = entity.get("status")
+        if isinstance(status, str) and status not in {
+            "active", "active-foundation", "active-research", "active-product",
+            "active-protocol", "public-preview", "documented", "conceptual-draft",
+            "awaiting-external-review", "incubating", "fork", "planned",
+        }:
+            fail(errors, f"entity {entity_id} has unknown status: {status}")
         evidence_status = entity.get("evidenceStatus")
         if isinstance(evidence_status, str) and evidence_status not in {
             "public-repository", "public-document", "public-pages",
