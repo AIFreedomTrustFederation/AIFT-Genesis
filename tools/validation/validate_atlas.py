@@ -163,6 +163,26 @@ def validate_ref_list(
             fail(errors, f"{context} references unknown sourceRef: {ref}")
 
 
+def validate_links(links: Any, context: str, errors: list[str]) -> None:
+    if not isinstance(links, list):
+        fail(errors, f"{context} links must be an array")
+        return
+    for index, link in enumerate(links):
+        link_context = f"{context} link {index}"
+        if not isinstance(link, dict):
+            fail(errors, f"{link_context} must be an object")
+            continue
+        require_fields(link, {"label", "uri", "type"}, link_context, errors)
+        for field in ("label", "uri", "type"):
+            if not isinstance(link.get(field), str) or not link.get(field):
+                fail(errors, f"{link_context} {field} must be a non-empty string")
+        link_type = link.get("type")
+        if isinstance(link_type, str) and link_type not in {
+            "repository", "documentation", "artifact", "site", "source",
+        }:
+            fail(errors, f"{link_context} has unknown type: {link_type}")
+
+
 def validate_entities(
     data: dict[str, Any],
     entity_types: set[str],
@@ -219,8 +239,7 @@ def validate_entities(
         }:
             fail(errors, f"entity {entity_id} has unknown evidenceStatus: {evidence_status}")
         validate_ref_list(entity.get("sourceRefs"), known_refs, f"entity {entity_id}", errors)
-        if not isinstance(entity.get("links"), list):
-            fail(errors, f"entity {entity_id} links must be an array")
+        validate_links(entity.get("links"), f"entity {entity_id}", errors)
         if not isinstance(entity.get("tags"), list):
             fail(errors, f"entity {entity_id} tags must be an array")
         if not isinstance(entity.get("metadata"), dict):

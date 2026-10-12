@@ -266,6 +266,21 @@ class LivingAtlasManifestTests(unittest.TestCase):
                 errors,
             )
 
+    def test_unknown_entity_link_type_reports_validation_error(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            atlas_path = Path(temp_dir) / "living-atlas.manifest.json"
+            atlas = copy.deepcopy(self.atlas)
+            entity = atlas["entities"][0]
+            entity["links"][0]["type"] = "verified-audit"
+            atlas_path.write_text(json.dumps(atlas), encoding="utf-8")
+
+            errors = validate_manifest(atlas_path, self.tree_path)
+
+            self.assertIn(
+                f"entity {entity['id']} link 0 has unknown type: verified-audit",
+                errors,
+            )
+
     def test_invalid_manifest_status_reports_validation_error(self):
         for status in ("production-ready", {}, None):
             with self.subTest(status=status), tempfile.TemporaryDirectory() as temp_dir:
