@@ -328,6 +328,22 @@ class LivingAtlasManifestTests(unittest.TestCase):
                     errors,
                 )
 
+    def test_invalid_manifest_descriptions_report_validation_error(self):
+        for field in ("title", "description"):
+            for value in ("", {}, None):
+                with self.subTest(field=field, value=value), tempfile.TemporaryDirectory() as temp_dir:
+                    atlas_path = Path(temp_dir) / "living-atlas.manifest.json"
+                    atlas = copy.deepcopy(self.atlas)
+                    atlas[field] = value
+                    atlas_path.write_text(json.dumps(atlas), encoding="utf-8")
+
+                    errors = validate_manifest(atlas_path, self.tree_path)
+
+                    self.assertIn(
+                        f"{field} must be a non-empty string",
+                        errors,
+                    )
+
     def test_invalid_manifest_boundaries_report_validation_error(self):
         for value in ("", {}, None):
             with self.subTest(value=value), tempfile.TemporaryDirectory() as temp_dir:

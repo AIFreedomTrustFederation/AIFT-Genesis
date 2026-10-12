@@ -411,6 +411,9 @@ def validate_manifest(atlas_path: Path = DEFAULT_ATLAS, tree_path: Path = DEFAUL
         if not isinstance(value, str) or not SEMVER_RE.match(value):
             fail(errors, f"{field} must be a semantic version string")
     validate_id(atlas.get("atlasId"), "atlasId", errors)
+    for field in ("title", "description"):
+        if not isinstance(atlas.get(field), str) or not atlas.get(field):
+            fail(errors, f"{field} must be a non-empty string")
     status = atlas.get("status")
     if not isinstance(status, str) or status not in {
         "draft", "canonical-draft", "active", "deprecated",
