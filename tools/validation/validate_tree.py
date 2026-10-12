@@ -215,16 +215,23 @@ def validate_nodes(data: dict[str, Any], errors: list[str]) -> dict[str, dict[st
         elif not all(isinstance(tag, str) for tag in tags):
             fail(errors, f"node {node_id} tags must contain strings")
             tags = [tag for tag in tags if isinstance(tag, str)]
+        status = node.get("status")
+        if not isinstance(status, str):
+            fail(errors, f"node {node_id} status must be a string")
         if not isinstance(node.get("sourceRefs", []), list):
             fail(errors, f"node {node_id} sourceRefs must be an array")
         else:
             validate_refs(node.get("sourceRefs", []), known_refs, f"node {node_id}", errors)
         if node.get("epistemicClass") == "aspirational":
-            marker_values = {node.get("status"), *tags}
+            marker_values = {*tags}
+            if isinstance(status, str):
+                marker_values.add(status)
             if not ({"aspirational", "open", "future"} & marker_values):
                 fail(errors, f"aspirational node {node_id} must be visibly aspirational/open/future")
         if node.get("epistemicClass") == "doctrinal":
-            marker_values = {node.get("status"), *tags}
+            marker_values = {*tags}
+            if isinstance(status, str):
+                marker_values.add(status)
             if "doctrine" not in marker_values and "doctrinal" not in marker_values:
                 fail(errors, f"doctrinal node {node_id} must be visibly doctrinal")
         contains_visual_coordinates(node.get("metadata", {}), f"node {node_id}.metadata", errors)
