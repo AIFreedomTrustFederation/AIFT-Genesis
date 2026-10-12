@@ -146,6 +146,17 @@ class LivingAtlasManifestTests(unittest.TestCase):
             errors,
         )
 
+    def test_non_string_entity_id_reports_validation_error(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            atlas_path = Path(temp_dir) / "living-atlas.manifest.json"
+            atlas = copy.deepcopy(self.atlas)
+            atlas["entities"][0]["id"] = {}
+            atlas_path.write_text(json.dumps(atlas), encoding="utf-8")
+
+            errors = validate_manifest(atlas_path, self.tree_path)
+
+            self.assertIn("entity id must be a string", errors)
+
 
 if __name__ == "__main__":
     unittest.main()

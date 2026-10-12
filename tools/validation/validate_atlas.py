@@ -60,9 +60,12 @@ def duplicate_ids(items: list[Any], label: str, errors: list[str]) -> None:
             fail(errors, f"each {label} must be an object")
             continue
         item_id = item.get("id")
+        if not isinstance(item_id, str):
+            fail(errors, f"{label} id must be a string")
+            continue
         if item_id in seen:
             fail(errors, f"duplicate {label} id: {item_id}")
-        seen.add(str(item_id))
+        seen.add(item_id)
 
 
 def validate_id(value: Any, context: str, errors: list[str]) -> None:
