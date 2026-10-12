@@ -182,6 +182,9 @@ def validate_links(links: Any, context: str, errors: list[str]) -> None:
             "repository", "documentation", "artifact", "site", "source",
         }:
             fail(errors, f"{link_context} has unknown type: {link_type}")
+        uri = link.get("uri")
+        if isinstance(uri, str) and uri.startswith("http://"):
+            fail(errors, f"{link_context} uri must use HTTPS: {uri}")
 
 
 def validate_boundaries(boundaries: Any, errors: list[str]) -> None:
