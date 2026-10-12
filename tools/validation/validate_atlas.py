@@ -351,6 +351,9 @@ def validate_provenance(data: dict[str, Any], atlas_path: Path, errors: list[str
     require_fields(provenance, required, "provenance", errors)
     if not isinstance(provenance.get("repository"), str) or not provenance.get("repository"):
         fail(errors, "provenance repository must be a non-empty string")
+    for field in ("lastUpdated", "sourceCommit"):
+        if provenance.get(field) is not None and not isinstance(provenance.get(field), str):
+            fail(errors, f"provenance {field} must be a string or null")
     repo_root = atlas_path.resolve().parents[1]
 
     def repository_path(relative_path: Any, context: str) -> Path | None:

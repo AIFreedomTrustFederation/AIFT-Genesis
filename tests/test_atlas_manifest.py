@@ -83,6 +83,21 @@ class LivingAtlasManifestTests(unittest.TestCase):
                     errors,
                 )
 
+    def test_invalid_nullable_provenance_fields_report_validation_error(self):
+        for field in ("lastUpdated", "sourceCommit"):
+            for value in ({}, [], False, 1):
+                with self.subTest(field=field, value=value):
+                    atlas = copy.deepcopy(self.atlas)
+                    atlas["provenance"][field] = value
+                    errors = []
+
+                    validate_provenance(atlas, self.atlas_path, errors)
+
+                    self.assertIn(
+                        f"provenance {field} must be a string or null",
+                        errors,
+                    )
+
     def test_provenance_paths_cannot_escape_repository(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
