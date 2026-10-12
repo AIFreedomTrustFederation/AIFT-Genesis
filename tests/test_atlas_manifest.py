@@ -266,6 +266,22 @@ class LivingAtlasManifestTests(unittest.TestCase):
                 errors,
             )
 
+    def test_invalid_entity_short_label_reports_validation_error(self):
+        for value in ("", {}, None):
+            with self.subTest(value=value), tempfile.TemporaryDirectory() as temp_dir:
+                atlas_path = Path(temp_dir) / "living-atlas.manifest.json"
+                atlas = copy.deepcopy(self.atlas)
+                entity = atlas["entities"][0]
+                entity["shortLabel"] = value
+                atlas_path.write_text(json.dumps(atlas), encoding="utf-8")
+
+                errors = validate_manifest(atlas_path, self.tree_path)
+
+                self.assertIn(
+                    f"entity {entity['id']} shortLabel must be a non-empty string",
+                    errors,
+                )
+
     def test_unknown_entity_link_type_reports_validation_error(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             atlas_path = Path(temp_dir) / "living-atlas.manifest.json"

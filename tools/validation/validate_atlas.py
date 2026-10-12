@@ -240,6 +240,10 @@ def validate_entities(
         for field in ("label", "description", "status", "visibility", "evidenceStatus"):
             if not isinstance(entity.get(field), str) or not entity.get(field):
                 fail(errors, f"entity {entity_id} {field} must be a non-empty string")
+        if "shortLabel" in entity and (
+            not isinstance(entity.get("shortLabel"), str) or not entity.get("shortLabel")
+        ):
+            fail(errors, f"entity {entity_id} shortLabel must be a non-empty string")
         status = entity.get("status")
         if isinstance(status, str) and status not in {
             "active", "active-foundation", "active-research", "active-product",
