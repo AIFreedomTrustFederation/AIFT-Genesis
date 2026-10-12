@@ -283,8 +283,11 @@ def validate_edges(
             fail(errors, f"edge {edge_id} relation must be a string")
         elif relation not in relations:
             fail(errors, f"edge {edge_id} has invalid relation: {relation}")
-        if edge.get("epistemicClass") not in classes:
-            fail(errors, f"edge {edge_id} has invalid epistemicClass: {edge.get('epistemicClass')}")
+        epistemic_class = edge.get("epistemicClass")
+        if not isinstance(epistemic_class, str):
+            fail(errors, f"edge {edge_id} epistemicClass must be a string")
+        elif epistemic_class not in classes:
+            fail(errors, f"edge {edge_id} has invalid epistemicClass: {epistemic_class}")
         if edge.get("role") not in {"primary", "cross-link"}:
             fail(errors, f"edge {edge_id} role must be primary or cross-link")
         if not isinstance(edge.get("sourceRefs", []), list):
