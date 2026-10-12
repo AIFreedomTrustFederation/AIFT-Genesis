@@ -18,6 +18,7 @@ DEFAULT_TREE = REPO_ROOT / "manifests" / "tree.manifest.json"
 ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SOURCE_ID_RE = re.compile(r"^[a-z0-9]+(?:[.-][a-z0-9]+)*$")
 SEMVER_RE = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+$")
+TOKEN_RE = re.compile(r"^[a-z0-9]+(?:[-_][a-z0-9]+)*$")
 PROHIBITED_TREE_KEYS = {
     "atlas",
     "atlasEntities",
@@ -240,8 +241,13 @@ def validate_entities(
             fail(errors, f"entity {entity_id} has unknown evidenceStatus: {evidence_status}")
         validate_ref_list(entity.get("sourceRefs"), known_refs, f"entity {entity_id}", errors)
         validate_links(entity.get("links"), f"entity {entity_id}", errors)
-        if not isinstance(entity.get("tags"), list):
+        tags = entity.get("tags")
+        if not isinstance(tags, list):
             fail(errors, f"entity {entity_id} tags must be an array")
+        else:
+            for tag in tags:
+                if not isinstance(tag, str) or not TOKEN_RE.match(tag):
+                    fail(errors, f"entity {entity_id} tags must contain lowercase tokens")
         if not isinstance(entity.get("metadata"), dict):
             fail(errors, f"entity {entity_id} metadata must be an object")
     return by_id

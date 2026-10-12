@@ -281,6 +281,22 @@ class LivingAtlasManifestTests(unittest.TestCase):
                 errors,
             )
 
+    def test_invalid_entity_tags_report_validation_error(self):
+        for tag in ("Needs Review", {}, None):
+            with self.subTest(tag=tag), tempfile.TemporaryDirectory() as temp_dir:
+                atlas_path = Path(temp_dir) / "living-atlas.manifest.json"
+                atlas = copy.deepcopy(self.atlas)
+                entity = atlas["entities"][0]
+                entity["tags"] = [tag]
+                atlas_path.write_text(json.dumps(atlas), encoding="utf-8")
+
+                errors = validate_manifest(atlas_path, self.tree_path)
+
+                self.assertIn(
+                    f"entity {entity['id']} tags must contain lowercase tokens",
+                    errors,
+                )
+
     def test_invalid_manifest_status_reports_validation_error(self):
         for status in ("production-ready", {}, None):
             with self.subTest(status=status), tempfile.TemporaryDirectory() as temp_dir:
