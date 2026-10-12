@@ -261,7 +261,9 @@ def validate_tree_mappings(
             fail(errors, f"treeMapping {mapping_id} atlasEntityId must be a string")
         elif atlas_entity_id not in entity_ids:
             fail(errors, f"treeMapping {mapping_id} references unknown atlasEntityId: {atlas_entity_id}")
-        if relation not in mapping_relations:
+        if not isinstance(relation, str):
+            fail(errors, f"treeMapping {mapping_id} relation must be a string")
+        elif relation not in mapping_relations:
             fail(errors, f"treeMapping {mapping_id} has unknown relation: {relation}")
         pair = (str(tree_node_id), str(atlas_entity_id), str(relation))
         if pair in seen_pairs:
