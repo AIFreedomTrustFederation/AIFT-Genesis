@@ -85,6 +85,21 @@ class TreeManifestTests(unittest.TestCase):
                     errors,
                 )
 
+    def test_invalid_nullable_provenance_fields_report_validation_error(self):
+        for field in ("lastGenerated", "sourceCommit"):
+            for value in ({}, [], False, 1):
+                with self.subTest(field=field, value=value):
+                    manifest = copy.deepcopy(self.manifest)
+                    manifest["provenance"][field] = value
+                    errors = []
+
+                    validate_provenance(manifest, self.manifest_path, errors)
+
+                    self.assertIn(
+                        f"provenance {field} must be a string or null",
+                        errors,
+                    )
+
     def test_provenance_paths_cannot_escape_repository(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
