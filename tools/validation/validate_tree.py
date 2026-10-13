@@ -39,6 +39,7 @@ EDGE_REQUIRED = {
     "description",
     "sourceRefs",
 }
+SOURCE_REF_FIELDS = {"id", "label", "uri", "type"}
 PROHIBITED_VISUAL_KEYS = {
     "x",
     "y",
@@ -469,6 +470,12 @@ def validate_manifest(path: Path) -> list[str]:
     source_refs = data.get("sourceRefs", [])
     if isinstance(source_refs, list):
         find_duplicate_ids([ref for ref in source_refs if isinstance(ref, dict)], "sourceRef", errors)
+        for ref in source_refs:
+            if not isinstance(ref, dict):
+                continue
+            ref_id = ref.get("id", "<missing>")
+            for key in sorted(set(ref) - SOURCE_REF_FIELDS):
+                fail(errors, f"sourceRef {ref_id} has unexpected field: {key}")
     else:
         fail(errors, "sourceRefs must be an array")
 

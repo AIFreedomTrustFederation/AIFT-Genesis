@@ -208,6 +208,21 @@ class TreeManifestTests(unittest.TestCase):
 
             self.assertIn("sourceRefs must be an array", errors)
 
+    def test_source_refs_reject_unexpected_fields(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            manifest_path = Path(temp_dir) / "tree.manifest.json"
+            manifest = copy.deepcopy(self.manifest)
+            source_ref = manifest["sourceRefs"][0]
+            source_ref["trustLevel"] = "unverified"
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+            errors = validate_manifest(manifest_path)
+
+            self.assertIn(
+                f"sourceRef {source_ref['id']} has unexpected field: trustLevel",
+                errors,
+            )
+
     def test_non_object_epistemic_classes_report_validation_error(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             manifest_path = Path(temp_dir) / "tree.manifest.json"
