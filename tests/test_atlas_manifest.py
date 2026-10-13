@@ -202,17 +202,22 @@ class LivingAtlasManifestTests(unittest.TestCase):
             )
 
     def test_remote_source_ref_uris_must_use_https(self):
-        atlas = copy.deepcopy(self.atlas)
-        atlas["sourceRefs"][0]["uri"] = "http://example.com/source.md"
-        errors = []
-
-        validate_source_refs(atlas, self.atlas_path, errors)
-
-        self.assertIn(
-            "sourceRef genesis.readme uri must use HTTPS: "
+        for uri in (
             "http://example.com/source.md",
-            errors,
-        )
+            "javascript:alert(1)",
+            "data:text/html,unsafe",
+        ):
+            with self.subTest(uri=uri):
+                atlas = copy.deepcopy(self.atlas)
+                atlas["sourceRefs"][0]["uri"] = uri
+                errors = []
+
+                validate_source_refs(atlas, self.atlas_path, errors)
+
+                self.assertIn(
+                    f"sourceRef genesis.readme uri must use HTTPS: {uri}",
+                    errors,
+                )
 
     def test_unknown_source_ref_type_reports_validation_error(self):
         atlas = copy.deepcopy(self.atlas)

@@ -138,9 +138,10 @@ def validate_source_refs(
         uri = ref.get("uri")
         if not isinstance(uri, str) or not uri:
             continue
-        if uri.startswith("https://"):
-            continue
-        if uri.startswith("http://"):
+        scheme = re.match(r"^[a-z][a-z0-9+.-]*:", uri, re.IGNORECASE)
+        if scheme is not None:
+            if scheme.group(0).lower() == "https:":
+                continue
             fail(errors, f"sourceRef {ref_id} uri must use HTTPS: {uri}")
             continue
         source_path = (repo_root / uri).resolve()
