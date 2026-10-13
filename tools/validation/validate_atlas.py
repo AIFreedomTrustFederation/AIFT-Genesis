@@ -430,6 +430,8 @@ def validate_manifest(atlas_path: Path = DEFAULT_ATLAS, tree_path: Path = DEFAUL
         "provenance",
     }
     require_fields(atlas, required, "manifest", errors)
+    for field in sorted(set(atlas) - required):
+        fail(errors, f"manifest has unexpected field: {field}")
     if atlas.get("kind") != "living-atlas-manifest":
         fail(errors, "kind must be living-atlas-manifest")
     for field in ("schemaVersion", "atlasVersion"):

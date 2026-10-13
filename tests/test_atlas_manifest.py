@@ -28,6 +28,17 @@ class LivingAtlasManifestTests(unittest.TestCase):
     def test_manifest_validates_against_tree_ids(self):
         self.assertEqual(validate_manifest(self.atlas_path, self.tree_path), [])
 
+    def test_manifest_rejects_unexpected_fields(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            atlas_path = Path(temp_dir) / "living-atlas.manifest.json"
+            atlas = copy.deepcopy(self.atlas)
+            atlas["trustLevel"] = "unverified"
+            atlas_path.write_text(json.dumps(atlas), encoding="utf-8")
+
+            errors = validate_manifest(atlas_path, self.tree_path)
+
+            self.assertIn("manifest has unexpected field: trustLevel", errors)
+
     def test_type_definitions_reject_unexpected_fields(self):
         for key, label in (
             ("entityTypes", "entityTypes"),
