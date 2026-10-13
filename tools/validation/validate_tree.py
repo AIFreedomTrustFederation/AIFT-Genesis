@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from collections import defaultdict, deque
 from pathlib import Path
@@ -489,6 +490,17 @@ def validate_manifest(path: Path) -> list[str]:
             ref_type = ref.get("type")
             if isinstance(ref_type, str) and ref_type not in SOURCE_REF_TYPES:
                 fail(errors, f"sourceRef {ref_id} has unknown type: {ref_type}")
+            uri = ref.get("uri")
+            if (
+                isinstance(uri, str)
+                and uri
+                and re.match(r"^[a-z][a-z0-9+.-]*:", uri, re.IGNORECASE) is None
+            ):
+                source_path = (REPO_ROOT / uri).resolve()
+                try:
+                    source_path.relative_to(REPO_ROOT)
+                except ValueError:
+                    fail(errors, f"sourceRef {ref_id} uri escapes repository: {uri}")
     else:
         fail(errors, "sourceRefs must be an array")
 

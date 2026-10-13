@@ -271,6 +271,21 @@ class TreeManifestTests(unittest.TestCase):
                             errors,
                         )
 
+    def test_local_source_ref_uris_cannot_escape_repository(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            manifest_path = Path(temp_dir) / "tree.manifest.json"
+            manifest = copy.deepcopy(self.manifest)
+            source_ref = manifest["sourceRefs"][0]
+            source_ref["uri"] = "../outside.md"
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+            errors = validate_manifest(manifest_path)
+
+            self.assertIn(
+                f"sourceRef {source_ref['id']} uri escapes repository: ../outside.md",
+                errors,
+            )
+
     def test_non_object_epistemic_classes_report_validation_error(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             manifest_path = Path(temp_dir) / "tree.manifest.json"
