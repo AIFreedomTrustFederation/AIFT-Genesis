@@ -501,6 +501,9 @@ def validate_manifest(path: Path) -> list[str]:
                     source_path.relative_to(REPO_ROOT)
                 except ValueError:
                     fail(errors, f"sourceRef {ref_id} uri escapes repository: {uri}")
+                    continue
+                if not source_path.is_file():
+                    fail(errors, f"sourceRef {ref_id} uri does not exist: {uri}")
     else:
         fail(errors, "sourceRefs must be an array")
 
