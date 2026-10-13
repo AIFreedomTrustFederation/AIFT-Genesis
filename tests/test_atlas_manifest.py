@@ -231,6 +231,21 @@ class LivingAtlasManifestTests(unittest.TestCase):
 
             self.assertIn("entity id must be a string", errors)
 
+    def test_entities_reject_unexpected_fields(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            atlas_path = Path(temp_dir) / "living-atlas.manifest.json"
+            atlas = copy.deepcopy(self.atlas)
+            entity = atlas["entities"][0]
+            entity["trustLevel"] = "unverified"
+            atlas_path.write_text(json.dumps(atlas), encoding="utf-8")
+
+            errors = validate_manifest(atlas_path, self.tree_path)
+
+            self.assertIn(
+                f"entity {entity['id']} has unexpected field: trustLevel",
+                errors,
+            )
+
     def test_non_string_entity_type_reports_validation_error(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             atlas_path = Path(temp_dir) / "living-atlas.manifest.json"

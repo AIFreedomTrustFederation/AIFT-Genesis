@@ -241,6 +241,8 @@ def validate_entities(
         validate_id(entity_id, f"entity {entity_id} id", errors)
         by_id[str(entity_id)] = entity
         require_fields(entity, required, f"entity {entity_id}", errors)
+        for field in sorted(set(entity) - required - {"shortLabel"}):
+            fail(errors, f"entity {entity_id} has unexpected field: {field}")
         entity_type = entity.get("type")
         if not isinstance(entity_type, str):
             fail(errors, f"entity {entity_id} type must be a string")
