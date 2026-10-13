@@ -184,6 +184,24 @@ class LivingAtlasManifestTests(unittest.TestCase):
 
         self.assertIn("provenance sourceDocuments must be an array", errors)
 
+    def test_local_provenance_source_documents_must_be_files(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo_root = Path(temp_dir) / "repo"
+            atlas_path = repo_root / "manifests" / "living-atlas.manifest.json"
+            atlas_path.parent.mkdir(parents=True)
+            (repo_root / "docs").mkdir()
+
+            atlas = copy.deepcopy(self.atlas)
+            atlas["provenance"]["sourceDocuments"] = ["docs"]
+            errors = []
+
+            validate_provenance(atlas, atlas_path, errors)
+
+            self.assertIn(
+                "provenance sourceDocument must be a file: docs",
+                errors,
+            )
+
     def test_local_source_ref_uris_cannot_escape_repository(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
