@@ -192,8 +192,10 @@ def validate_links(links: Any, context: str, errors: list[str]) -> None:
         }:
             fail(errors, f"{link_context} has unknown type: {link_type}")
         uri = link.get("uri")
-        if isinstance(uri, str) and uri.startswith("http://"):
-            fail(errors, f"{link_context} uri must use HTTPS: {uri}")
+        if isinstance(uri, str):
+            scheme = re.match(r"^[a-z][a-z0-9+.-]*:", uri, re.IGNORECASE)
+            if scheme is not None and scheme.group(0).lower() != "https:":
+                fail(errors, f"{link_context} uri must use HTTPS: {uri}")
 
 
 def validate_boundaries(boundaries: Any, errors: list[str]) -> None:

@@ -424,20 +424,24 @@ class LivingAtlasManifestTests(unittest.TestCase):
             )
 
     def test_entity_link_uris_must_use_https(self):
-        with tempfile.TemporaryDirectory() as temp_dir:
-            atlas_path = Path(temp_dir) / "living-atlas.manifest.json"
-            atlas = copy.deepcopy(self.atlas)
-            entity = atlas["entities"][0]
-            entity["links"][0]["uri"] = "http://example.com/evidence"
-            atlas_path.write_text(json.dumps(atlas), encoding="utf-8")
+        for uri in (
+            "http://example.com/evidence",
+            "javascript:alert(1)",
+            "data:text/html,unsafe",
+        ):
+            with self.subTest(uri=uri), tempfile.TemporaryDirectory() as temp_dir:
+                atlas_path = Path(temp_dir) / "living-atlas.manifest.json"
+                atlas = copy.deepcopy(self.atlas)
+                entity = atlas["entities"][0]
+                entity["links"][0]["uri"] = uri
+                atlas_path.write_text(json.dumps(atlas), encoding="utf-8")
 
-            errors = validate_manifest(atlas_path, self.tree_path)
+                errors = validate_manifest(atlas_path, self.tree_path)
 
-            self.assertIn(
-                f"entity {entity['id']} link 0 uri must use HTTPS: "
-                "http://example.com/evidence",
-                errors,
-            )
+                self.assertIn(
+                    f"entity {entity['id']} link 0 uri must use HTTPS: {uri}",
+                    errors,
+                )
 
     def test_invalid_entity_tags_report_validation_error(self):
         for tag in ("Needs Review", {}, None):
