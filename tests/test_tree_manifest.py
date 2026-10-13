@@ -253,6 +253,24 @@ class TreeManifestTests(unittest.TestCase):
                 errors,
             )
 
+    def test_source_ref_fields_require_non_empty_strings(self):
+        for field in ("label", "uri", "type"):
+            for value in ("", {}):
+                with self.subTest(field=field, value=value):
+                    with tempfile.TemporaryDirectory() as temp_dir:
+                        manifest_path = Path(temp_dir) / "tree.manifest.json"
+                        manifest = copy.deepcopy(self.manifest)
+                        source_ref = manifest["sourceRefs"][0]
+                        source_ref[field] = value
+                        manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+                        errors = validate_manifest(manifest_path)
+
+                        self.assertIn(
+                            f"sourceRef {source_ref['id']} {field} must be a non-empty string",
+                            errors,
+                        )
+
     def test_non_object_epistemic_classes_report_validation_error(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             manifest_path = Path(temp_dir) / "tree.manifest.json"

@@ -483,6 +483,9 @@ def validate_manifest(path: Path) -> list[str]:
                 fail(errors, f"sourceRef {ref_id} missing required field: {key}")
             for key in sorted(set(ref) - SOURCE_REF_REQUIRED):
                 fail(errors, f"sourceRef {ref_id} has unexpected field: {key}")
+            for key in ("label", "uri", "type"):
+                if not isinstance(ref.get(key), str) or not ref.get(key):
+                    fail(errors, f"sourceRef {ref_id} {key} must be a non-empty string")
             ref_type = ref.get("type")
             if isinstance(ref_type, str) and ref_type not in SOURCE_REF_TYPES:
                 fail(errors, f"sourceRef {ref_id} has unknown type: {ref_type}")
