@@ -325,6 +325,8 @@ def validate_tree_mappings(
         mapping_id = mapping.get("id", "<missing>")
         validate_id(mapping_id, f"treeMapping {mapping_id} id", errors)
         require_fields(mapping, required, f"treeMapping {mapping_id}", errors)
+        for field in sorted(set(mapping) - required):
+            fail(errors, f"treeMapping {mapping_id} has unexpected field: {field}")
         tree_node_id = mapping.get("treeNodeId")
         atlas_entity_id = mapping.get("atlasEntityId")
         relation = mapping.get("relation")
