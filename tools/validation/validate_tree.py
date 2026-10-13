@@ -284,6 +284,8 @@ def validate_edges(
         missing = EDGE_REQUIRED - set(edge.keys())
         for key in sorted(missing):
             fail(errors, f"edge {edge_id} missing required field: {key}")
+        for key in sorted(set(edge) - EDGE_REQUIRED):
+            fail(errors, f"edge {edge_id} has unexpected field: {key}")
         source = edge.get("from")
         target = edge.get("to")
         if not isinstance(source, str):
