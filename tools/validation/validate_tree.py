@@ -407,6 +407,8 @@ def validate_provenance(data: dict[str, Any], manifest_path: Path, errors: list[
         fail(errors, f"provenance missing required field: {key}")
     for key in sorted(set(provenance) - required):
         fail(errors, f"provenance has unexpected field: {key}")
+    if not isinstance(provenance.get("repository"), str) or not provenance.get("repository"):
+        fail(errors, "provenance repository must be a non-empty string")
     repo_root = manifest_path.resolve().parents[1]
 
     def repository_path(relative_path: Any, context: str) -> Path | None:
