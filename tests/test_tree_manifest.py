@@ -52,6 +52,21 @@ class TreeManifestTests(unittest.TestCase):
         }
         self.assertTrue(expected.issubset(node_ids))
 
+    def test_nodes_reject_unexpected_fields(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            manifest_path = Path(temp_dir) / "tree.manifest.json"
+            manifest = copy.deepcopy(self.manifest)
+            node = manifest["nodes"][0]
+            node["trustLevel"] = "unverified"
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+            errors = validate_manifest(manifest_path)
+
+            self.assertIn(
+                f"node {node['id']} has unexpected field: trustLevel",
+                errors,
+            )
+
     def test_aetherion_remains_aspirational(self):
         aetherion = next(node for node in self.manifest["nodes"] if node["id"] == "aetherion")
         self.assertEqual(aetherion["epistemicClass"], "aspirational")

@@ -28,6 +28,7 @@ NODE_REQUIRED = {
     "metadata",
     "presentationRole",
 }
+NODE_ALLOWED = NODE_REQUIRED | {"era", "timeRange", "parentHints", "symbol", "canonicalUri"}
 EDGE_REQUIRED = {
     "id",
     "from",
@@ -201,6 +202,8 @@ def validate_nodes(data: dict[str, Any], errors: list[str]) -> dict[str, dict[st
         missing = NODE_REQUIRED - set(node.keys())
         for key in sorted(missing):
             fail(errors, f"node {node_id} missing required field: {key}")
+        for key in sorted(set(node) - NODE_ALLOWED):
+            fail(errors, f"node {node_id} has unexpected field: {key}")
         epistemic_class = node.get("epistemicClass")
         if not isinstance(epistemic_class, str):
             fail(errors, f"node {node_id} epistemicClass must be a string")
