@@ -393,9 +393,20 @@ def validate_provenance(data: dict[str, Any], manifest_path: Path, errors: list[
     if not isinstance(provenance, dict):
         fail(errors, "provenance must be an object")
         return
-    for key in ("repository", "sourceDocuments", "schema", "generator", "validator", "generatedArtifacts"):
-        if key not in provenance:
-            fail(errors, f"provenance missing required field: {key}")
+    required = {
+        "repository",
+        "sourceDocuments",
+        "schema",
+        "generator",
+        "validator",
+        "generatedArtifacts",
+        "lastGenerated",
+        "sourceCommit",
+    }
+    for key in sorted(required - set(provenance)):
+        fail(errors, f"provenance missing required field: {key}")
+    for key in sorted(set(provenance) - required):
+        fail(errors, f"provenance has unexpected field: {key}")
     repo_root = manifest_path.resolve().parents[1]
 
     def repository_path(relative_path: Any, context: str) -> Path | None:

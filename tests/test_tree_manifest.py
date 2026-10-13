@@ -62,6 +62,15 @@ class TreeManifestTests(unittest.TestCase):
             errors,
         )
 
+    def test_provenance_rejects_unexpected_fields(self):
+        manifest = copy.deepcopy(self.manifest)
+        manifest["provenance"]["trustLevel"] = "unverified"
+        errors = []
+
+        validate_provenance(manifest, self.manifest_path, errors)
+
+        self.assertIn("provenance has unexpected field: trustLevel", errors)
+
     def test_provenance_paths_cannot_escape_repository(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
