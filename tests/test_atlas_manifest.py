@@ -188,6 +188,19 @@ class LivingAtlasManifestTests(unittest.TestCase):
             errors,
         )
 
+    def test_unexpected_source_ref_field_reports_validation_error(self):
+        atlas = copy.deepcopy(self.atlas)
+        source_ref = atlas["sourceRefs"][0]
+        source_ref["trustLevel"] = "verified"
+        errors = []
+
+        validate_source_refs(atlas, self.atlas_path, errors)
+
+        self.assertIn(
+            f"sourceRef {source_ref['id']} has unexpected field: trustLevel",
+            errors,
+        )
+
     def test_non_string_entity_id_reports_validation_error(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             atlas_path = Path(temp_dir) / "living-atlas.manifest.json"

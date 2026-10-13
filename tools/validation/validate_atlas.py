@@ -119,7 +119,10 @@ def validate_source_refs(
         ref_id = ref.get("id")
         validate_source_id(ref_id, f"sourceRef {ref_id} id", errors)
         known.add(str(ref_id))
-        require_fields(ref, {"id", "label", "uri", "type"}, f"sourceRef {ref_id}", errors)
+        fields = {"id", "label", "uri", "type"}
+        require_fields(ref, fields, f"sourceRef {ref_id}", errors)
+        for field in sorted(set(ref) - fields):
+            fail(errors, f"sourceRef {ref_id} has unexpected field: {field}")
         for field in ("label", "uri", "type"):
             if not isinstance(ref.get(field), str) or not ref.get(field):
                 fail(errors, f"sourceRef {ref_id} {field} must be a non-empty string")
