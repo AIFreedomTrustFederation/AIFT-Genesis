@@ -339,6 +339,21 @@ class LivingAtlasManifestTests(unittest.TestCase):
                 errors,
             )
 
+    def test_entity_links_reject_unexpected_fields(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            atlas_path = Path(temp_dir) / "living-atlas.manifest.json"
+            atlas = copy.deepcopy(self.atlas)
+            entity = atlas["entities"][0]
+            entity["links"][0]["trustLevel"] = "unverified"
+            atlas_path.write_text(json.dumps(atlas), encoding="utf-8")
+
+            errors = validate_manifest(atlas_path, self.tree_path)
+
+            self.assertIn(
+                f"entity {entity['id']} link 0 has unexpected field: trustLevel",
+                errors,
+            )
+
     def test_entity_link_uris_must_use_https(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             atlas_path = Path(temp_dir) / "living-atlas.manifest.json"

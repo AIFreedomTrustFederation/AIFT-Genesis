@@ -176,7 +176,10 @@ def validate_links(links: Any, context: str, errors: list[str]) -> None:
         if not isinstance(link, dict):
             fail(errors, f"{link_context} must be an object")
             continue
-        require_fields(link, {"label", "uri", "type"}, link_context, errors)
+        fields = {"label", "uri", "type"}
+        require_fields(link, fields, link_context, errors)
+        for field in sorted(set(link) - fields):
+            fail(errors, f"{link_context} has unexpected field: {field}")
         for field in ("label", "uri", "type"):
             if not isinstance(link.get(field), str) or not link.get(field):
                 fail(errors, f"{link_context} {field} must be a non-empty string")
