@@ -401,9 +401,10 @@ def validate_provenance(data: dict[str, Any], atlas_path: Path, errors: list[str
             if not isinstance(source, str) or not source:
                 fail(errors, "provenance sourceDocuments must contain non-empty strings")
                 continue
-            if source.startswith("https://"):
-                continue
-            if source.startswith("http://"):
+            scheme = re.match(r"^[a-z][a-z0-9+.-]*:", source, re.IGNORECASE)
+            if scheme is not None:
+                if scheme.group(0).lower() == "https:":
+                    continue
                 fail(errors, f"provenance sourceDocument must use HTTPS: {source}")
                 continue
             source_path = repository_path(source, "sourceDocument")

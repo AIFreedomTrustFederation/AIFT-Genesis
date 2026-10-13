@@ -158,19 +158,22 @@ class LivingAtlasManifestTests(unittest.TestCase):
             )
 
     def test_remote_provenance_source_documents_must_use_https(self):
-        atlas = copy.deepcopy(self.atlas)
-        atlas["provenance"]["sourceDocuments"] = [
+        for source in (
             "http://example.com/source.md",
-        ]
-        errors = []
+            "javascript:alert(1)",
+            "data:text/html,unsafe",
+        ):
+            with self.subTest(source=source):
+                atlas = copy.deepcopy(self.atlas)
+                atlas["provenance"]["sourceDocuments"] = [source]
+                errors = []
 
-        validate_provenance(atlas, self.atlas_path, errors)
+                validate_provenance(atlas, self.atlas_path, errors)
 
-        self.assertIn(
-            "provenance sourceDocument must use HTTPS: "
-            "http://example.com/source.md",
-            errors,
-        )
+                self.assertIn(
+                    f"provenance sourceDocument must use HTTPS: {source}",
+                    errors,
+                )
 
     def test_non_array_provenance_source_documents_report_validation_error(self):
         atlas = copy.deepcopy(self.atlas)
