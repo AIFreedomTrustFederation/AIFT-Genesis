@@ -416,8 +416,11 @@ def validate_provenance(data: dict[str, Any], manifest_path: Path, errors: list[
     else:
         for source in source_documents:
             source_path = repository_path(source, "sourceDocument")
-            if source_path is not None and not source_path.exists():
-                fail(errors, f"provenance sourceDocument does not exist: {source}")
+            if source_path is not None:
+                if not source_path.exists():
+                    fail(errors, f"provenance sourceDocument does not exist: {source}")
+                elif not source_path.is_file():
+                    fail(errors, f"provenance sourceDocument must be a file: {source}")
     for field in ("schema", "generator", "validator"):
         relative_path = provenance.get(field)
         resolved_path = repository_path(relative_path, field)

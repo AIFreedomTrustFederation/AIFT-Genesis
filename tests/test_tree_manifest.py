@@ -91,6 +91,24 @@ class TreeManifestTests(unittest.TestCase):
 
         self.assertIn("provenance sourceDocuments must be an array", errors)
 
+    def test_provenance_source_documents_must_be_files(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo_root = Path(temp_dir) / "repo"
+            manifest_path = repo_root / "manifests" / "tree.manifest.json"
+            manifest_path.parent.mkdir(parents=True)
+            (repo_root / "docs").mkdir()
+
+            manifest = copy.deepcopy(self.manifest)
+            manifest["provenance"]["sourceDocuments"] = ["docs"]
+            errors = []
+
+            validate_provenance(manifest, manifest_path, errors)
+
+            self.assertIn(
+                "provenance sourceDocument must be a file: docs",
+                errors,
+            )
+
     def test_non_array_generated_artifacts_report_validation_error(self):
         manifest = copy.deepcopy(self.manifest)
         manifest["provenance"]["generatedArtifacts"] = None
