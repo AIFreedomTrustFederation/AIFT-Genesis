@@ -22,6 +22,17 @@ class TreeManifestTests(unittest.TestCase):
     def test_manifest_validates(self):
         self.assertEqual(validate_manifest(self.manifest_path), [])
 
+    def test_manifest_rejects_unexpected_fields(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            manifest_path = Path(temp_dir) / "tree.manifest.json"
+            manifest = copy.deepcopy(self.manifest)
+            manifest["trustLevel"] = "unverified"
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+            errors = validate_manifest(manifest_path)
+
+            self.assertIn("manifest has unexpected field: trustLevel", errors)
+
     def test_legacy_parts_are_preserved(self):
         self.assertEqual(
             self.manifest["parts"],

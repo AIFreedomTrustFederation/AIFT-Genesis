@@ -97,9 +97,12 @@ def require_top_level(data: dict[str, Any], errors: list[str]) -> None:
         "views",
         "provenance",
     }
+    allowed = required | {"canonicalDocument", "legacyCompatibility"}
     for key in sorted(required):
         if key not in data:
             fail(errors, f"missing top-level field: {key}")
+    for key in sorted(set(data) - allowed):
+        fail(errors, f"manifest has unexpected field: {key}")
     if data.get("kind") != "tree-manifest":
         fail(errors, "kind must be tree-manifest")
     if data.get("parts") != LEGACY_PARTS:
