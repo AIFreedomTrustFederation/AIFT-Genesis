@@ -102,6 +102,15 @@ class LivingAtlasManifestTests(unittest.TestCase):
                     errors,
                 )
 
+    def test_provenance_rejects_unexpected_fields(self):
+        atlas = copy.deepcopy(self.atlas)
+        atlas["provenance"]["trustLevel"] = "unverified"
+        errors = []
+
+        validate_provenance(atlas, self.atlas_path, errors)
+
+        self.assertIn("provenance has unexpected field: trustLevel", errors)
+
     def test_invalid_nullable_provenance_fields_report_validation_error(self):
         for field in ("lastUpdated", "sourceCommit"):
             for value in ({}, [], False, 1):

@@ -364,6 +364,8 @@ def validate_provenance(data: dict[str, Any], atlas_path: Path, errors: list[str
         return
     required = {"repository", "schema", "validator", "sourceDocuments", "lastUpdated", "sourceCommit"}
     require_fields(provenance, required, "provenance", errors)
+    for field in sorted(set(provenance) - required):
+        fail(errors, f"provenance has unexpected field: {field}")
     if not isinstance(provenance.get("repository"), str) or not provenance.get("repository"):
         fail(errors, "provenance repository must be a non-empty string")
     for field in ("lastUpdated", "sourceCommit"):
