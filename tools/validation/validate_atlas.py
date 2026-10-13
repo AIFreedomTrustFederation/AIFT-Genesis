@@ -94,7 +94,10 @@ def validate_type_definitions(
         if not isinstance(item, dict):
             fail(errors, f"{label} {item_id} must be an object")
             continue
-        require_fields(item, {"label", "definition"}, f"{label} {item_id}", errors)
+        fields = {"label", "definition"}
+        require_fields(item, fields, f"{label} {item_id}", errors)
+        for field in sorted(set(item) - fields):
+            fail(errors, f"{label} {item_id} has unexpected field: {field}")
         for field in ("label", "definition"):
             if not isinstance(item.get(field), str) or not item.get(field):
                 fail(errors, f"{label} {item_id} {field} must be a non-empty string")

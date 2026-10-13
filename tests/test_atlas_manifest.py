@@ -14,6 +14,7 @@ from validate_atlas import (  # noqa: E402
     validate_manifest,
     validate_provenance,
     validate_source_refs,
+    validate_type_definitions,
 )
 
 
@@ -26,6 +27,24 @@ class LivingAtlasManifestTests(unittest.TestCase):
 
     def test_manifest_validates_against_tree_ids(self):
         self.assertEqual(validate_manifest(self.atlas_path, self.tree_path), [])
+
+    def test_type_definitions_reject_unexpected_fields(self):
+        for key, label in (
+            ("entityTypes", "entityTypes"),
+            ("mappingRelations", "mappingRelations"),
+        ):
+            with self.subTest(key=key):
+                definitions = copy.deepcopy(self.atlas[key])
+                item_id = next(iter(definitions))
+                definitions[item_id]["trustLevel"] = "unverified"
+                errors = []
+
+                validate_type_definitions(definitions, label, errors)
+
+                self.assertIn(
+                    f"{label} {item_id} has unexpected field: trustLevel",
+                    errors,
+                )
 
     def test_tree_manifest_does_not_embed_atlas_records(self):
         self.assertFalse(PROHIBITED_TREE_KEYS & set(self.tree.keys()))
