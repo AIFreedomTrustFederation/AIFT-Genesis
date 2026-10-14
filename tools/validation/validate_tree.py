@@ -347,6 +347,8 @@ def validate_primary_projection(
             fail(errors, "rootNodeIds must contain strings")
         else:
             roots.append(root)
+    if len(roots) != len(set(roots)):
+        fail(errors, "rootNodeIds must contain unique values")
     for root in roots:
         if root not in node_ids:
             fail(errors, f"rootNodeIds references missing node: {root}")

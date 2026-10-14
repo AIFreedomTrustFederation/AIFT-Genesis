@@ -481,6 +481,17 @@ class TreeManifestTests(unittest.TestCase):
 
             self.assertIn("rootNodeIds must contain strings", errors)
 
+    def test_root_node_ids_must_contain_unique_values(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            manifest_path = Path(temp_dir) / "tree.manifest.json"
+            manifest = copy.deepcopy(self.manifest)
+            manifest["rootNodeIds"].append(manifest["rootNodeIds"][0])
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+            errors = validate_manifest(manifest_path)
+
+            self.assertIn("rootNodeIds must contain unique values", errors)
+
     def test_non_string_edge_endpoint_reports_validation_error(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             manifest_path = Path(temp_dir) / "tree.manifest.json"
