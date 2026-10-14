@@ -208,6 +208,17 @@ class TreeManifestTests(unittest.TestCase):
 
             self.assertIn("sourceRefs must be an array", errors)
 
+    def test_source_refs_must_contain_objects(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            manifest_path = Path(temp_dir) / "tree.manifest.json"
+            manifest = copy.deepcopy(self.manifest)
+            manifest["sourceRefs"][0] = "genesis.readme"
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+            errors = validate_manifest(manifest_path)
+
+            self.assertIn("sourceRefs must contain objects", errors)
+
     def test_source_refs_reject_unexpected_fields(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             manifest_path = Path(temp_dir) / "tree.manifest.json"

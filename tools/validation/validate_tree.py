@@ -479,6 +479,7 @@ def validate_manifest(path: Path) -> list[str]:
         find_duplicate_ids([ref for ref in source_refs if isinstance(ref, dict)], "sourceRef", errors)
         for ref in source_refs:
             if not isinstance(ref, dict):
+                fail(errors, "sourceRefs must contain objects")
                 continue
             ref_id = ref.get("id", "<missing>")
             if isinstance(ref_id, str) and SOURCE_REF_ID_RE.fullmatch(ref_id) is None:
