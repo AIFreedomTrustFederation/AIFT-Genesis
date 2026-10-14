@@ -127,6 +127,8 @@ def require_top_level(data: dict[str, Any], errors: list[str]) -> None:
         fail(errors, "domains must be a non-empty array")
     elif not all(isinstance(domain, str) for domain in domains):
         fail(errors, "domains must contain strings")
+    elif len(domains) != len(set(domains)):
+        fail(errors, "domains must contain unique values")
     edge_relations = data.get("edgeRelations")
     if not isinstance(edge_relations, list) or not edge_relations:
         fail(errors, "edgeRelations must be a non-empty array")
