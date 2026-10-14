@@ -395,6 +395,19 @@ class TreeManifestTests(unittest.TestCase):
 
             self.assertIn("domains must contain unique values", errors)
 
+    def test_domains_must_use_canonical_tokens(self):
+        for domain in ("ArtificialIntelligence", "artificial intelligence", "-ai"):
+            with self.subTest(domain=domain):
+                with tempfile.TemporaryDirectory() as temp_dir:
+                    manifest_path = Path(temp_dir) / "tree.manifest.json"
+                    manifest = copy.deepcopy(self.manifest)
+                    manifest["domains"][0] = domain
+                    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+                    errors = validate_manifest(manifest_path)
+
+                    self.assertIn("domains must contain lowercase tokens", errors)
+
     def test_non_array_edge_relations_report_validation_error(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             manifest_path = Path(temp_dir) / "tree.manifest.json"

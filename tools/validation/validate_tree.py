@@ -42,6 +42,7 @@ EDGE_REQUIRED = {
 }
 SOURCE_REF_REQUIRED = {"id", "label", "uri", "type"}
 SOURCE_REF_ID_RE = re.compile(r"^[a-z0-9]+(?:[.-][a-z0-9]+)*$")
+TOKEN_RE = re.compile(r"^[a-z0-9]+(?:[-_][a-z0-9]+)*$")
 SOURCE_REF_TYPES = {
     "external-reference",
     "generated-artifact",
@@ -129,6 +130,8 @@ def require_top_level(data: dict[str, Any], errors: list[str]) -> None:
         fail(errors, "domains must contain strings")
     elif len(domains) != len(set(domains)):
         fail(errors, "domains must contain unique values")
+    elif not all(TOKEN_RE.fullmatch(domain) for domain in domains):
+        fail(errors, "domains must contain lowercase tokens")
     edge_relations = data.get("edgeRelations")
     if not isinstance(edge_relations, list) or not edge_relations:
         fail(errors, "edgeRelations must be a non-empty array")
