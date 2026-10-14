@@ -134,6 +134,8 @@ def require_top_level(data: dict[str, Any], errors: list[str]) -> None:
         fail(errors, "edgeRelations must be a non-empty array")
     elif not all(isinstance(relation, str) for relation in edge_relations):
         fail(errors, "edgeRelations must contain strings")
+    elif len(edge_relations) != len(set(edge_relations)):
+        fail(errors, "edgeRelations must contain unique values")
 
 
 def find_duplicate_ids(items: list[Any], label: str, errors: list[str]) -> None:
