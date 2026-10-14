@@ -142,6 +142,8 @@ def require_top_level(data: dict[str, Any], errors: list[str]) -> None:
         fail(errors, "edgeRelations must contain unique values")
     elif not all(TOKEN_RE.fullmatch(relation) for relation in edge_relations):
         fail(errors, "edgeRelations must contain lowercase tokens")
+    if not isinstance(data.get("primaryProjection"), dict):
+        fail(errors, "primaryProjection must be an object")
 
 
 def find_duplicate_ids(items: list[Any], label: str, errors: list[str]) -> None:

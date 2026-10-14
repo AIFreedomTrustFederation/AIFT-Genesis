@@ -33,6 +33,18 @@ class TreeManifestTests(unittest.TestCase):
 
             self.assertIn("manifest has unexpected field: trustLevel", errors)
 
+    def test_primary_projection_must_be_an_object(self):
+        for invalid_value in ([], "primary", None):
+            with self.subTest(invalid_value=invalid_value), tempfile.TemporaryDirectory() as temp_dir:
+                manifest_path = Path(temp_dir) / "tree.manifest.json"
+                manifest = copy.deepcopy(self.manifest)
+                manifest["primaryProjection"] = invalid_value
+                manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+                errors = validate_manifest(manifest_path)
+
+                self.assertIn("primaryProjection must be an object", errors)
+
     def test_legacy_parts_are_preserved(self):
         self.assertEqual(
             self.manifest["parts"],
