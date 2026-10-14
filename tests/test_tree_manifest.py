@@ -324,6 +324,22 @@ class TreeManifestTests(unittest.TestCase):
                         errors,
                     )
 
+    def test_source_ref_ids_use_canonical_pattern(self):
+        for ref_id in ("Genesis.Readme", "genesis/readme", ".genesis"):
+            with self.subTest(ref_id=ref_id):
+                with tempfile.TemporaryDirectory() as temp_dir:
+                    manifest_path = Path(temp_dir) / "tree.manifest.json"
+                    manifest = copy.deepcopy(self.manifest)
+                    manifest["sourceRefs"][0]["id"] = ref_id
+                    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+                    errors = validate_manifest(manifest_path)
+
+                    self.assertIn(
+                        f"sourceRef {ref_id} id must be a lowercase source id",
+                        errors,
+                    )
+
     def test_non_object_epistemic_classes_report_validation_error(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             manifest_path = Path(temp_dir) / "tree.manifest.json"

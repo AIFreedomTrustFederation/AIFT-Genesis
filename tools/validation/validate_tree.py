@@ -41,6 +41,7 @@ EDGE_REQUIRED = {
     "sourceRefs",
 }
 SOURCE_REF_REQUIRED = {"id", "label", "uri", "type"}
+SOURCE_REF_ID_RE = re.compile(r"^[a-z0-9]+(?:[.-][a-z0-9]+)*$")
 SOURCE_REF_TYPES = {
     "external-reference",
     "generated-artifact",
@@ -480,6 +481,8 @@ def validate_manifest(path: Path) -> list[str]:
             if not isinstance(ref, dict):
                 continue
             ref_id = ref.get("id", "<missing>")
+            if isinstance(ref_id, str) and SOURCE_REF_ID_RE.fullmatch(ref_id) is None:
+                fail(errors, f"sourceRef {ref_id} id must be a lowercase source id")
             for key in sorted(SOURCE_REF_REQUIRED - set(ref)):
                 fail(errors, f"sourceRef {ref_id} missing required field: {key}")
             for key in sorted(set(ref) - SOURCE_REF_REQUIRED):
