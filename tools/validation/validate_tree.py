@@ -491,11 +491,12 @@ def validate_manifest(path: Path) -> list[str]:
             if isinstance(ref_type, str) and ref_type not in SOURCE_REF_TYPES:
                 fail(errors, f"sourceRef {ref_id} has unknown type: {ref_type}")
             uri = ref.get("uri")
-            if (
-                isinstance(uri, str)
-                and uri
-                and re.match(r"^[a-z][a-z0-9+.-]*:", uri, re.IGNORECASE) is None
-            ):
+            if isinstance(uri, str) and uri:
+                scheme = re.match(r"^[a-z][a-z0-9+.-]*:", uri, re.IGNORECASE)
+                if scheme is not None:
+                    if scheme.group(0).lower() != "https:":
+                        fail(errors, f"sourceRef {ref_id} uri must use HTTPS: {uri}")
+                    continue
                 source_path = (REPO_ROOT / uri).resolve()
                 try:
                     source_path.relative_to(REPO_ROOT)

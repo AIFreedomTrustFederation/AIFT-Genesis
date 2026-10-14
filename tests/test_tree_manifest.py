@@ -303,6 +303,27 @@ class TreeManifestTests(unittest.TestCase):
                         errors,
                     )
 
+    def test_remote_source_ref_uris_must_use_https(self):
+        for uri in (
+            "http://example.com/source.md",
+            "javascript:alert(1)",
+            "data:text/html,unsafe",
+        ):
+            with self.subTest(uri=uri):
+                with tempfile.TemporaryDirectory() as temp_dir:
+                    manifest_path = Path(temp_dir) / "tree.manifest.json"
+                    manifest = copy.deepcopy(self.manifest)
+                    source_ref = manifest["sourceRefs"][0]
+                    source_ref["uri"] = uri
+                    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+                    errors = validate_manifest(manifest_path)
+
+                    self.assertIn(
+                        f"sourceRef {source_ref['id']} uri must use HTTPS: {uri}",
+                        errors,
+                    )
+
     def test_non_object_epistemic_classes_report_validation_error(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             manifest_path = Path(temp_dir) / "tree.manifest.json"
