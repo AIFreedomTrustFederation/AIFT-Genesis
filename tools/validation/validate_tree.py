@@ -41,6 +41,7 @@ EDGE_REQUIRED = {
     "sourceRefs",
 }
 SOURCE_REF_REQUIRED = {"id", "label", "uri", "type"}
+ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SOURCE_REF_ID_RE = re.compile(r"^[a-z0-9]+(?:[.-][a-z0-9]+)*$")
 TOKEN_RE = re.compile(r"^[a-z0-9]+(?:[-_][a-z0-9]+)*$")
 SOURCE_REF_TYPES = {
@@ -215,6 +216,8 @@ def validate_nodes(data: dict[str, Any], errors: list[str]) -> dict[str, dict[st
             fail(errors, "each node must be an object")
             continue
         node_id = node.get("id", "<missing>")
+        if isinstance(node_id, str) and not ID_RE.fullmatch(node_id):
+            fail(errors, f"node id must be a lowercase hyphenated id: {node_id}")
         by_id[str(node_id)] = node
         missing = NODE_REQUIRED - set(node.keys())
         for key in sorted(missing):
