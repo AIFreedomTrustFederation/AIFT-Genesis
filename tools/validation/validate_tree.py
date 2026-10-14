@@ -357,6 +357,8 @@ def validate_primary_projection(
             fail(errors, "rootNodeIds must contain strings")
         else:
             roots.append(root)
+            if not ID_RE.fullmatch(root):
+                fail(errors, f"rootNodeIds must contain lowercase hyphenated ids: {root}")
     if len(roots) != len(set(roots)):
         fail(errors, "rootNodeIds must contain unique values")
     for root in roots:

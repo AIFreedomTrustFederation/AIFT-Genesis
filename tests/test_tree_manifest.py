@@ -518,6 +518,21 @@ class TreeManifestTests(unittest.TestCase):
 
             self.assertIn("rootNodeIds must contain unique values", errors)
 
+    def test_root_node_ids_use_canonical_pattern(self):
+        for invalid_id in ("Uppercase", "slash/value", "-leading"):
+            with self.subTest(invalid_id=invalid_id), tempfile.TemporaryDirectory() as temp_dir:
+                manifest_path = Path(temp_dir) / "tree.manifest.json"
+                manifest = copy.deepcopy(self.manifest)
+                manifest["rootNodeIds"][0] = invalid_id
+                manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+                errors = validate_manifest(manifest_path)
+
+                self.assertIn(
+                    f"rootNodeIds must contain lowercase hyphenated ids: {invalid_id}",
+                    errors,
+                )
+
     def test_non_string_edge_endpoint_reports_validation_error(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             manifest_path = Path(temp_dir) / "tree.manifest.json"
