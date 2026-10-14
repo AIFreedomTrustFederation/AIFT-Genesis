@@ -441,6 +441,19 @@ class TreeManifestTests(unittest.TestCase):
 
             self.assertIn("edgeRelations must contain unique values", errors)
 
+    def test_edge_relations_must_use_canonical_tokens(self):
+        for relation in ("EmergesFrom", "emerges from", "-emerges"):
+            with self.subTest(relation=relation):
+                with tempfile.TemporaryDirectory() as temp_dir:
+                    manifest_path = Path(temp_dir) / "tree.manifest.json"
+                    manifest = copy.deepcopy(self.manifest)
+                    manifest["edgeRelations"][0] = relation
+                    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+                    errors = validate_manifest(manifest_path)
+
+                    self.assertIn("edgeRelations must contain lowercase tokens", errors)
+
     def test_non_array_node_tags_report_validation_error(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             manifest_path = Path(temp_dir) / "tree.manifest.json"
