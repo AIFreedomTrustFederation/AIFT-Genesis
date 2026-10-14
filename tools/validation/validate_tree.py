@@ -301,6 +301,8 @@ def validate_edges(
             fail(errors, "each edge must be an object")
             continue
         edge_id = edge.get("id", "<missing>")
+        if isinstance(edge_id, str) and not ID_RE.fullmatch(edge_id):
+            fail(errors, f"edge id must be a lowercase hyphenated id: {edge_id}")
         missing = EDGE_REQUIRED - set(edge.keys())
         for key in sorted(missing):
             fail(errors, f"edge {edge_id} missing required field: {key}")

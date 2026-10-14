@@ -556,6 +556,21 @@ class TreeManifestTests(unittest.TestCase):
                     errors,
                 )
 
+    def test_edge_ids_use_canonical_pattern(self):
+        for invalid_id in ("Uppercase", "slash/value", "-leading"):
+            with self.subTest(invalid_id=invalid_id), tempfile.TemporaryDirectory() as temp_dir:
+                manifest_path = Path(temp_dir) / "tree.manifest.json"
+                manifest = copy.deepcopy(self.manifest)
+                manifest["edges"][0]["id"] = invalid_id
+                manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+                errors = validate_manifest(manifest_path)
+
+                self.assertIn(
+                    f"edge id must be a lowercase hyphenated id: {invalid_id}",
+                    errors,
+                )
+
     def test_non_string_source_ref_id_reports_validation_error(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             manifest_path = Path(temp_dir) / "tree.manifest.json"
