@@ -332,7 +332,7 @@ cmd_trust_init() {
     cd "$target"
     git init >/dev/null
     git add .
-    git commit -m "Initialize trust genome: $trust_name" >/dev/null || true
+    git commit -m "Initialize trust genome: $trust_name" >/dev/null
   )
 
   echo "Trust created: $target"

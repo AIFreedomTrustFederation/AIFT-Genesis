@@ -16,6 +16,8 @@ aift trust init "My Trust Name"
 
 The command copies `templates/trust-seed/` into a new trust folder under `~/AIFT-Trusts/`, replaces generator variables, validates the generated files, initializes Git, and creates the first local commit.
 
+The first commit is required for a successful initialization. Configure Git's author and committer identity before running the command. If Git rejects the commit, the CLI exits nonzero without reporting success; the generated directory is left in place for inspection or manual recovery, and must be moved or removed before retrying the same trust name.
+
 ## Generator Variables
 
 The generator replaces only:
