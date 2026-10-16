@@ -12,7 +12,7 @@
   "commands": {
     "status": "git status --short",
     "pull": "git pull --ff-only",
-    "verify": "git status --short"
+    "verify": "python3 -B -m unittest discover -s tests -v && python3 -B tools/validation/validate_tree.py && python3 -B tools/validation/validate_atlas.py && python3 -B tools/tree/render_tree.py --check"
   },
   "standards": {
     "localFirst": true,

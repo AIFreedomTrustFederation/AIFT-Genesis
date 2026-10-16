@@ -40,11 +40,16 @@ Pull:
 git pull --ff-only
 ```
 
-Verify:
+Verify (run from the repository root with Python 3 and Git installed):
 
 ```bash
-git status --short
+python3 -B -m unittest discover -s tests -v && \
+python3 -B tools/validation/validate_tree.py && \
+python3 -B tools/validation/validate_atlas.py && \
+python3 -B tools/tree/render_tree.py --check
 ```
+
+This checks unit contracts, Tree and Atlas manifests, and deterministic generated Tree artifacts. It does not prove governance semantics, cryptographic identity, external-link health, or deployment readiness.
 
 ## Federation Metadata
 

@@ -8,7 +8,7 @@
 | Role | trust identity, constitution, civilization genome |
 | Workspace | `AIFT/AIFT-Genesis` |
 | Control plane | AIFT workspace / AIFT-OS |
-| Verification | `git status --short` plus schema/template validation appropriate to the changed material |
+| Verification | Python unit tests, Tree/Atlas validators, and deterministic Tree artifact check (see Book III) |
 | Operating standards | local-first, inspectable, sovereign by default, AI behind governed provider interfaces |
 
 AIFT-Genesis is the constitutional and technical genome of the Federation. It defines what a trust seed must be able to inherit—identity, mission, governance, memory, economic relationship, AI boundaries, provenance, and federation connection—without requiring every person or project to live inside one centralized account system.
@@ -74,23 +74,26 @@ Receive → Inspect → Name → Propose → Consent → Act → Verify → Reco
 
 In Genesis, **Receive** begins with a constitutional requirement, identity need, trust pattern, schema need, or new inheritance rule. **Inspect** means reading existing constitutional language and machine-readable definitions before creating another competing source of truth. **Name** determines whether the concept belongs in philosophy, civilization, AI policy, schema, manifest, template, example, or tool specification. **Propose** permits AI to structure and compare constitutional possibilities without silently redefining the covenant. **Consent** protects changes that alter rights, authority, identity, trust relationships, or inherited governance. **Act** updates the correct canonical layer. **Verify** checks internal consistency, schema validity, examples, and the ability of downstream systems to interpret the change. **Record** preserves the constitutional lineage through version control and manifests. **Return** gives downstream repositories a clear inheritance contract rather than a vague statement that they are “aligned.”
 
-The metadata keeps repository-level commands intentionally simple:
+The federation metadata exposes status and pull alongside an executable integrity gate:
 
 ```bash
 git status --short
 git pull --ff-only
-git status --short
+python3 -B -m unittest discover -s tests -v && \
+python3 -B tools/validation/validate_tree.py && \
+python3 -B tools/validation/validate_atlas.py && \
+python3 -B tools/tree/render_tree.py --check
 ```
 
 ### Verification and maturity boundaries
 
-The repository's [`aift.repo.json`](aift.repo.json) declares `git status --short` as its `verify` command. **This only reports working-tree changes; a clean result does not validate schemas, manifests, governance semantics, cryptographic identity, or generated artifacts.** Use validation appropriate to the specific file and record which checks actually ran before describing a change as verified.
+The repository's [`aift.repo.json`](aift.repo.json) now runs the Python unit tests, Tree and Atlas validators, and deterministic Tree artifact check as its `verify` command. Run it from the repository root with Python 3 and Git installed (some tests inspect tracked files). `git status --short` remains a status command, not a verification gate. Passing these checks does not establish legal governance, cryptographic identity, external-link availability, or deployed federation services.
 
 The canonical [`manifests/tree.manifest.json`](manifests/tree.manifest.json) identifies itself as `status: "canonical-draft"` with `modelVersion: "0.1.0"`. Its epistemic classes explicitly distinguish empirical evidence, scientific consensus, active research, interpretation, philosophy, doctrine, engineering, prototypes, architecture, and aspirations. A generated Tree visualization is a projection of that graph, not independent evidence that every depicted relationship is scientifically established or implemented.
 
 The linked [`AIFT Tree Explorer v1`](docs/tree-explorer-v1.md) is marked **next-phase roadmap**. Semantic zoom, Story Mode, and live Tree-to-Atlas exploration should not be described as shipped functionality without separate implementation evidence. Similarly, genome and trust-inheritance specifications do not alone establish a deployed identity provider, signature verifier, consent service, or federation network.
 
-Those commands report repository state; they do not replace semantic validation. A schema change must still be validated as a schema. A constitutional change must still be checked for contradiction. A template must still instantiate coherently. Genesis treats meaning as part of verification.
+These automated checks cover defined contracts but do not replace semantic validation. A schema change must still be validated as a schema. A constitutional change must still be checked for contradiction. A template must still instantiate coherently. Genesis treats meaning as part of verification.
 
 ---
 
