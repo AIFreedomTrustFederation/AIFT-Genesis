@@ -8,6 +8,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from urllib.parse import urlsplit
 from typing import Any
 
 
@@ -171,6 +172,23 @@ def validate_ref_list(
             fail(errors, f"{context} references unknown sourceRef: {ref}")
 
 
+def is_valid_public_https_url(uri: str) -> bool:
+    """Require an absolute HTTPS URL with a usable, unambiguous authority."""
+    if not uri.startswith("https://") or any(
+        character.isspace() or character == "\\" or ord(character) < 32
+        for character in uri
+    ):
+        return False
+    try:
+        parsed = urlsplit(uri)
+        if not parsed.hostname or parsed.username is not None or parsed.password is not None:
+            return False
+        _ = parsed.port  # Reject malformed port numbers.
+    except ValueError:
+        return False
+    return True
+
+
 def validate_links(links: Any, context: str, errors: list[str]) -> None:
     if not isinstance(links, list):
         fail(errors, f"{context} links must be an array")
@@ -193,10 +211,8 @@ def validate_links(links: Any, context: str, errors: list[str]) -> None:
         }:
             fail(errors, f"{link_context} has unknown type: {link_type}")
         uri = link.get("uri")
-        if isinstance(uri, str):
-            scheme = re.match(r"^[a-z][a-z0-9+.-]*:", uri, re.IGNORECASE)
-            if scheme is not None and scheme.group(0).lower() != "https:":
-                fail(errors, f"{link_context} uri must use HTTPS: {uri}")
+        if isinstance(uri, str) and uri and not is_valid_public_https_url(uri):
+            fail(errors, f"{link_context} uri must use an absolute HTTPS URL: {uri}")
 
 
 def validate_boundaries(boundaries: Any, errors: list[str]) -> None:
