@@ -2,7 +2,9 @@
   "name": "Genesis Integrity",
   "on": {
     "push": {
-      "branches": ["main"]
+      "branches": [
+        "main"
+      ]
     },
     "pull_request": {}
   },
@@ -46,6 +48,10 @@
         {
           "name": "Check deterministic Tree artifacts",
           "run": "python tools/tree/render_tree.py --check"
+        },
+        {
+          "name": "Smoke-test Genesis web dashboard",
+          "run": "node --test apps/genesis-web/tests/dashboard-smoke.test.mjs"
         },
         {
           "name": "Verify clean checkout",

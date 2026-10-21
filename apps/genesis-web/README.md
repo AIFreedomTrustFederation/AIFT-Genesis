@@ -31,11 +31,22 @@ Then open:
 http://127.0.0.1:8787
 ```
 
-On Termux, install Node first if needed:
+Requires Node.js 18 or newer. On Termux, install Node first if needed:
 
 ```bash
 pkg install -y nodejs
 ```
+
+## Verify
+
+From the repository root, run the dashboard's dependency-free smoke tests:
+
+```bash
+node --check apps/genesis-web/server.mjs
+node --test apps/genesis-web/tests/dashboard-smoke.test.mjs
+```
+
+These checks cover JavaScript syntax, HTTP startup and trust listing, and safe rendering of trust names. They do not exercise trust creation, all CLI commands, or deployed federation services. The Genesis Integrity workflow also runs this dashboard smoke test; the `aift.repo.json` Python verification command remains focused on Tree and Atlas contracts.
 
 ## Environment
 

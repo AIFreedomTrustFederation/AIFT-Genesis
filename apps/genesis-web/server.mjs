@@ -190,7 +190,26 @@ async function api(path, options) { const r = await fetch(path, options); const 
 async function loadTrusts() {
   const data = await api('/api/trusts');
   const box = document.getElementById('trusts');
-  box.innerHTML = data.trusts.map(t => `<div style="margin:10px 0"><button class="secondary" onclick="selectTrust('${t.slug}')">${t.name}</button><div class="sub">${t.slug}</div></div>`).join('') || '<p class="sub">No trusts found yet.</p>';
+  box.replaceChildren();
+  if (!data.trusts.length) {
+    const empty = document.createElement('p');
+    empty.className = 'sub';
+    empty.textContent = 'No trusts found yet.';
+    box.append(empty);
+  }
+  for (const trust of data.trusts) {
+    const row = document.createElement('div');
+    row.style.margin = '10px 0';
+    const button = document.createElement('button');
+    button.className = 'secondary';
+    button.textContent = trust.name;
+    button.addEventListener('click', () => selectTrust(trust.slug));
+    const slug = document.createElement('div');
+    slug.className = 'sub';
+    slug.textContent = trust.slug;
+    row.append(button, slug);
+    box.append(row);
+  }
   if (!selected && data.trusts[0]) selected = data.trusts[0].slug;
   out(data);
   return data;
