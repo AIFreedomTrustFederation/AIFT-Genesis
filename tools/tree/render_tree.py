@@ -609,8 +609,18 @@ def render_html(manifest: dict[str, Any]) -> str:
       }}
     }}
 
+    function escapeHtml(value) {{
+      return String(value ?? '').replace(/[&<>"']/g, (char) => ({{
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+      }})[char]);
+    }}
+
     function formatValue(value) {{
-      return String(value || '').replace(/[-_]/g, ' ');
+      return escapeHtml(String(value ?? '').replace(/[-_]/g, ' '));
     }}
 
     function renderDetails(nodeId) {{
@@ -619,7 +629,7 @@ def render_html(manifest: dict[str, Any]) -> str:
       document.getElementById('detail-title').textContent = node.label;
       document.getElementById('detail-description').textContent = node.description;
       document.getElementById('detail-meta').innerHTML = `
-        <dt>Canonical ID</dt><dd><code>${{node.id}}</code></dd>
+        <dt>Canonical ID</dt><dd><code>${{escapeHtml(node.id)}}</code></dd>
         <dt>Domain</dt><dd>${{formatValue(node.domain)}}</dd>
         <dt>Epistemic</dt><dd><span class="badge">${{formatValue(node.epistemicClass)}}</span></dd>
         <dt>Status</dt><dd>${{formatValue(node.status)}}</dd>
@@ -629,12 +639,12 @@ def render_html(manifest: dict[str, Any]) -> str:
         const direction = edge.from === node.id ? 'to' : 'from';
         const otherId = edge.from === node.id ? edge.to : edge.from;
         const other = nodes.get(otherId);
-        return `<li><strong>${{formatValue(edge.relation)}}</strong> ${{direction}} <button type="button" data-select-node="${{otherId}}">${{other ? other.label : otherId}}</button> <span class="small">(${{edge.role}})</span></li>`;
+        return `<li><strong>${{formatValue(edge.relation)}}</strong> ${{direction}} <button type="button" data-select-node="${{escapeHtml(otherId)}}">${{escapeHtml(other ? other.label : otherId)}}</button> <span class="small">(${{escapeHtml(edge.role)}})</span></li>`;
       }}).join('');
       document.getElementById('detail-relationships').innerHTML = `<h3>Relationships</h3><ul>${{relationItems || '<li>No relationships found.</li>'}}</ul>`;
       const sourceItems = (node.sourceRefs || []).map((refId) => {{
         const source = sources[refId];
-        return source ? `<li><code>${{refId}}</code>: ${{source.label}} <span class="small">${{source.uri}}</span></li>` : `<li><code>${{refId}}</code></li>`;
+        return source ? `<li><code>${{escapeHtml(refId)}}</code>: ${{escapeHtml(source.label)}} <span class="small">${{escapeHtml(source.uri)}}</span></li>` : `<li><code>${{escapeHtml(refId)}}</code></li>`;
       }}).join('');
       document.getElementById('detail-sources').innerHTML = `<h3>Sources</h3><ul>${{sourceItems || '<li>No repository source reference declared for this node.</li>'}}</ul>`;
       document.querySelectorAll('[data-select-node]').forEach((button) => {{

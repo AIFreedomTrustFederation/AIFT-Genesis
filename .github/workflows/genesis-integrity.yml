@@ -54,6 +54,10 @@
           "run": "node --test apps/genesis-web/tests/dashboard-smoke.test.mjs"
         },
         {
+          "name": "Smoke-test generated Tree explorer details",
+          "run": "node --test tests/tree-explorer-security.test.mjs"
+        },
+        {
           "name": "Verify clean checkout",
           "run": "test -z \"$(git status --porcelain)\""
         }
