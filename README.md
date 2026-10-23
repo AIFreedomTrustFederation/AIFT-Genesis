@@ -89,6 +89,20 @@ python3 -B tools/tree/render_tree.py --check
 
 The repository's [`aift.repo.json`](aift.repo.json) now runs the Python unit tests, Tree and Atlas validators, and deterministic Tree artifact check as its `verify` command. Run it from the repository root with Python 3 and Git installed (some tests inspect tracked files). `git status --short` remains a status command, not a verification gate. Passing these checks does not establish legal governance, cryptographic identity, external-link availability, or deployed federation services.
 
+### Trust CLI: local actions and validation limits
+
+The [`bin/aift` CLI](bin/aift) requires Bash, Python 3, and Git. From a Genesis checkout, set `AIFT_HOME` explicitly if the repository is not at the CLI's default `~/AIFT-Genesis` path:
+
+```bash
+export AIFT_HOME="$PWD"
+export AIFT_TRUSTS="${AIFT_TRUSTS:-$HOME/AIFT-Trusts}"
+bash bin/aift doctor
+bash bin/aift trust init "Example Trust"  # prompts for a purpose
+bash bin/aift trust validate "$AIFT_TRUSTS/example-trust"
+```
+
+`trust init` copies [the trust-seed template](templates/trust-seed/README.md), substitutes its three supported variables, and initializes a **local** Git repository. It attempts an initial commit, but a missing Git author identity can prevent that commit without failing creation. `trust validate` checks required files, unresolved placeholders, JSON syntax, and Git-repository presence; it does **not** enforce the JSON schemas, prove consent, or establish legal trust status. `bash bin/aift sync "$AIFT_TRUSTS/example-trust"` stages **all** files with `git add .` and creates a local commit, but does not push to a remote. Review sensitive contents and ignore rules before syncing. The `steward` and `atlas` commands print context rather than running AI or map services; `mission` and `economy` currently create local record directories and describe future features.
+
 ### Local Genesis web dashboard (development boundary)
 
 The repository also includes a dependency-free [Node.js dashboard](apps/genesis-web/README.md) implemented in [`apps/genesis-web/server.mjs`](apps/genesis-web/server.mjs). With Node.js 18 or newer, start it from the repository root using `node apps/genesis-web/server.mjs`, then visit `http://127.0.0.1:8787`. It lists local trust folders, displays trust summaries and validation results, and exposes a trust-creation endpoint that invokes `bin/aift`. The AI Steward and Living Atlas buttons currently display contextual text; they are not running AI inference or a live Atlas service.
