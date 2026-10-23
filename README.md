@@ -89,6 +89,21 @@ python3 -B tools/tree/render_tree.py --check
 
 The repository's [`aift.repo.json`](aift.repo.json) now runs the Python unit tests, Tree and Atlas validators, and deterministic Tree artifact check as its `verify` command. Run it from the repository root with Python 3 and Git installed (some tests inspect tracked files). `git status --short` remains a status command, not a verification gate. Passing these checks does not establish legal governance, cryptographic identity, external-link availability, or deployed federation services.
 
+### Local Genesis web dashboard (development boundary)
+
+The repository also includes a dependency-free [Node.js dashboard](apps/genesis-web/README.md) implemented in [`apps/genesis-web/server.mjs`](apps/genesis-web/server.mjs). With Node.js 18 or newer, start it from the repository root using `node apps/genesis-web/server.mjs`, then visit `http://127.0.0.1:8787`. It lists local trust folders, displays trust summaries and validation results, and exposes a trust-creation endpoint that invokes `bin/aift`. The AI Steward and Living Atlas buttons currently display contextual text; they are not running AI inference or a live Atlas service.
+
+**Local-only security boundary:** The server binds to `127.0.0.1` by default but accepts `HOST` overrides. Its HTTP routes have no authentication or CSRF protection, and `POST /api/create` can create local trust directories. Do not expose it on a public interface, through an untrusted proxy, or to untrusted local callers; it is not a production-ready multi-user service. Trust-path checks are not a substitute for a hardened filesystem sandbox.
+
+Run the separate dashboard smoke checks from the repository root:
+
+```bash
+node --check apps/genesis-web/server.mjs
+node --test apps/genesis-web/tests/dashboard-smoke.test.mjs
+```
+
+The [Genesis Integrity workflow](.github/workflows/genesis-integrity.yml) runs the dashboard smoke suite in addition to Python manifest verification. The `aift.repo.json` `verify` command does **not** include Node.js tests. The smoke suite covers parsing, HTTP startup/trust listing, and safe display of trust names, but not trust creation, authentication, or deployment security.
+
 The canonical [`manifests/tree.manifest.json`](manifests/tree.manifest.json) identifies itself as `status: "canonical-draft"` with `modelVersion: "0.1.0"`. Its epistemic classes explicitly distinguish empirical evidence, scientific consensus, active research, interpretation, philosophy, doctrine, engineering, prototypes, architecture, and aspirations. A generated Tree visualization is a projection of that graph, not independent evidence that every depicted relationship is scientifically established or implemented.
 
 The linked [`AIFT Tree Explorer v1`](docs/tree-explorer-v1.md) is marked **next-phase roadmap**. Semantic zoom, Story Mode, and live Tree-to-Atlas exploration should not be described as shipped functionality without separate implementation evidence. Similarly, genome and trust-inheritance specifications do not alone establish a deployed identity provider, signature verifier, consent service, or federation network.
