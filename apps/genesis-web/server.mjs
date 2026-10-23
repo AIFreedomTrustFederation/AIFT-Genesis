@@ -62,7 +62,7 @@ function safeTrustPath(input) {
   if (!isWithinDirectory(realRoot, realTrust)) {
     throw new Error("Trust path must be inside AIFT_TRUSTS");
   }
-  return realTrust;
+  return resolved;
 }
 
 function readText(file) {
