@@ -112,3 +112,38 @@ test('dashboard inline JavaScript parses and displays trust names as text', asyn
   assert.equal(button?.textContent, suspicious);
   assert.equal(typeof button?.handler, "function");
 });
+
+test('trust summary routes reject sibling-prefix and symlink escapes', async () => {
+  const base = fs.mkdtempSync(path.join(os.tmpdir(), 'genesis-trust-boundary-'));
+  const trusts = path.join(base, 'trusts');
+  const outside = path.join(base, 'trusts-private');
+  fs.mkdirSync(trusts);
+  fs.mkdirSync(outside);
+  fs.writeFileSync(path.join(outside, 'LOCAL_MANIFEST.json'),
+    JSON.stringify({ trust: { name: 'Outside confidential trust' } }));
+  fs.symlinkSync(outside, path.join(trusts, 'external-link'));
+
+  const legitimate = path.join(trusts, 'legitimate');
+  fs.mkdirSync(legitimate);
+  fs.writeFileSync(path.join(legitimate, 'LOCAL_MANIFEST.json'),
+    JSON.stringify({ trust: { name: 'Legitimate trust' } }));
+
+  const port = await freePort();
+  let child;
+  try {
+    child = await launchServer(trusts, port);
+    for (const slug of ['../trusts-private', 'external-link']) {
+      const response = await fetch(
+        `http://127.0.0.1:${port}/api/trust/${encodeURIComponent(slug)}`
+      );
+      assert.notEqual(response.status, 200, `escaped trust ${slug} must not be served`);
+      assert.doesNotMatch(await response.text(), /Outside confidential trust/);
+    }
+    const allowed = await fetch(`http://127.0.0.1:${port}/api/trust/legitimate`);
+    assert.equal(allowed.status, 200);
+    assert.equal((await allowed.json()).manifest.trust.name, 'Legitimate trust');
+  } finally {
+    child?.kill();
+    fs.rmSync(base, { recursive: true, force: true });
+  }
+});
