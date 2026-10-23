@@ -38,12 +38,28 @@ function html(res, body) {
   res.end(body);
 }
 
+function isWithinDirectory(root, candidate) {
+  const relative = path.relative(root, candidate);
+  return relative === "" || (
+    relative !== ".." &&
+    !relative.startsWith(`..${path.sep}`) &&
+    !path.isAbsolute(relative)
+  );
+}
+
 function safeTrustPath(input) {
   const raw = input || "";
-  const candidate = raw.startsWith("/") ? raw : path.join(AIFT_TRUSTS, raw);
+  const candidate = path.isAbsolute(raw) ? raw : path.join(AIFT_TRUSTS, raw);
   const resolved = path.resolve(candidate);
   const trustsRoot = path.resolve(AIFT_TRUSTS);
-  if (!resolved.startsWith(trustsRoot)) {
+  if (!isWithinDirectory(trustsRoot, resolved)) {
+    throw new Error("Trust path must be inside AIFT_TRUSTS");
+  }
+
+  // A lexical check alone does not detect a symlinked trust directory.
+  const realRoot = fs.realpathSync(trustsRoot);
+  const realTrust = fs.realpathSync(resolved);
+  if (!isWithinDirectory(realRoot, realTrust)) {
     throw new Error("Trust path must be inside AIFT_TRUSTS");
   }
   return resolved;
