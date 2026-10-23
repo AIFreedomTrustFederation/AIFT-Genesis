@@ -132,12 +132,14 @@ test('trust summary routes reject sibling-prefix and symlink escapes', async () 
   let child;
   try {
     child = await launchServer(trusts, port);
-    for (const slug of ['../trusts-private', 'external-link']) {
-      const response = await fetch(
-        `http://127.0.0.1:${port}/api/trust/${encodeURIComponent(slug)}`
-      );
-      assert.notEqual(response.status, 200, `escaped trust ${slug} must not be served`);
-      assert.doesNotMatch(await response.text(), /Outside confidential trust/);
+    for (const route of ['/api/trust/', '/api/validate/']) {
+      for (const slug of ['../trusts-private', 'external-link']) {
+        const response = await fetch(
+          `http://127.0.0.1:${port}${route}${encodeURIComponent(slug)}`
+        );
+        assert.notEqual(response.status, 200, `${route}${slug} must not be served`);
+        assert.doesNotMatch(await response.text(), /Outside confidential trust/);
+      }
     }
     const allowed = await fetch(`http://127.0.0.1:${port}/api/trust/legitimate`);
     assert.equal(allowed.status, 200);
