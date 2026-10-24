@@ -224,7 +224,8 @@ cmd_install() {
 
   cd "$AIFT_HOME"
   git checkout main
-  git pull --ff-only origin main || true
+  # Never install a stale CLI after a failed fetch, conflict, or remote error.
+  git pull --ff-only origin main
 
   mkdir -p "${PREFIX:-$HOME/.local}/bin"
   local target="${PREFIX:-$HOME/.local}/bin/aift"
