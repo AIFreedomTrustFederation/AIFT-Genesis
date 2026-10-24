@@ -149,3 +149,49 @@ test('trust summary routes reject sibling-prefix and symlink escapes', async () 
     fs.rmSync(base, { recursive: true, force: true });
   }
 });
+
+
+test('trust listings and summaries do not read symlinked files outside their trust', async () => {
+  const base = fs.mkdtempSync(path.join(os.tmpdir(), 'genesis-trust-file-boundary-'));
+  const trusts = path.join(base, 'trusts');
+  const trust = path.join(trusts, 'legitimate');
+  const outside = path.join(base, 'private-manifest.json');
+  fs.mkdirSync(trust, { recursive: true });
+  fs.writeFileSync(outside, JSON.stringify({
+    trust: { name: 'OUTSIDE-CONFIDENTIAL' },
+    privateRecord: 'SECRET-OUTSIDE-TRUST',
+  }));
+  fs.symlinkSync(outside, path.join(trust, 'LOCAL_MANIFEST.json'));
+  const outsideMarkdown = path.join(base, 'private-notes.md');
+  fs.writeFileSync(outsideMarkdown, 'TODO confidential material');
+  fs.symlinkSync(outsideMarkdown, path.join(trust, 'TRUST.md'));
+
+  const port = await freePort();
+  let child;
+  try {
+    child = await launchServer(trusts, port);
+    const listing = await fetch(`http://127.0.0.1:${port}/api/trusts`);
+    assert.equal(listing.status, 200);
+    const listed = await listing.json();
+    assert.equal(listed.trusts[0].name, 'legitimate');
+
+    const summary = await fetch(`http://127.0.0.1:${port}/api/trust/legitimate`);
+    assert.equal(summary.status, 200);
+    const data = await summary.json();
+    assert.equal(data.manifest, null);
+    assert.ok(!data.files.includes('LOCAL_MANIFEST.json'));
+    assert.ok(data.validation.errors.some(error => error.includes('unsafe trust file: TRUST.md')));
+
+    const validation = await fetch(`http://127.0.0.1:${port}/api/validate/legitimate`);
+    assert.equal(validation.status, 200);
+    assert.ok((await validation.json()).validation.errors.some(error =>
+      error.includes('unsafe trust file: LOCAL_MANIFEST.json')));
+
+    for (const payload of [JSON.stringify(listed), JSON.stringify(data)]) {
+      assert.doesNotMatch(payload, /OUTSIDE-CONFIDENTIAL|SECRET-OUTSIDE-TRUST/);
+    }
+  } finally {
+    child?.kill();
+    fs.rmSync(base, { recursive: true, force: true });
+  }
+});

@@ -65,6 +65,18 @@ function safeTrustPath(input) {
   return resolved;
 }
 
+// Only read trust-owned files. Directory checks alone do not stop a manifest
+// or Markdown file inside a trust from symlinking to private files elsewhere.
+function isSafeTrustFile(trustPath, file) {
+  try {
+    const realTrust = fs.realpathSync(trustPath);
+    const realFile = fs.realpathSync(path.join(trustPath, file));
+    return isWithinDirectory(realTrust, realFile) && fs.statSync(realFile).isFile();
+  } catch {
+    return false;
+  }
+}
+
 function readText(file) {
   return fs.readFileSync(file, "utf8");
 }
@@ -81,7 +93,9 @@ function listTrusts() {
       const trustPath = path.join(AIFT_TRUSTS, d.name);
       let manifest = null;
       try {
-        manifest = parseJsonFile(path.join(trustPath, "LOCAL_MANIFEST.json"));
+        if (isSafeTrustFile(trustPath, "LOCAL_MANIFEST.json")) {
+          manifest = parseJsonFile(path.join(trustPath, "LOCAL_MANIFEST.json"));
+        }
       } catch {}
       return {
         slug: d.name,
@@ -98,13 +112,21 @@ function validateTrust(trustPath) {
   const errors = [];
   const warnings = [];
   for (const file of REQUIRED_FILES) {
-    if (!fs.existsSync(path.join(trustPath, file))) errors.push(`missing required file: ${file}`);
+    if (!fs.existsSync(path.join(trustPath, file))) {
+      errors.push(`missing required file: ${file}`);
+    } else if (!isSafeTrustFile(trustPath, file)) {
+      errors.push(`unsafe required file: ${file}`);
+    }
   }
 
   for (const file of fs.readdirSync(trustPath)) {
     const full = path.join(trustPath, file);
-    if (!fs.statSync(full).isFile()) continue;
     if (!file.endsWith(".md") && !file.endsWith(".json")) continue;
+    if (fs.lstatSync(full).isDirectory()) continue;
+    if (!isSafeTrustFile(trustPath, file)) {
+      errors.push(`unsafe trust file: ${file}`);
+      continue;
+    }
     const text = readText(full);
     if (/{{TRUST_NAME}}|{{TRUST_SLUG}}|{{TRUST_PURPOSE}}/.test(text)) {
       errors.push(`unreplaced generator variable in ${file}`);
@@ -129,12 +151,13 @@ function validateTrust(trustPath) {
 
 function trustSummary(trustPath) {
   const manifestPath = path.join(trustPath, "LOCAL_MANIFEST.json");
-  const manifest = fs.existsSync(manifestPath) ? parseJsonFile(manifestPath) : null;
+  const manifest = isSafeTrustFile(trustPath, "LOCAL_MANIFEST.json")
+    ? parseJsonFile(manifestPath) : null;
   return {
     path: trustPath,
     manifest,
     validation: validateTrust(trustPath),
-    files: REQUIRED_FILES.filter((file) => fs.existsSync(path.join(trustPath, file)))
+    files: REQUIRED_FILES.filter((file) => isSafeTrustFile(trustPath, file))
   };
 }
 

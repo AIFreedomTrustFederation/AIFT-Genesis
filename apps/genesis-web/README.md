@@ -46,7 +46,7 @@ node --check apps/genesis-web/server.mjs
 node --test apps/genesis-web/tests/dashboard-smoke.test.mjs
 ```
 
-These checks cover JavaScript syntax, HTTP startup and trust listing, safe rendering of trust names, and rejection of trust-directory traversal and symlink escapes. They do not exercise trust creation, all CLI commands, or deployed federation services. The Genesis Integrity workflow also runs this dashboard smoke test; the `aift.repo.json` Python verification command remains focused on Tree and Atlas contracts.
+These checks cover JavaScript syntax, HTTP startup and trust listing, safe rendering of trust names, and rejection of trust-directory traversal and symlink escapes, including manifest and Markdown files linked outside their selected trust. They do not exercise trust creation, all CLI commands, or deployed federation services. File-boundary checks are not atomic against concurrent symlink changes. The dashboard has no authentication or CSRF protection and must remain restricted to trusted local callers. The Genesis Integrity workflow also runs this dashboard smoke test; the `aift.repo.json` Python verification command remains focused on Tree and Atlas contracts.
 
 ## Environment
 
