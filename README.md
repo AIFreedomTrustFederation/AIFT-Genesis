@@ -89,6 +89,12 @@ python3 -B tools/tree/render_tree.py --check
 
 The repository's [`aift.repo.json`](aift.repo.json) now runs the Python unit tests, Tree and Atlas validators, and deterministic Tree artifact check as its `verify` command. Run it from the repository root with Python 3 and Git installed (some tests inspect tracked files). `git status --short` remains a status command, not a verification gate. Passing these checks does not establish legal governance, cryptographic identity, external-link availability, or deployed federation services.
 
+### Federation discovery and UXI registration boundaries
+
+The executable integrity gate in [`aift.repo.json`](aift.repo.json) is distinct from the Federation capability inventory. [`.aift/capabilities.json`](.aift/capabilities.json) still marks the generic `verify`, `test`, `build`, `start`, `stop`, `health`, and `deploy` capabilities as `planned` (last checked 2026-06-30); it marks `status` and `sync` as `ready` and `docs` as `detected`. The [service declaration](.aift/services.json) likewise marks `AIFT-Genesis.service` as `planned`. These declarations are not automatically upgraded by a successful Python integrity gate, Node dashboard smoke test, or GitHub Actions run. They should not be read as evidence of a registered, healthy, or deployed Federation service.
+
+Genesis defines the [MoBox UXI read-only integration schema](schemas/uxi-integration.schema.json), but this checkout does **not** currently declare a `.aift/uxi.json` integration manifest. The [AIFT-OS integration discovery reader](https://github.com/AIFreedomTrustFederation/AIFT-OS/blob/main/internal/uxi/integration.go) looks for that file in eligible local repository checkouts and skips repositories where it is absent. Consequently, the Genesis Tree and Atlas manifests are **not automatically registered as UXI inspectable sources** merely because their files and the schema exist. Any future source registration requires an explicit reviewed integration manifest and verification in the consuming runtime; it does not imply identity issuance, trust consent, or write authority.
+
 ### Trust CLI: local actions and validation limits
 
 The [`bin/aift` CLI](bin/aift) requires Bash, Python 3, and Git. From a Genesis checkout, set `AIFT_HOME` explicitly if the repository is not at the CLI's default `~/AIFT-Genesis` path:
