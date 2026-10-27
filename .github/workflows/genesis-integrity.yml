@@ -55,7 +55,7 @@
         },
         {
           "name": "Verify clean checkout",
-          "run": "test -z \"$(git status --porcelain)\""
+          "run": "test -z \"$(git status --porcelain)\"\ntest \"$(git rev-parse HEAD)\" = \"$GITHUB_SHA\""
         }
       ]
     }
