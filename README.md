@@ -153,3 +153,8 @@ A local trust may carry the same constitutional pattern while using different na
 ### The Return of the Word
 
 In Genesis, the Word returns as inheritance that still remembers its source. Doctrine becomes constitution; constitution becomes schema; schema becomes a living trust seed; and the living trust returns its own identity to the Federation without surrendering it. The whole is present in the seed, and the seed remains itself.
+
+
+## Proposed Universal OS Contract Consumers
+
+[Genesis source and Tree lineage integration guide](docs/aift-universal-os-alignment.md) explains how future native, hosted and embodied AIFT environments may consume versioned Genesis contracts. It makes no constitutional change or boot/device support claim. See the [AIFT-OS architecture draft](https://github.com/AIFreedomTrustFederation/AIFT-OS/pull/92).
